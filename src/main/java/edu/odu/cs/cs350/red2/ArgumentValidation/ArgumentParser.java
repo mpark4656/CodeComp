@@ -11,6 +11,10 @@ public class ArgumentParser
 {
 	private String[] args;
 	
+	/**
+	 * Constructor that accepts an array of String
+	 * @param args String[] command-line parameter
+	 */
 	public ArgumentParser( String[] args )
 	{
 		
@@ -18,11 +22,9 @@ public class ArgumentParser
 	
 	/**
 	 * Checks the command-line parameter and see if the usage is proper.
-	 * 
-	 * @param args
 	 * @return True boolean true if the arguments are proper.
 	 */
-	public boolean properArgs( String[] args )
+	public boolean properArgs()
 	{
 		return false;
 	}
@@ -30,50 +32,45 @@ public class ArgumentParser
 	/**
 	 * Checks the command-line parameter and see if user asked for help
 	 * by including the -help option.
-	 * @param args
 	 * @return True boolean true if user used the -help option
 	 */
-	public boolean argsContainHelp( String[] args )
+	public boolean argsContainHelp()
 	{
 		return false;
 	}
 	
 	/**
 	 * Checks the command-line parameter and see if user specified -raw
-	 * @param args
 	 * @return True boolean True if user used the -raw option
 	 */
-	public boolean argsContainSheetName( String[] args )
+	public boolean argsContainSheetName()
 	{
 		return false;
 	}
 	
 	/**
 	 * Return -template arg as String
-	 * @param args
 	 * @return tempArg String The string after -template
 	 */
-	public String getTemplateArg( String[] args )
+	public String getTemplateArg()
 	{
 		return null;
 	}
 	
 	/**
 	 * Return -raw arg as String
-	 * @param args
 	 * @return rawArg String The string after -raw
 	 */
-	public String getSheetNameArg( String[] args )
+	public String getSheetNameArg()
 	{
 		return null;
 	}
 	
 	/**
 	 * Checks the command-line parameter and see if user specified -template
-	 * @param args
 	 * @return True boolean true if user used the -template option
 	 */
-	public boolean argsContainTemplate( String[] args )
+	public boolean argsContainTemplate()
 	{
 		return false;
 	}

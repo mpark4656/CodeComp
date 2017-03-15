@@ -32,14 +32,14 @@ public class CodeComp
 		ArgumentParser param = new ArgumentParser( args );
 		
 		// Check that the command-line parameter is proper
-		if( !param.properArgs(args) ) {
+		if( !param.properArgs() ) {
 			System.out.println( "Usage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
 			System.exit(1);
 		}
 		
 		// If user used the -help option, print the summary of command-line usage and options.
 		// Then, exit the program.
-		if( param.argsContainHelp(args) ) {
+		if( param.argsContainHelp() ) {
 			helpUser();
 			System.exit(0);
 		}
@@ -48,13 +48,13 @@ public class CodeComp
 		Instructor instructor = new Instructor( args[args.length - 1]);
 		
 		// If user provided optional argument for specifying Template, set the template
-		if( param.argsContainTemplate(args) ) {
-			instructor.setTemplate( param.getTemplateArg(args) );
+		if( param.argsContainTemplate() ) {
+			instructor.setTemplate( param.getTemplateArg() );
 		}
 		
 		// If user provided optional argument for specifying sheet name, set the sheet name
-		if( param.argsContainSheetName(args) ) {
-			instructor.setSheetName( param.getSheetNameArg(args) );
+		if( param.argsContainSheetName() ) {
+			instructor.setSheetName( param.getSheetNameArg() );
 		}
 		
 		// Create a File instance with the Assignment Directory path that user provided
