@@ -1,4 +1,5 @@
 # CodeComp
+## Overview
 CodeComp is envisioned as a system to aid instructors in detecting inappropriate copying of programming code.
 
 A variety of such programs already exist, including MOSS and JPlag.
