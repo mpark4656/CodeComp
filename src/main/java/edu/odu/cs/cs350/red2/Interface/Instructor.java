@@ -40,7 +40,25 @@ public class Instructor
 	 * @param sheetname String sheetname specified by user
 	 * @param outputSpreadsheet File directory where output files should be written to
 	 */
-	public Instructor( String template , String sheetname , File outputSpreadsheet)
+	public Instructor( String outputSpreadsheet)
+	{
+		
+	}
+	
+	/**
+	 * Mutator method for setting the template
+	 * @param template String
+	 */
+	public void setTemplate( String template )
+	{
+		
+	}
+	
+	/**
+	 * Mutator method for setting the raw sheetname
+	 * @param sheetname String
+	 */
+	public void setSheetName( String sheetname )
 	{
 		
 	}
