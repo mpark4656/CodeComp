@@ -7,6 +7,7 @@
 package edu.odu.cs.cs350.red2;
 
 import edu.odu.cs.cs350.red2.Interface.*;
+import edu.odu.cs.cs350.red2.ArgumentValidation.*;
 import java.io.File;
 
 public class CodeComp
@@ -27,15 +28,18 @@ public class CodeComp
 	 */
 	public static void main( String[] args )
 	{
-		// Check that the command-line arguments provided by user are proper
-		if( !properArgs(args) ) {
+		// Instantiate ArgumentParser and pass args
+		ArgumentParser param = new ArgumentParser( args );
+		
+		// Check that the command-line parameter is proper
+		if( !param.properArgs(args) ) {
 			System.out.println( "Usage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
 			System.exit(1);
 		}
 		
 		// If user used the -help option, print the summary of command-line usage and options.
 		// Then, exit the program.
-		if( argsContainHelp(args) ) {
+		if( param.argsContainHelp(args) ) {
 			helpUser();
 			System.exit(0);
 		}
@@ -44,13 +48,13 @@ public class CodeComp
 		Instructor instructor = new Instructor( args[args.length - 1]);
 		
 		// If user provided optional argument for specifying Template, set the template
-		if( argsContainTemplate(args) ) {
-			instructor.setTemplate( getTemplateArg(args) );
+		if( param.argsContainTemplate(args) ) {
+			instructor.setTemplate( param.getTemplateArg(args) );
 		}
 		
 		// If user provided optional argument for specifying sheet name, set the sheet name
-		if( argsContainSheetName(args) ) {
-			instructor.setSheetName( getSheetNameArg(args) );
+		if( param.argsContainSheetName(args) ) {
+			instructor.setSheetName( param.getSheetNameArg(args) );
 		}
 		
 		// Create a File instance with the Assignment Directory path that user provided
@@ -81,74 +85,14 @@ public class CodeComp
 	} // End of main
 	
 	/**
-	 * Return -template arg as String
-	 * @param args
-	 * @return tempArg String The string after -template
-	 */
-	public static String getTemplateArg( String[] args )
-	{
-		return null;
-	}
-	
-	/**
-	 * Return -raw arg as String
-	 * @param args
-	 * @return rawArg String The string after -raw
-	 */
-	public static String getSheetNameArg( String[] args )
-	{
-		return null;
-	}
-	
-	/**
-	 * Checks the command-line arguments and see if user specified -template
-	 * @param args
-	 * @return True boolean true if user used the -template option
-	 */
-	public static boolean argsContainTemplate( String[] args )
-	{
-		return false;
-	}
-	
-	/**
-	 * Checks the command-line arguments and see if user specified -raw
-	 * @param args
-	 * @return True boolean True if user used the -raw option
-	 */
-	public static boolean argsContainSheetName( String[] args )
-	{
-		return false;
-	}
-	
-	/**
-	 * Checks the command-line arguments and see if user asked for help
-	 * by including the -help option.
-	 * @param args
-	 * @return True boolean true if user used the -help option
-	 */
-	public static boolean argsContainHelp( String[] args )
-	{
-		return false;
-	}
-	
-	/**
-	 * Checks the command-line arguments and see if the usage is proper.
-	 * 
-	 * @param args
-	 * @return True boolean true if the arguments are proper.
-	 */
-	public static boolean properArgs( String[] args )
-	{
-		// Implementation
-		return false;
-	}
-	
-	/**
 	 * Help user by printing the summary of command-line usage and options.
-	 * @pre argsContainHelp == true
 	 */
 	public static void helpUser()
 	{
 		// Print Summary of Arguments
 	}
-}
+	
+} // End of CodeComp
+
+
+
