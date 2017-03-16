@@ -34,6 +34,8 @@ public class CodeComp
 		// Check that the command-line parameter is proper
 		if( !param.isProperArgs() ) {
 			System.out.println( "Usage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
+			System.out.println();
+			System.out.println( "For Help: java -jar CodeComp.jar -help" );
 			System.exit(1);
 		}
 		
@@ -81,27 +83,22 @@ public class CodeComp
 	public static void helpUser()
 	{
 		// Print Summary of Usage and Options
-		System.out.println("Help Page");
-		System.out.println("");
-		System.out.println("the format for the input is");
-		System.out.println("java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet");
-		System.out.println("Usage:");
-		System.out.println("");
-		System.out.println("The assignmentDirectory is a path to the root directory of the assignment, containing a number of submission directories.");
-		System.out.println("");
-		System.out.println("The outputSpreadsheet is a path to where the output (an Excel spreadsheet) should be stored.");
-		System.out.println("");
+		System.out.println( "Usage: java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]" );
+		System.out.println();
+		System.out.println("\tThe [assignmentDirectory] is a path to the root directory of the assignment, containing a number of submission directories.");
+		System.out.println();
+		System.out.println("\tThe [outputSpreadsheet] is a path to where the output (an Excel spreadsheet) should be stored.");
+		System.out.println();
 		System.out.println("Options:");
-		System.out.println("-template templateSpreadSheet");
-		System.out.println("     Replaces the default spreadsheet template with one specified by the user.");
-		System.out.println("");
-		System.out.println("-raw sheetname");
-		System.out.println("     Replaces the sheet name used to identify where to place the raw scores (default is “RawScores”).");
-		System.out.println("");
-		System.out.println("Additional Commands:");
-		System.out.println("-help");
-		System.out.println("     Prints a summary of the command line parameters.");
-		
+		System.out.println("\t-template templateSpreadSheet");
+		System.out.println("\t\tReplaces the default spreadsheet template with one specified by the user.");
+		System.out.println();
+		System.out.println("\t-raw sheetname");
+		System.out.println("\t\tReplaces the sheet name used to identify where to place the raw scores (default is “RawScores”).");
+		System.out.println();
+		System.out.println("Additional Commands");
+		System.out.println("\tjava -jar CodeComp.jar -help");
+		System.out.println("\t\tPrints a summary of the command line parameters.");
 	}
 	
 } // End of CodeComp
