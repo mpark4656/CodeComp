@@ -89,7 +89,7 @@ public class Instructor
 	 * @pre receivedSubmission == true && parsedStudentSubmissions == false
 	 * @post parsedStudentSubmissions == true;
 	 */
-	public void parseStudentSubmissions()
+	public void process()
 	{
 		
 	}
@@ -99,7 +99,7 @@ public class Instructor
 	 * @pre parsedStudentSubmissions == true && analyzedTokenSequence == false
 	 * @post analysedTokenSequence == true
 	 */
-	public void analyzeAllSequences()
+	public void analyze()
 	{
 		
 	}
@@ -108,7 +108,7 @@ public class Instructor
 	 * Generate and write result tables
 	 * @pre analyzedTokenSequence == true
 	 */
-	public void generateReport()
+	public void displayResult()
 	{
 		
 	}

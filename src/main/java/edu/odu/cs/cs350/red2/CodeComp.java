@@ -76,13 +76,13 @@ public class CodeComp
 		instructor.acceptStudentSubmissions( assignmentDirectory );
 		
 		// Parse the students code (Tokenize the code files)
-		instructor.parseStudentSubmissions();
+		instructor.process();
 		
 		// Analyze similarity
-		instructor.analyzeAllSequences();
+		instructor.analyze();
 		
-		// Generate report
-		instructor.generateReport();
+		// Create tables and display result
+		instructor.displayResult();
 		
 	} // End of main
 	
