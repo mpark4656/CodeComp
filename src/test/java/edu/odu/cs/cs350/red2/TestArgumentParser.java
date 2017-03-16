@@ -1,18 +1,27 @@
 package edu.odu.cs.cs350.red2;
 
+import edu.odu.cs.cs350.red2.ArgumentValidation.ArgumentParser;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 
 public class TestArgumentParser {
 
 	@Test
 	public void testArgumentParser() {
-		fail("Not yet implemented");
+		// Create an array of String with 0 element (No arguments given)
+		// Instantiate ArgumentParser with no argument
+		String[] args = new String[0];
+		ArgumentParser parser = new ArgumentParser( args );
+		
+		assertFalse( parser.isProperArgs() );
+		
+		
 	}
 
 	@Test
-	public void testProperArgs() {
+	public void testIsProperArgs() {
 		fail("Not yet implemented");
 	}
 

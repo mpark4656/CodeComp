@@ -32,7 +32,7 @@ public class CodeComp
 		ArgumentParser param = new ArgumentParser( args );
 		
 		// Check that the command-line parameter is proper
-		if( !param.properArgs() ) {
+		if( !param.isProperArgs() ) {
 			System.out.println( "Usage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
 			System.exit(1);
 		}

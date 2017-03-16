@@ -24,7 +24,7 @@ public class ArgumentParser
 	 * Checks the command-line parameter and see if the usage is proper.
 	 * @return True boolean true if the arguments are proper.
 	 */
-	public boolean properArgs()
+	public boolean isProperArgs()
 	{
 		return false;
 	}
