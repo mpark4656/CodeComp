@@ -3,6 +3,12 @@ package edu.odu.cs.cs350.red2.Interface;
 import java.util.ArrayList;
 import java.io.File;
 
+/**
+ * Submission Class - 
+ * Represents individual submission by students - 
+ * Stores token sequence.
+ * @author mpark
+ */
 public class Submission
 {
 	// The submission directory
