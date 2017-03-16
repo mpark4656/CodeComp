@@ -85,20 +85,23 @@ public class CodeComp
 		// Print Summary of Usage and Options
 		System.out.println( "Usage: java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]" );
 		System.out.println();
-		System.out.println("\tThe [assignmentDirectory] is a path to the root directory of the assignment, containing a number of submission directories.");
+		System.out.print  ( "\tThe [assignmentDirectory] is a path to the root directory of the assignment, " );
+		System.out.println( "containing a number of submission directories." );
 		System.out.println();
-		System.out.println("\tThe [outputSpreadsheet] is a path to where the output (an Excel spreadsheet) should be stored.");
+		System.out.print  ( "\tThe [outputSpreadsheet] is a path to where the output " );
+		System.out.println( "(an Excel spreadsheet) should be stored." );
 		System.out.println();
-		System.out.println("Options:");
-		System.out.println("\t-template templateSpreadSheet");
-		System.out.println("\t\tReplaces the default spreadsheet template with one specified by the user.");
+		System.out.println( "Options:" );
+		System.out.println( "\t-template templateSpreadSheet" );
+		System.out.println( "\t\tReplaces the default spreadsheet template with one specified by the user." );
 		System.out.println();
-		System.out.println("\t-raw sheetname");
-		System.out.println("\t\tReplaces the sheet name used to identify where to place the raw scores (default is “RawScores”).");
+		System.out.println( "\t-raw sheetname" );
+		System.out.print  ( "\t\tReplaces the sheet name used to identify where to place the raw scores " );
+		System.out.println( "(default is “RawScores”)." );
 		System.out.println();
-		System.out.println("Additional Commands");
-		System.out.println("\tjava -jar CodeComp.jar -help");
-		System.out.println("\t\tPrints a summary of the command line parameters.");
+		System.out.println( "Additional Commands" );
+		System.out.println( "\tjava -jar CodeComp.jar -help" );
+		System.out.println( "\t\tPrints a summary of the command line parameters." );
 	}
 	
 } // End of CodeComp
