@@ -28,7 +28,7 @@ public class CodeComp
 	 */
 	public static void main( String[] args )
 	{
-		// Instantiate ArgumentParser and pass args blahblah
+		// Instantiate ArgumentParser and pass arguments
 		ArgumentParser param = new ArgumentParser( args );
 		
 		// Check that the command-line parameter is proper
@@ -91,7 +91,7 @@ public class CodeComp
 	 */
 	public static void helpUser()
 	{
-		// Print Summary of Arguments
+		// Print Summary of Usage and Options
 	}
 	
 } // End of CodeComp
