@@ -54,23 +54,12 @@ public class CodeComp
 		
 		// If user provided optional argument for specifying sheet name, set the sheet name
 		if( param.argsContainSheetName() ) {
-			instructor.setSheetName( param.getSheetNameArg() );
+				instructor.setSheetName( param.getSheetNameArg() );
 		}
 		
 		// Create a File instance with the Assignment Directory path that user provided
+		// ArgumentParser already checked that the assignmentDirectory is an existing directory.
 		File assignmentDirectory = new File( args[args.length - 2] );
-		
-		// Check to see if the path exists.
-		if( !assignmentDirectory.exists() ) {
-			System.out.println( "The assignment directory does not exist." );
-			System.exit(2);
-		}
-		
-		// Check to see if the path points to a directory.
-		if( !assignmentDirectory.isDirectory() ) {
-			System.out.println( "The assignment submissions must reside in a directory" );
-			System.exit(2);
-		}
 		
 		// Recursively search the assignment directory and get all student submissions
 		instructor.acceptStudentSubmissions( assignmentDirectory );
