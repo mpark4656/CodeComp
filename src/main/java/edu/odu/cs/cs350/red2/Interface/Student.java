@@ -46,7 +46,7 @@ public class Student implements Cloneable, Comparable<Student>
 		submissions.sort( null );
 		for (int i = 0; i < submissions.size();i++)
 		{
-			if !(submissions contains("."))
+			if !(submissions[i] contains("."))
 			{
 				return submissions[0];
 			}
