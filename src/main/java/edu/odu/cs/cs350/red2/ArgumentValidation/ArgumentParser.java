@@ -103,7 +103,8 @@ public class ArgumentParser
 		// If the control reaches this point, that means the arguments passed all checks
 		// and they are proper, so return true.
 		return true;
-	}
+		
+	} // End of isProperArgs()
 	
 	/**
 	 * Checks the command-line parameter and see if user asked for help
@@ -120,7 +121,8 @@ public class ArgumentParser
 		}
 		
 		return args[0].equals( "-help" );
-	}
+		
+	} // End of argsContainHelp()
 	
 	/**
 	 * Checks the command-line parameter and see if user specified -raw, 
@@ -138,7 +140,8 @@ public class ArgumentParser
 		}
 		
 		return false;
-	}
+		
+	} // End of argsContainSheetName()
 	
 	/**
 	 * Checks the command-line parameter and see if user specified -template, 
@@ -156,7 +159,8 @@ public class ArgumentParser
 		}
 		
 		return false;
-	}
+		
+	} // End of argsContainTemplate()
 	
 	/**
 	 * Return -template arg as String
@@ -185,7 +189,8 @@ public class ArgumentParser
 			// The index after tempIndex is the actual literal argument.
 			return args[tempIndex + 1];
 		}
-	}
+		
+	} // End of getTemplateArg()
 	
 	/**
 	 * Return -raw arg as String
@@ -215,7 +220,8 @@ public class ArgumentParser
 			// The index after rawIndex is the actual literal argument.
 			return args[rawIndex + 1];
 		}
-	}
+		
+	} // End of getSheetNameArg()
 	
 } // End of ArgumentParser
 

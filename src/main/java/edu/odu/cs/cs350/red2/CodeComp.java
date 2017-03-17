@@ -102,7 +102,8 @@ public class CodeComp
 		System.out.println( "Additional Commands" );
 		System.out.println( "\tjava -jar CodeComp.jar -help" );
 		System.out.println( "\t\tPrints a summary of the command line parameters." );
-	}
+		
+	} // End of helpUser()
 	
 } // End of CodeComp
 
