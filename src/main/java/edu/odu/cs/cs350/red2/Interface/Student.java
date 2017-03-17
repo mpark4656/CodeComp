@@ -65,7 +65,8 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public boolean equals( Object theStudent )
 	{
-		return false;
+		return this.toString().equals(theStudent.toString());
+		
 	}
 	
 	/**
