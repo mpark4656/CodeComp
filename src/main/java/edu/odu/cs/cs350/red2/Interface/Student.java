@@ -75,7 +75,7 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
-		return 0;
+	
 	}
 	
 	/**

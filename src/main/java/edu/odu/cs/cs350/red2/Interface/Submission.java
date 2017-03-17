@@ -130,10 +130,9 @@ public class Submission implements Comparable<Submission>
 	@Override
 	public int compareTo( Submission obj )
 	{
-		String thisFolderName = toString();
-		String thatFolderName = obj.toString();
-		
-		return 1;
+
+		return this.toString().compareTo(obj.toString());
+
 	}
 	
 	public String toString()
