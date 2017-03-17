@@ -10,6 +10,13 @@ import edu.odu.cs.cs350.red2.Interface.*;
 import edu.odu.cs.cs350.red2.ArgumentValidation.*;
 import java.io.File;
 
+/**
+ * The Main Driver - 
+ * Instantiates Instructor class
+ * 
+ * @author mpark
+ * @author nruf
+ */
 public class CodeComp
 {
 	/**
@@ -24,7 +31,6 @@ public class CodeComp
 	 * C:\Users\mpark\Documents\ 
 	 * 
 	 * @param args command-line arguments
-	 * @author mpark
 	 */
 	public static void main( String[] args )
 	{
@@ -65,12 +71,6 @@ public class CodeComp
 		
 		// Recursively search the assignment directory and get all student submissions
 		instructor.acceptStudentSubmissions( assignmentDirectory );
-		
-		// Parse the students code (Tokenize the code files)
-		instructor.process();
-		
-		// Analyze similarity
-		instructor.analyze();
 		
 		// Create tables and display result
 		instructor.displayResult();
