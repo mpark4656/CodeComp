@@ -9,7 +9,7 @@ import java.io.File;
  * Stores token sequence.
  * @author mpark
  */
-public class Submission
+public class Submission implements Comparable<Submission>
 {
 	// The submission directory
 	private File directory;
@@ -125,5 +125,19 @@ public class Submission
 	public Object clone()
 	{
 		return null;
+	}
+	
+	@Override
+	public int compareTo( Submission obj )
+	{
+		String thisFolderName = toString();
+		String thatFolderName = obj.toString();
+		
+		return 1;
+	}
+	
+	public String toString()
+	{
+		return directory.getPath();
 	}
 }

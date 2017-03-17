@@ -43,6 +43,7 @@ public class Student
 	 */
 	public Submission getPrioritySubmission()
 	{
+		submissions.sort( null );
 		return null;
 	}
 	
