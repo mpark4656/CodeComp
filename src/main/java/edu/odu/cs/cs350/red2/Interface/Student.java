@@ -48,7 +48,7 @@ public class Student implements Cloneable, Comparable<Student>
 		{
 			if !(submissions[i] contains("."))
 			{
-				return submissions[0];
+				return submissions[i];
 			}
 			
 				
@@ -87,7 +87,7 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
-	
+		
 	}
 	
 	/**
