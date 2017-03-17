@@ -70,10 +70,35 @@ public class CodeComp
 		File assignmentDirectory = new File( args[args.length - 2] );
 		
 		// Recursively search the assignment directory and get all student submissions
-		instructor.acceptStudentSubmissions( assignmentDirectory );
+		// Once submissions are accepted, Instructor will automatically process and analyze the data.
+		if( !instructor.acceptStudentSubmissions(assignmentDirectory) ) {
+			System.out.println( "There was a problem searching student submissions." );
+			System.exit(2);
+		}
+		else {
+			// Print Feedback Output
+			instructor.outputFeedback();
+		}
 		
-		// Create tables and display result
-		instructor.displayResult();
+		// Process submissions and parse the codes
+		if( !instructor.process() ) {
+			System.out.println( "A problem occurred during lexical analysis." );
+			System.exit(3);
+		}
+		else {
+			// Continue
+			;
+		}
+		
+		// Analyze similarity
+		if( !instructor.analyze() ) {
+			System.out.println( "A problem occurred during similarity analysis." );
+			System.exit(4);
+		}
+		else {
+			// Create tables and display result
+			instructor.displayResult();
+		}
 		
 	} // End of main
 	

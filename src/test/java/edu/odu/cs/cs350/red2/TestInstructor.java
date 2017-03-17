@@ -203,8 +203,8 @@ public class TestInstructor {
 		assertEquals( "" , instructor.getTemplate() );
 		assertEquals( "" , instructor.getSheetName() );
 		assertTrue( instructor.isSubmissionReceived() );
-		assertTrue( instructor.isSubmissionParsed() );
-		assertTrue( instructor.isTokenSequenceAnalyzed() );
+		assertFalse( instructor.isSubmissionParsed() );
+		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 1 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
@@ -213,51 +213,15 @@ public class TestInstructor {
 
 	@Test
 	public void testIsSubmissionParsed() {
-		
-		/***************************************************************/
-		/*
-		 * Accept Student Submission and verify that the obj is in the 
-		 * correct state.
-		 */
-		Instructor instructor = new Instructor( "output" );
-		File submissionDirectory = new File( "\\src\\test\\data\\testSubmissionDirectory" );
-		instructor.acceptStudentSubmissions( submissionDirectory );
-		
-		assertFalse( instructor.isTemplateSpecified() );
-		assertFalse( instructor.isSheetNameSpecified() );
-		assertEquals( "" , instructor.getTemplate() );
-		assertEquals( "" , instructor.getSheetName() );
-		assertTrue( instructor.isSubmissionReceived() );
-		assertTrue( instructor.isSubmissionParsed() );
-		assertTrue( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 1 , instructor.getTotalStudentCount() );
-		assertEquals( 0 , instructor.getTotalStudentPairCount() );
-		/***************************************************************/
+		fail("Not yet implemented");
+
 		
 	} // End of testIsSubmissionParsed()
 
 	@Test
 	public void testIsTokenSequenceAnalyzed() {
+		fail("Not yet implemented");
 
-		/***************************************************************/
-		/*
-		 * Accept Student Submission and verify that the obj is in the 
-		 * correct state.
-		 */
-		Instructor instructor = new Instructor( "output" );
-		File submissionDirectory = new File( "\\src\\test\\data\\testSubmissionDirectory" );
-		instructor.acceptStudentSubmissions( submissionDirectory );
-		
-		assertFalse( instructor.isTemplateSpecified() );
-		assertFalse( instructor.isSheetNameSpecified() );
-		assertEquals( "" , instructor.getTemplate() );
-		assertEquals( "" , instructor.getSheetName() );
-		assertTrue( instructor.isSubmissionReceived() );
-		assertTrue( instructor.isSubmissionParsed() );
-		assertTrue( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 1 , instructor.getTotalStudentCount() );
-		assertEquals( 0 , instructor.getTotalStudentPairCount() );
-		/***************************************************************/
 		
 	} // End of testIsTokenSequenceAnalyzed()
 
@@ -282,8 +246,23 @@ public class TestInstructor {
 	}
 
 	@Test
+	public void testOutputFeedback() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testProcess() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testAnalyze() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
 	public void testDisplayResult() {
 		fail("Not yet implemented");
 	}
 
-} // Enf of TestInstructor
+} // End of TestInstructor

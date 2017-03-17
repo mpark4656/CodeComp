@@ -23,7 +23,7 @@ public class Student
 	 */
 	public Student( String identifier )
 	{
-		
+		this.identifier = identifier;
 	}
 	
 	/**

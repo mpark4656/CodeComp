@@ -189,36 +189,55 @@ public class Instructor
 	 * @param parentDirectory
 	 * @pre receivedSubmission == false
 	 * @post receivedSubmissions == true
+	 * @return receivedSubmission boolean Return true if the submissions were successfully received.
 	 */
-	public void acceptStudentSubmissions( File parentDirectory )
+	public boolean acceptStudentSubmissions( File parentDirectory )
 	{
-		// Not yet implemented
-		receivedSubmissions = true;
+		// If this is not a directory/folder, return.
+		if( !parentDirectory.isDirectory() ) {
+			return false;
+		}
 		
-		process();
-		analyze();
+		
+		
+		receivedSubmissions = true;
+		return receivedSubmissions;
+	}
+	
+	/**
+	 * Public method to print feedback output for user
+	 * @pre receivedSubmissions == true
+	 */
+	public void outputFeedback()
+	{
+		// Not implemented
 	}
 	
 	/**
 	 * "Tokenize" all codes in each student submission.
 	 * @pre receivedSubmission == true && parsedStudentSubmissions == false
 	 * @post parsedStudentSubmissions == true;
+	 * @return parsedStudentSubmission boolean Return true if the submissions were successfully parsed.
 	 */
-	private void process()
+	public boolean process()
 	{
 		// Not yet implemented
 		parsedStudentSubmissions = true;
+		return parsedStudentSubmissions;
 	}
 	
 	/**
 	 * Analyze similarity and calculate the raw scores and the z-scores.
 	 * @pre parsedStudentSubmissions == true && analyzedTokenSequence == false
 	 * @post analysedTokenSequence == true
+	 * @return analyzedTokenSequences boolean Return true if the token sequences were 
+	 * successfully analyzed.
 	 */
-	private void analyze()
+	public boolean analyze()
 	{
 		// Not yet implemented
 		analyzedTokenSequences = true;
+		return analyzedTokenSequences;
 	}
 	
 	/**
