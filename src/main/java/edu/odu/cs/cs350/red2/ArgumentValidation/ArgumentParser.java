@@ -86,8 +86,33 @@ public class ArgumentParser
 				return false;
 			}
 			
+			// These flags will help determine if user used duplicate options
+			// For example, using -raw twice
+			boolean rawUsed = false;
+			boolean templateUsed = false;
+			
 			// Iterate through the args array at each index that holds optional flag
 			for( int i = 0 ; i < args.length - 2 ; i += 2 ) {
+				// -raw appeared twice, this is not the correct arg
+				if( args[i].equals("-raw") && rawUsed == true ) {
+					return false;
+				}
+				
+				// -template appeared twice, this is not the correct arg
+				if( args[i].equals("-template") && templateUsed == true ) {
+					return false;
+				}
+				
+				// Since -raw was used, mark it as used
+				if( args[i].equals("-raw") && rawUsed == false ) {
+					rawUsed = true;
+				}
+				
+				// Since -template was used, mark it as used
+				if( args[i].equals("-template") && templateUsed == false ) {
+					templateUsed = true;
+				}
+				
 				// If this index does not hold optional flag, it is not proper.
 				if( !args[i].equals("-raw") && !args[i].equals("-template") ) {
 					return false;
@@ -108,15 +133,14 @@ public class ArgumentParser
 	
 	/**
 	 * Checks the command-line parameter and see if user asked for help
-	 * by including the -help option - 
-	 * This method will return true as long as "-help" is one of the arguments 
-	 * regardless of whether the arguments are in the proper form.
+	 * by including the -help option.
 	 * @pre isProperArgs() == true
 	 * @return True boolean true if user used the -help option
 	 */
 	public boolean argsContainHelp()
 	{
-		if( args.length == 0 ) {
+		if( args.length == 0 || isProperArgs() == false ) {
+			// Or throw exception
 			return false;
 		}
 		
@@ -125,14 +149,17 @@ public class ArgumentParser
 	} // End of argsContainHelp()
 	
 	/**
-	 * Checks the command-line parameter and see if user specified -raw, 
-	 * This method will return true as long as "-raw" is one of the arguments 
-	 * regardless of whether the arguments are in the proper form.
+	 * Checks the command-line parameter and see if user specified -raw.
 	 * @pre isProperArgs() == true
 	 * @return True boolean True if user used the -raw option
 	 */
 	public boolean argsContainSheetName()
 	{
+		if( isProperArgs() == false ) {
+			// Or throw exception
+			return false;
+		}
+		
 		for( int i = 0 ; i < args.length - 2 ; i += 2 ) {
 			if( args[i].equals("-raw") ) {
 				return true;
@@ -144,14 +171,17 @@ public class ArgumentParser
 	} // End of argsContainSheetName()
 	
 	/**
-	 * Checks the command-line parameter and see if user specified -template, 
-	 * This method will return true as long as "-template" is one of the arguments 
-	 * regardless of whether the arguments are in the proper form.
+	 * Checks the command-line parameter and see if user specified -template.
 	 * @pre isProperArgs() == true
 	 * @return True boolean true if user used the -template option
 	 */
 	public boolean argsContainTemplate()
 	{
+		if( isProperArgs() == false ) {
+			// Or throw exception
+			return false;
+		}
+		
 		for( int i = 0 ; i < args.length - 2 ; i += 2 ) {
 			if( args[i].equals("-template") ) {
 				return true;
