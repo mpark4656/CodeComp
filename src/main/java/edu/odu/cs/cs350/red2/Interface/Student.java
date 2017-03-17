@@ -44,7 +44,18 @@ public class Student implements Cloneable, Comparable<Student>
 	public Submission getPrioritySubmission()
 	{
 		submissions.sort( null );
-		return null;
+		for (int i = 0; i < submissions.size();i++)
+		{
+			if !(submissions contains("."))
+			{
+				return submissions[0];
+			}
+			
+				
+		}
+		
+		return submissions[submissions.size() - 1];
+		
 	}
 	
 	/**
