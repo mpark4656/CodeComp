@@ -198,7 +198,11 @@ public class Instructor
 			return false;
 		}
 		
-		
+		// Iterate through all files in the parent directory. Apply the Directory Filter to ignore
+		// any non-directory files.
+		for( int i = 0 ; i < parentDirectory.listFiles(new DirectoryFilter()).length ; i++ ) {
+			
+		}
 		
 		receivedSubmissions = true;
 		return receivedSubmissions;

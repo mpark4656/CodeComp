@@ -8,7 +8,7 @@ import java.io.File;
  * Contains code submissions that belong to this student and unique identifier.
  * @author mpark
  */
-public class Student
+public class Student implements Cloneable, Comparable<Student>
 {
 	// This unique identifier is the Submission directory name minus the version ID
 	private String identifier;
@@ -28,8 +28,8 @@ public class Student
 	
 	/**
 	 * Recursively search the submission directory for all files
-	 * @param d File the submission directory
-	 * @pre d.isDirectory() == true
+	 * @param submissionDirectory File the submission directory
+	 * @pre submissionDirectory.isDirectory() == true
 	 */
 	public void addSubmission( File submissionDirectory )
 	{
@@ -72,6 +72,7 @@ public class Student
 	 * == 0 if the two are equal, and < 0 if this contact
 	 * follows the other.  
 	 */
+	@Override
 	public int compareTo( Student theStudent )
 	{
 		return 0;
