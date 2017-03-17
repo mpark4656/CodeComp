@@ -73,7 +73,15 @@ public class Student
 	 */
 	public int compareTo( Student theStudent )
 	{
-		return 0;
+		if (theStudent.compareTo(theStudent) < 0)
+		{
+			return -1;
+		}
+		else 
+		{
+			return 1;
+		}
+		
 	}
 	
 	/**
