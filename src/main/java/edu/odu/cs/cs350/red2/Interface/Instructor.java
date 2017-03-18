@@ -295,7 +295,7 @@ public class Instructor
 		{
 			//student name variable replace "student"
 			//filesCount and lineCount need to be appropriately assigned.
-		System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
+			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
 																		
 		}				
 		

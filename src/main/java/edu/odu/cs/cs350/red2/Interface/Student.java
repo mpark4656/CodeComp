@@ -49,19 +49,21 @@ public class Student implements Cloneable, Comparable<Student>
 		// Sorted items would look like
 		// Mike.1 Mike.2 Mike
 		submissions.sort( null );
-
-		for (int i = 0; i < submissions.size();i++)
-		{
-
-			if( submissions.get(i).toString().contains("."))
-			{
-				return submissions.get(i);
-			}
-		}
 	
+		// Return the last element.
 		return submissions.get(submissions.size() - 1);
 		
 	} // End of getPrioritySubmission()
+	
+	
+	/**
+	 * Return the total number of code file count in the priority submission.
+	 * @return count int Total number of Code Files this student submitted
+	 */
+	public int getTotalCodeFileCount()
+	{
+		return 0;
+	}
 	
 	/**
 	 * Override the equals method from java.lang.Object
@@ -73,14 +75,6 @@ public class Student implements Cloneable, Comparable<Student>
 		return this.toString().equals(theStudent.toString());
 	}
 	
-	/**
-	 * Override the hashCode method from java.lang.Object
-	 */
-	@Override
-	public int hashCode()
-	{
-		return 0;
-	}
 	
 	/**
 	 * Compare this contact to another.
@@ -102,19 +96,6 @@ public class Student implements Cloneable, Comparable<Student>
 	public String toString()
 	{
 		return identifier;
-	}
-	
-	/**
-	 * Clone this object
-	 * @return this Object cloned object
-	 */
-	@Override
-	public Object clone()
-	{
-		Student toReturn = new Student( this.identifier );
-		toReturn.submissions = (ArrayList<Submission>)this.submissions.clone();
-		
-		return toReturn;
 	}
 	
 } // End of Student
