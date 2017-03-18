@@ -16,7 +16,6 @@ public class StudentPair
 	@Override
 	public boolean equals( Object obj )
 	{
-		
 		return true;
 	}
 	

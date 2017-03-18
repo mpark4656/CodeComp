@@ -50,9 +50,9 @@ public class Student implements Comparable<Student>
 		// Mike Mike.1 Mike.2
 		submissions.sort( null );
 
-		
-		for( int i = 0 ; i < submissions.size() ; i++ ) 
-		{
+		// Iterate through the submissions and see if there is a submission
+		// that does not have any version number.
+		for( int i = 0 ; i < submissions.size() ; i++ ) {
 			if( !submissions.get(i).toString().contains(".") ) {
 				return submissions.get(i);
 			}
@@ -61,11 +61,8 @@ public class Student implements Comparable<Student>
 		// Return the last element.
 		return submissions.get(submissions.size() - 1);
 			
-		}// End of getPrioritySubmission()
+	}// End of getPrioritySubmission()
 		
-	 
-	
-	
 	/**
 	 * Return the total number of code file count in the priority submission.
 	 * @return count int Total number of Code Files this student submitted
@@ -103,11 +100,7 @@ public class Student implements Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
-
-		
-
 		return this.identifier.compareTo( theStudent.identifier );
-
 	}
 	
 	/**

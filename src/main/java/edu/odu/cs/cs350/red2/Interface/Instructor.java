@@ -275,7 +275,6 @@ public class Instructor
 		}
 		*/
 		
-		System.out.println( getStudent( "Jen" ).getPrioritySubmission().toString() ); 
 		receivedSubmissions = true;
 		return receivedSubmissions;
 	}
@@ -294,22 +293,13 @@ public class Instructor
 		int stuList = 5;
 
 		
-
-
 		for (int i = 0; i < stuList; i++)
 		{
 			//student name variable replace "student"
 			//filesCount and lineCount need to be appropriately assigned.
 
-		System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
-
-			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
-
-																		
+			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);															
 		}				
-		
-		
-		
 	}
 	
 	/**
