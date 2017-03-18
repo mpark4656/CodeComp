@@ -53,7 +53,7 @@ public class Student implements Comparable<Student>
 		// Iterate through the submissions and see if there is a submission
 		// that does not have any version number.
 		for( int i = 0 ; i < submissions.size() ; i++ ) {
-			if( !submissions.get(i).toString().contains(".") ) {
+			if( submissions.get(i).toString().lastIndexOf('.') == -1 ) {
 				return submissions.get(i);
 			}
 		}
@@ -69,7 +69,7 @@ public class Student implements Comparable<Student>
 	 */
 	public int getTotalCodeFileCount()
 	{
-		return 0;
+		return getPrioritySubmission().getNumCodeFiles();
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class Student implements Comparable<Student>
 	 */
 	public int getTotalCodeLineCount()
 	{
-		return 0;
+		return getPrioritySubmission().getNumCodeLines();
 	}
 	
 	/**

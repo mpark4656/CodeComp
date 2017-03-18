@@ -27,11 +27,6 @@ public class Instructor
 	private String template;
 	private String sheetName;
 	
-	//Global line count variable for counting lines.
-	//may or may not be necessary depending on where files are being counted
-	private int lineCount;
-	private int filesCount;
-	
 	// These boolean variables will serve as preconditions for some methods
 	// These should be initialized to false when Instructor is first instantiated
 	private boolean receivedSubmissions;
@@ -284,21 +279,19 @@ public class Instructor
 	 * @pre receivedSubmissions == true
 	 */
 	public void outputFeedback()
-	{	//need to complete other functions before this is viable
-		//just essentially pseudocoding for now
-		//just starting this function,NRUF
+	{
+		// Uh-Oh
+		if( !receivedSubmissions ) {
+			return;
+		}
 		
-		//stuList needs to be set to the list of students parsed
-
-		int stuList = 5;
-
-		
-		for (int i = 0; i < stuList; i++)
+		// Iterate through every student in this instructor's class
+		for (int i = 0; i < students.size(); i++)
 		{
-			//student name variable replace "student"
-			//filesCount and lineCount need to be appropriately assigned.
-
-			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);															
+			// The number of lines and the number of files can be obtained by invoking
+			// getTotalCodeFileCount() and getTotalCodeLineCount() on each student object.
+			System.out.print( students.get(i) + "\t\tFiles: " + students.get(i).getTotalCodeFileCount() );
+			System.out.println( "\t\t" + "LOC: " + students.get(i).getTotalCodeLineCount() );															
 		}				
 	}
 	

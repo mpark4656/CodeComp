@@ -2,6 +2,12 @@ package edu.odu.cs.cs350.red2.Interface;
 
 import java.util.ArrayList;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
 
 /**
  * Submission Class - 
@@ -16,6 +22,7 @@ public class Submission implements Comparable<Submission>
 	
 	// These are non-directory files
 	private ArrayList<File> allFiles;
+	private ArrayList<File> codeFiles;
 	
 	// Collection of Token Sequences for each function block in the code files
 	private ArrayList<TokenSequence> tSeq;
@@ -31,9 +38,12 @@ public class Submission implements Comparable<Submission>
 	public Submission( File directory )
 	{
 		this.directory = directory;
-		allFiles = new ArrayList<File>();
+		allFiles = new ArrayList<File> ();
+		codeFiles = new ArrayList<File> ();
 		tSeq = new ArrayList<TokenSequence>();
+		tokenized = false;
 		searchAllFiles( this.directory );
+		searchAllCodeFiles( this.directory );
 	}
 	
 	/**
@@ -42,12 +52,30 @@ public class Submission implements Comparable<Submission>
 	 */
 	private void searchAllFiles( File dir )
 	{
+		// Search for all files
 		for( int i = 0 ; i < dir.listFiles().length ; i++ ) {
 			if( dir.listFiles()[i].isDirectory() ) {
 				searchAllFiles( dir.listFiles()[i] );
 			}
 			else {
 				allFiles.add( dir.listFiles()[i] );
+			}
+		}
+	}
+	
+	/**
+	 * Recursively search all code files in directory and add each file
+	 * to codeFiles.
+	 */
+	private void searchAllCodeFiles( File dir )
+	{
+		// Search for code files only by applying CodeFileFilter
+		for( int i = 0 ; i < dir.listFiles( new CodeFileFilter() ).length ; i++ ) {
+			if( dir.listFiles(new CodeFileFilter())[i].isDirectory() ) {
+				searchAllCodeFiles( dir.listFiles(new CodeFileFilter())[i] );
+			}
+			else {
+				codeFiles.add( dir.listFiles(new CodeFileFilter())[i] );
 			}
 		}
 	}
@@ -71,26 +99,6 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Not all files in the submission directory are code files - 
-	 * identify code files by the file extension and return the list.
-	 * @return codeFiles ArrayList<File> collection of all code files  
-	 */
-	public ArrayList<File> getCodeFiles()
-	{
-		return null;
-	}
-	
-	/**
-	 * Return ArrayList of all the files regardless of whether they
-	 * are code files or not
-	 * @return allFiles ArrayList<File> collection of all files
-	 */
-	public ArrayList<File> getAllFiles()
-	{
-		return null;
-	}
-	
-	/**
 	 * Return the length of all token sequences in this submission
 	 * @return length int Length of All Token Sequences
 	 */
@@ -105,7 +113,41 @@ public class Submission implements Comparable<Submission>
 	 */
 	public int getNumCodeLines()
 	{
-		return 0;
+		// Counter variable
+		int total = 0;
+		
+		// Iterate through all code files in this submission
+		for( int i = 0 ; i < codeFiles.size() ; i++ ) {
+			
+			// Create FileReader initialize to null
+			FileReader freader = null;
+			
+			// Instantiate FileReader with the current code file.
+			// FileReader constructor throws exception that needs to be handled.
+			try {
+				freader = new FileReader( codeFiles.get(i) );
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			// Instantiate BufferedReader with the FileReader
+			BufferedReader buffer = new BufferedReader( freader );
+			
+			// Read the file one line at a time, keeping a count
+			// readLine() may throw exception.
+			try {
+				while( buffer.readLine() != null ) {
+					total++;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// Return the count
+		return total;
 	}
 	
 	/**
@@ -114,36 +156,7 @@ public class Submission implements Comparable<Submission>
 	 */
 	public int getNumCodeFiles()
 	{
-		return getCodeFiles().size();
-	}
-	
-	/**
-	 * Override the equals method from java.lang.Object
-	 * @return True boolean true if toCompare equals this Submission object
-	 */
-	@Override
-	public boolean equals( Object theSubmission )
-	{
-		return false;
-	}
-	
-	/**
-	 * Override the hashCode method from java.lang.Object
-	 */
-	@Override
-	public int hashCode()
-	{
-		return 0;
-	}
-	
-	/**
-	 * Clone this object
-	 * @return obj Object cloned object
-	 */
-	@Override
-	public Object clone()
-	{
-		return null;
+		return codeFiles.size();
 	}
 	
 	/**

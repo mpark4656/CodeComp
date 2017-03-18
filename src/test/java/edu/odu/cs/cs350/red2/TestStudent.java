@@ -44,17 +44,40 @@ public class TestStudent {
 		// Nathan's priority submission is the "Nathan.2" directory
 		assertEquals( "Nathan.2" , Nathan.getPrioritySubmission().toString() );
 		
-	}
+	} // End of testGetPrioritySubmission()
 
 	@Test
 	public void testGetTotalCodeFileCount() {
-		fail("Not yet implemented");
-	}
+		
+		// Create Student objects
+		Student Jen = instructor.getStudent( "Jen" );
+		Student Mike = instructor.getStudent( "Mike" );
+		Student Nathan = instructor.getStudent( "Nathan" );
+		
+		// Jen's priority submission has 1 code file.
+		assertEquals( 1 , Jen.getTotalCodeFileCount() );
+		
+		// Mike's priority submission has 1 code file.
+		assertEquals( 1 , Mike.getTotalCodeFileCount() );
+		
+		// Nathan's priority submission has 3 code files.
+		assertEquals( 3 , Nathan.getTotalCodeFileCount() );
+		
+	} // End of testGetTotalCodeFileCount()
 
 	@Test
 	public void testGetTotalCodeLineCount() {
-		fail("Not yet implemented");
-	}
+		
+		// Create Student objects
+		Student Jen = instructor.getStudent( "Jen" );
+		Student Mike = instructor.getStudent( "Mike" );
+		Student Nathan = instructor.getStudent( "Nathan" );
+		
+		assertEquals( 4 , Jen.getTotalCodeLineCount());
+		assertEquals( 2 , Mike.getTotalCodeLineCount());
+		assertEquals( 8 , Nathan.getTotalCodeLineCount());
+		
+	} // End of testGetTotalCodeLineCount()
 
 	@Test
 	public void testEqualsObject() {
