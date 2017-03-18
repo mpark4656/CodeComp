@@ -24,16 +24,17 @@ public class Student implements Cloneable, Comparable<Student>
 	public Student( String identifier )
 	{
 		this.identifier = identifier;
+		submissions = new ArrayList<Submission> ();
 	}
 	
 	/**
-	 * Recursively search the submission directory for all files
+	 * Add a submission to ArrayList<Submission> submissions
 	 * @param submissionDirectory File the submission directory
 	 * @pre submissionDirectory.isDirectory() == true
 	 */
 	public void addSubmission( File submissionDirectory )
 	{
-		
+		submissions.add( new Submission(submissionDirectory) );
 	}
 	
 	/**
@@ -43,20 +44,15 @@ public class Student implements Cloneable, Comparable<Student>
 	 */
 	public Submission getPrioritySubmission()
 	{
+		// Sort the submissions
+		// Example: If we have Mike.1 Mike Mike.2
+		// Sorted items would look like
+		// Mike.1 Mike.2 Mike
 		submissions.sort( null );
-		for (int i = 0; i < submissions.size();i++)
-		{
-			if !(submissions contains("."))
-			{
-				return submissions[0];
-			}
-			
-				
-		}
 		
-		return submissions[submissions.size() - 1];
+		return submissions.get(submissions.size() - 1);
 		
-	}
+	} // End of getPrioritySubmission()
 	
 	/**
 	 * Override the equals method from java.lang.Object
@@ -66,7 +62,6 @@ public class Student implements Cloneable, Comparable<Student>
 	public boolean equals( Object theStudent )
 	{
 		return this.toString().equals(theStudent.toString());
-		
 	}
 	
 	/**
@@ -87,7 +82,7 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
-	
+		return this.identifier.compareTo( theStudent.identifier );
 	}
 	
 	/**
@@ -97,7 +92,7 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public String toString()
 	{
-		return null;
+		return identifier;
 	}
 	
 	/**
@@ -107,7 +102,10 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public Object clone()
 	{
-		return null;
+		Student toReturn = new Student( this.identifier );
+		toReturn.submissions = (ArrayList<Submission>)this.submissions.clone();
+		
+		return toReturn;
 	}
 	
 } // End of Student

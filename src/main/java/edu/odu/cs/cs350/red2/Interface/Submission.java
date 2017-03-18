@@ -30,16 +30,26 @@ public class Submission implements Comparable<Submission>
 	 */
 	public Submission( File directory )
 	{
-		
+		this.directory = directory;
+		allFiles = new ArrayList<File>();
+		tSeq = new ArrayList<TokenSequence>();
+		searchAllFiles( this.directory );
 	}
 	
 	/**
 	 * Recursively search all files in directory and add each file
 	 * to allFiles.
 	 */
-	private static void searchAllFiles()
+	private void searchAllFiles( File dir )
 	{
-		
+		for( int i = 0 ; i < dir.listFiles().length ; i++ ) {
+			if( dir.listFiles()[i].isDirectory() ) {
+				searchAllFiles( dir.listFiles()[i] );
+			}
+			else {
+				allFiles.add( dir.listFiles()[i] );
+			}
+		}
 	}
 	
 	/**
@@ -99,6 +109,15 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
+	 * Return the number of code files in this submission.
+	 * @return num int Number of Code Files in this submission
+	 */
+	public int getNumCodeFiles()
+	{
+		return getCodeFiles().size();
+	}
+	
+	/**
 	 * Override the equals method from java.lang.Object
 	 * @return True boolean true if toCompare equals this Submission object
 	 */
@@ -127,16 +146,25 @@ public class Submission implements Comparable<Submission>
 		return null;
 	}
 	
+	/**
+	 * Compare String directory name
+	 * 1. Return value < 0 if this Submission follows obj
+	 * 2. Return 0 if they have the same name
+	 * 3. Return value > 0 if this Submission precedes obj
+	 */
 	@Override
 	public int compareTo( Submission obj )
 	{
-
-		return this.toString().compareTo(obj.toString());
-
+		return this.toString().compareTo( obj.toString() );
 	}
 	
+	/**
+	 * Return the relative path (Folder name) as String
+	 * @return folderName String Name of the Submission Directory
+	 */
+	@Override
 	public String toString()
 	{
-		return directory.getPath();
+		return directory.getName();
 	}
 }
