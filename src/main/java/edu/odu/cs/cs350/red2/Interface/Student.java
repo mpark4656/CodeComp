@@ -49,7 +49,15 @@ public class Student implements Cloneable, Comparable<Student>
 		// Sorted items would look like
 		// Mike.1 Mike.2 Mike
 		submissions.sort( null );
-		
+
+		for (int i = 0; i < submissions.size();i++)
+		{
+			if( submissions.get(i).toString().contains("."))
+			{
+				return submissions.get(i);
+			}
+		}
+	
 		return submissions.get(submissions.size() - 1);
 		
 	} // End of getPrioritySubmission()
