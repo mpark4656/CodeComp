@@ -290,6 +290,7 @@ public class Instructor
 		
 		//stuList needs to be set to the list of students parsed
 		int stuList = 5;
+
 		for (int i = 0; i < stuList; i++)
 		{
 			//student name variable replace "student"

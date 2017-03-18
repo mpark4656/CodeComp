@@ -52,6 +52,7 @@ public class Student implements Cloneable, Comparable<Student>
 
 		for (int i = 0; i < submissions.size();i++)
 		{
+
 			if( submissions.get(i).toString().contains("."))
 			{
 				return submissions.get(i);
