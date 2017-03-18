@@ -8,7 +8,7 @@ import java.io.File;
  * Contains code submissions that belong to this student and unique identifier.
  * @author mpark
  */
-public class Student implements Cloneable, Comparable<Student>
+public class Student implements Comparable<Student>
 {
 	// This unique identifier is the Submission directory name minus the version ID
 	private String identifier;
@@ -24,16 +24,17 @@ public class Student implements Cloneable, Comparable<Student>
 	public Student( String identifier )
 	{
 		this.identifier = identifier;
+		submissions = new ArrayList<Submission> ();
 	}
 	
 	/**
-	 * Recursively search the submission directory for all files
+	 * Add a submission to ArrayList<Submission> submissions
 	 * @param submissionDirectory File the submission directory
 	 * @pre submissionDirectory.isDirectory() == true
 	 */
 	public void addSubmission( File submissionDirectory )
 	{
-		
+		submissions.add( new Submission(submissionDirectory) );
 	}
 	
 	/**
@@ -43,19 +44,48 @@ public class Student implements Cloneable, Comparable<Student>
 	 */
 	public Submission getPrioritySubmission()
 	{
+		// Sort the submissions
+		// Example: If we have Mike.1 Mike Mike.2
+		// Sorted items would look like
+		// Mike Mike.1 Mike.2
 		submissions.sort( null );
+<<<<<<< HEAD
 		for (int i = 0; i < submissions.size();i++)
 		{
 			if !(submissions[i] contains("."))
 			{
 				return submissions[i];
+=======
+	
+		for( int i = 0 ; i < submissions.size() ; i++ ) {
+			if( !submissions.get(i).toString().contains(".") ) {
+				return submissions.get(i);
+>>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
 			}
-			
-				
 		}
 		
-		return submissions[submissions.size() - 1];
+		// Return the last element.
+		return submissions.get(submissions.size() - 1);
 		
+	} // End of getPrioritySubmission()
+	
+	
+	/**
+	 * Return the total number of code file count in the priority submission.
+	 * @return count int Total number of Code Files this student submitted
+	 */
+	public int getTotalCodeFileCount()
+	{
+		return 0;
+	}
+	
+	/**
+	 * Return the total number of lines of code in the priority submission
+	 * @return count int Total number of lines of code
+	 */
+	public int getTotalCodeLineCount()
+	{
+		return 0;
 	}
 	
 	/**
@@ -66,16 +96,6 @@ public class Student implements Cloneable, Comparable<Student>
 	public boolean equals( Object theStudent )
 	{
 		return this.toString().equals(theStudent.toString());
-		
-	}
-	
-	/**
-	 * Override the hashCode method from java.lang.Object
-	 */
-	@Override
-	public int hashCode()
-	{
-		return 0;
 	}
 	
 	/**
@@ -87,7 +107,11 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
+<<<<<<< HEAD
 		
+=======
+		return this.identifier.compareTo( theStudent.identifier );
+>>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
 	}
 	
 	/**
@@ -97,17 +121,7 @@ public class Student implements Cloneable, Comparable<Student>
 	@Override
 	public String toString()
 	{
-		return null;
-	}
-	
-	/**
-	 * Clone this object
-	 * @return this Object cloned object
-	 */
-	@Override
-	public Object clone()
-	{
-		return null;
+		return identifier;
 	}
 	
 } // End of Student

@@ -8,7 +8,7 @@ public class TestCodeComp {
 
 	@Test
 	public void testHelpUser() {
-		fail("Not yet implemented");
+		fail("Not Yet Implemented");
 	}
 
 }

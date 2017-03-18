@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350.red2.Interface;
 
+import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
 import java.util.ArrayList;
 import java.io.File;
 
@@ -161,13 +162,14 @@ public class Instructor
 	{
 		// Iterate through Student ArrayList and find student item with the same identifier
 		for( int i = 0 ; i < students.size(); i++ ) {
+			
 			// If the same identifier student obj is found, return it.
 			if( students.get(i).toString().equals(identifier) ) {
 				return students.get(i);
 			}
 		}
 		
-		// Student Identifier Not Found, return null or throw
+		// Student Identifier Not Found, return null.
 		return null;
 	}
 	
@@ -192,24 +194,88 @@ public class Instructor
 	/**
 	 * Add each student and student pairs and set receivedSubmissions to true.
 	 * Then, process the data and analyze them.
-	 * @param parentDirectory
+	 * @param submissionDirectory
 	 * @pre receivedSubmission == false
 	 * @post receivedSubmissions == true
 	 * @return receivedSubmission boolean Return true if the submissions were successfully received.
 	 */
-	public boolean acceptStudentSubmissions( File parentDirectory )
+	public boolean acceptStudentSubmissions( File submissionDirectory )
 	{
 		// If this is not a directory/folder, return.
-		if( !parentDirectory.isDirectory() ) {
+		if( !submissionDirectory.isDirectory() ) {
 			return false;
 		}
 		
-		// Iterate through all files in the parent directory. Apply the Directory Filter to ignore
-		// any non-directory files.
-		for( int i = 0 ; i < parentDirectory.listFiles(new DirectoryFilter()).length ; i++ ) {
+		// Store a list of files in the submission directory
+		// Apply the Directory Filter to ignore any non-directory files.
+		File[] directoryFiles = submissionDirectory.listFiles(new DirectoryFilter());
+				
+		// Iterate through all files in the parent directory. 
+		for( int i = 0 ; i < directoryFiles.length ; i++ ) {
 			
+			// Get the folder name
+			// Examples:
+			// Mike.1
+			// Mike
+			// Mike.2
+			String folderName = directoryFiles[i].getName();
+			//System.out.println( "Debugging: The folder name is " + folderName );
+			
+			// Get the identifier
+			// Example:
+			// Mike
+			String id = "";
+			
+			// If the folder name contains . get the substring (Only the identifier portion)
+			if( folderName.contains(".") ) {
+				id = folderName.substring( 0, folderName.indexOf('.') );
+			}
+			// If the folder name does not contain . the entire string is identifier.
+			else {
+				id = folderName;
+			}
+			
+			//System.out.println( "Debugging: The id is " + id );
+			
+			// Check to see if this student already exists in the collection
+			if( getStudent(id) != null ) { // Student ID already exists
+				
+				// Since ID already exists, find the student and add this submission
+				for( int j = 0 ; j < students.size(); j++ ) {
+					if( students.get(j).toString().equals(id) ) {
+						students.get(j).addSubmission( directoryFiles[i] );
+					}
+				}
+			}
+			// This is a student with new ID, add it to the collection and then add submission
+			// Also, add Student Pair
+			else {
+
+				// Add a new Student object
+				Student newStudent = new Student( id );
+				
+				// Add submissions for this new student
+				newStudent.addSubmission( directoryFiles[i] );
+				
+				// Add a new Student Pair
+				// New Student + Every current Student in the collection
+				for( int index = 0 ; index < students.size() ; index++) {
+					stuPairs.add( new StudentPair(newStudent , students.get(index)) );
+				}
+				
+				// Add the new Student to students collection
+				students.add( newStudent );
+			}
 		}
 		
+		// Debugging Output
+		/*
+		for( int i = 0 ; i < students.size(); i++ ) {
+			System.out.println( "Debugging: Student " + (i + 1) + ": " + students.get(i).toString() );
+		}
+		*/
+		
+		System.out.println( getStudent( "Jen" ).getPrioritySubmission().toString() ); 
 		receivedSubmissions = true;
 		return receivedSubmissions;
 	}
@@ -224,12 +290,21 @@ public class Instructor
 		//just starting this function,NRUF
 		
 		//stuList needs to be set to the list of students parsed
+<<<<<<< HEAD
 		private int stuList = 5
+=======
+		int stuList = 5;
+
+>>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
 		for (int i = 0; i < stuList; i++)
 		{
 			//student name variable replace "student"
 			//filesCount and lineCount need to be appropriately assigned.
+<<<<<<< HEAD
 		System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
+=======
+			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
+>>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
 																		
 		}				
 		
