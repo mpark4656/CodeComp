@@ -49,25 +49,21 @@ public class Student implements Comparable<Student>
 		// Sorted items would look like
 		// Mike Mike.1 Mike.2
 		submissions.sort( null );
-<<<<<<< HEAD
-		for (int i = 0; i < submissions.size();i++)
+
+		
+		for( int i = 0 ; i < submissions.size() ; i++ ) 
 		{
-			if !(submissions[i] contains("."))
-			{
-				return submissions[i];
-=======
-	
-		for( int i = 0 ; i < submissions.size() ; i++ ) {
 			if( !submissions.get(i).toString().contains(".") ) {
 				return submissions.get(i);
->>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
 			}
 		}
 		
 		// Return the last element.
 		return submissions.get(submissions.size() - 1);
+			
+		}// End of getPrioritySubmission()
 		
-	} // End of getPrioritySubmission()
+	 
 	
 	
 	/**
@@ -107,11 +103,11 @@ public class Student implements Comparable<Student>
 	@Override
 	public int compareTo( Student theStudent )
 	{
-<<<<<<< HEAD
+
 		
-=======
+
 		return this.identifier.compareTo( theStudent.identifier );
->>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
+
 	}
 	
 	/**
