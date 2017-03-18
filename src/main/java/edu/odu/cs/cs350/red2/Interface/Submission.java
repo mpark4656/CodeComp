@@ -81,11 +81,31 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Parse this submission and produce the token sequence.
+	 * Private method to return the file extension for the given
+	 * file path.
+	 * For example, test.java would return "java"
+	 * @param filePath
+	 * @return extension String file extension
 	 */
-	public void tokenize()
+	private String getExtension( File filePath )
 	{
+		// Get the file name from filePath
+		String filename = filePath.getName();
 		
+		// Return the extension
+		return filename.substring( filename.lastIndexOf('.') + 1 );
+	}
+	
+	/**
+	 * Parse this submission and produce the token sequence.
+	 * @return tokenized boolean true if this submission  was successfuly parsed.
+	 */
+	public boolean tokenize()
+	{
+		// Not yet implemented
+		
+		tokenized = true;
+		return tokenized;
 	}
 	
 	/**

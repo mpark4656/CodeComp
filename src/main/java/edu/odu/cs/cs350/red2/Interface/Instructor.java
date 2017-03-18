@@ -303,7 +303,17 @@ public class Instructor
 	 */
 	public boolean process()
 	{
-		// Not yet implemented
+		// Iterate through all students
+		for( int i = 0 ; i < students.size(); i++ ) {
+			
+			// If a student submission fails to tokenize, return false/
+			if( !students.get(i).getPrioritySubmission().tokenize() ) {
+				return false;
+			}
+		}
+		
+		// If the control reaches here, that means all student submissions were successfully
+		// parsed.
 		parsedStudentSubmissions = true;
 		return parsedStudentSubmissions;
 	}
