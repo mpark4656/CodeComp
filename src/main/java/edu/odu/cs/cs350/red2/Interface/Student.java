@@ -8,7 +8,7 @@ import java.io.File;
  * Contains code submissions that belong to this student and unique identifier.
  * @author mpark
  */
-public class Student implements Cloneable, Comparable<Student>
+public class Student implements Comparable<Student>
 {
 	// This unique identifier is the Submission directory name minus the version ID
 	private String identifier;
@@ -47,9 +47,15 @@ public class Student implements Cloneable, Comparable<Student>
 		// Sort the submissions
 		// Example: If we have Mike.1 Mike Mike.2
 		// Sorted items would look like
-		// Mike.1 Mike.2 Mike
+		// Mike Mike.1 Mike.2
 		submissions.sort( null );
 	
+		for( int i = 0 ; i < submissions.size() ; i++ ) {
+			if( !submissions.get(i).toString().contains(".") ) {
+				return submissions.get(i);
+			}
+		}
+		
 		// Return the last element.
 		return submissions.get(submissions.size() - 1);
 		
@@ -66,6 +72,15 @@ public class Student implements Cloneable, Comparable<Student>
 	}
 	
 	/**
+	 * Return the total number of lines of code in the priority submission
+	 * @return count int Total number of lines of code
+	 */
+	public int getTotalCodeLineCount()
+	{
+		return 0;
+	}
+	
+	/**
 	 * Override the equals method from java.lang.Object
 	 * @return True boolean true if toCompare equals this Student object
 	 */
@@ -74,7 +89,6 @@ public class Student implements Cloneable, Comparable<Student>
 	{
 		return this.toString().equals(theStudent.toString());
 	}
-	
 	
 	/**
 	 * Compare this contact to another.

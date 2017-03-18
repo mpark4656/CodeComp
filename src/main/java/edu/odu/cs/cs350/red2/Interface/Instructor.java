@@ -12,7 +12,6 @@ import java.io.File;
  */
 public class Instructor
 {
-	
 	// List of all students in this instructor's class
 	private ArrayList<Student>  students;
 	
@@ -275,6 +274,7 @@ public class Instructor
 		}
 		*/
 		
+		System.out.println( getStudent( "Jen" ).getPrioritySubmission().toString() ); 
 		receivedSubmissions = true;
 		return receivedSubmissions;
 	}

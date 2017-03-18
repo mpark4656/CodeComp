@@ -206,7 +206,7 @@ public class TestInstructor {
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( 3 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testIsSubmissionReceived()
@@ -239,18 +239,17 @@ public class TestInstructor {
 		
 		Student Mike = instructor.getStudent( "Mike" );
 		Student Nathan = instructor.getStudent( "Nathan" );
-		Student testSubmission = instructor.getStudent( "testSubmission" );
+		Student Jen = instructor.getStudent( "Jen" );
 		
 		assertEquals( "Mike" , Mike.toString() );
 		assertEquals( "Nathan" , Nathan.toString() );
-		assertEquals( "testSubmission" , testSubmission.toString() );
-		
+		assertEquals( "Jen" , Jen.toString() );
+
+		assertTrue( Jen.compareTo(Jen) == 0 );
+		assertTrue( Jen.compareTo(Mike) < 0 );
+		assertTrue( Jen.compareTo(Nathan) < 0 );
 		assertTrue( Mike.compareTo(Nathan) < 0 );
 		assertTrue( Nathan.compareTo(Mike) > 0 );
-		assertTrue( testSubmission.compareTo(Mike) > 0 );
-		assertTrue( Mike.compareTo(testSubmission) < 0 );
-		assertTrue( testSubmission.compareTo(Nathan) > 0 );
-		assertTrue( Nathan.compareTo(testSubmission) < 0 );
 		/***************************************************************/
 		
 	} // End of testGetStudent()
@@ -293,15 +292,35 @@ public class TestInstructor {
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( 3 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testGetTotalStudentCount()
 	
 	@Test
 	public void testGetTotalStudentPairCount() {
-		fail("Not yet implemented");
-	}
+
+		/***************************************************************/
+		/*
+		 * Accept Student Submission and verify that the obj is in the 
+		 * correct state.
+		 */
+		Instructor instructor = new Instructor( "output" );
+		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		
+		assertFalse( instructor.isTemplateSpecified() );
+		assertFalse( instructor.isSheetNameSpecified() );
+		assertEquals( "" , instructor.getTemplate() );
+		assertEquals( "" , instructor.getSheetName() );
+		assertTrue( instructor.isSubmissionReceived() );
+		assertFalse( instructor.isSubmissionParsed() );
+		assertFalse( instructor.isTokenSequenceAnalyzed() );
+		assertEquals( 3 , instructor.getTotalStudentCount() );
+		assertEquals( 3 , instructor.getTotalStudentPairCount() );
+		/***************************************************************/
+		
+	} // End of testGetTotalStudentPairCount()
 	
 	@Test
 	public void testAcceptStudentSubmissions() {
@@ -341,15 +360,10 @@ public class TestInstructor {
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( 3 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testAcceptStudentSubmission()
-
-	@Test
-	public void testOutputFeedback() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void testProcess() {
