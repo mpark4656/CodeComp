@@ -290,21 +290,21 @@ public class Instructor
 		//just starting this function,NRUF
 		
 		//stuList needs to be set to the list of students parsed
-<<<<<<< HEAD
-		private int stuList = 5
-=======
+
 		int stuList = 5;
 
->>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
+		
+
+
 		for (int i = 0; i < stuList; i++)
 		{
 			//student name variable replace "student"
 			//filesCount and lineCount need to be appropriately assigned.
-<<<<<<< HEAD
+
 		System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
-=======
+
 			System.out.println("student\t" + "files:  " + filesCount + "\t" + "LOC  " + lineCount);
->>>>>>> 90f2decb609b560a59501bf95a6da2af6e1cf4c9
+
 																		
 		}				
 		
