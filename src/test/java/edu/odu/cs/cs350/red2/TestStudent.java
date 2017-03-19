@@ -13,7 +13,10 @@ public class TestStudent {
 	public TestStudent()
 	{
 		instructor = new Instructor( "output" );
-		submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
+		
+		// On linux, the path should have forward slashes (/). On Windows, the path should have
+		// backslashes (\\).
+		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions(submissionDirectory);
 	}
 	

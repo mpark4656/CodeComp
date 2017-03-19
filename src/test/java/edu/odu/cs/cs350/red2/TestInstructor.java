@@ -8,6 +8,18 @@ import java.io.File;
 
 public class TestInstructor {
 
+	private Instructor instructor;
+	private File submissionDirectory;
+	
+	public TestInstructor()
+	{
+		instructor = new Instructor( "output" );
+		
+		// On linux, the path should have forward slashes (/). On Windows, the path should have
+		// backslashes (\\). 
+		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
+	}
+	
 	@Test
 	public void testInstructor() {
 		
@@ -15,7 +27,7 @@ public class TestInstructor {
 		/*
 		 * Ensure that newly instantiated object has correct flags set
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );
@@ -37,7 +49,6 @@ public class TestInstructor {
 		/*
 		 * Ensure the class state is correct after template has been set
 		 */
-		Instructor instructor = new Instructor( "output" );
 		instructor.setTemplate( "templateName" );
 		
 		assertTrue( instructor.isTemplateSpecified() );
@@ -60,7 +71,7 @@ public class TestInstructor {
 		/*
 		 * Ensure the class state is correct after sheetname has been set
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		instructor.setSheetName( "sheetName" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -83,7 +94,7 @@ public class TestInstructor {
 		/*
 		 * Ensure that the returned template name is correct.
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		instructor.setTemplate( "templateName" );
 		
 		assertTrue( instructor.isTemplateSpecified() );
@@ -106,7 +117,7 @@ public class TestInstructor {
 		/*
 		 * Ensure that the returned sheet name is correct.
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		instructor.setSheetName( "sheetName" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -129,7 +140,7 @@ public class TestInstructor {
 		/*
 		 * Ensure the class state is correct after template has been set
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		instructor.setTemplate( "templateName" );
 		
 		assertTrue( instructor.isTemplateSpecified() );
@@ -152,7 +163,7 @@ public class TestInstructor {
 		/*
 		 * Ensure the class state is correct after sheetname has been set
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		instructor.setSheetName( "sheetName" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -175,7 +186,7 @@ public class TestInstructor {
 		/*
 		 * Check the state before submission is accepted
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );
@@ -195,7 +206,6 @@ public class TestInstructor {
 		 * correct state.
 		 */
 		instructor = new Instructor( "output" );
-		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -233,8 +243,7 @@ public class TestInstructor {
 		 * Accept Student Submission and verify that the obj is in the 
 		 * correct state.
 		 */
-		Instructor instructor = new Instructor( "output" );
-		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
+		instructor = new Instructor( "output" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		
 		Student Mike = instructor.getStudent( "Mike" );
@@ -261,7 +270,7 @@ public class TestInstructor {
 		/*
 		 * Check the state before submission is accepted
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );
@@ -281,7 +290,6 @@ public class TestInstructor {
 		 * correct state.
 		 */
 		instructor = new Instructor( "output" );
-		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -305,8 +313,7 @@ public class TestInstructor {
 		 * Accept Student Submission and verify that the obj is in the 
 		 * correct state.
 		 */
-		Instructor instructor = new Instructor( "output" );
-		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
+		instructor = new Instructor( "output" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		
 		assertFalse( instructor.isTemplateSpecified() );
@@ -329,7 +336,7 @@ public class TestInstructor {
 		/*
 		 * Check the state before submission is accepted
 		 */
-		Instructor instructor = new Instructor( "output" );
+		instructor = new Instructor( "output" );
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );
@@ -349,7 +356,6 @@ public class TestInstructor {
 		 * correct state.
 		 */
 		instructor = new Instructor( "output" );
-		File submissionDirectory = new File( ".\\src\\test\\data\\testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		
 		assertFalse( instructor.isTemplateSpecified() );
