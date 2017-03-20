@@ -122,7 +122,7 @@ public class CodeComp
 		System.out.println();
 		System.out.println( "\t-raw sheetname" );
 		System.out.print  ( "\t\tReplaces the sheet name used to identify where to place the raw scores " );
-		System.out.println( "(default is “RawScores”)." );
+		System.out.println( "(default is \"RawScores\")." );
 		System.out.println();
 		System.out.println( "Additional Commands" );
 		System.out.println( "\tjava -jar CodeComp.jar -help" );

@@ -285,6 +285,9 @@ public class Instructor
 			return;
 		}
 		
+		// Sort student objects, so the identifiers appear in ascending order.
+		students.sort( null );
+		
 		// Iterate through every student in this instructor's class
 		for (int i = 0; i < students.size(); i++)
 		{
