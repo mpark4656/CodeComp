@@ -4,5 +4,5 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 public class BAllShare
 {
-	string goodCode;
+	String goodCode;
 }

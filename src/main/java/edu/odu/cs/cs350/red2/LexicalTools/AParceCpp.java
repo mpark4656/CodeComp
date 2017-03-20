@@ -5,7 +5,8 @@ package edu.odu.cs.cs350.red2.LexicalTools;
 public class AParceCpp
 {
 	//Takes in the code for Parsing
-	string code;
+	String code;
+	
 	//used to determine whether or not code is C++
 	boolean isCpp;
 
