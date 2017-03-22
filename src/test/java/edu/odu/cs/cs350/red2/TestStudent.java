@@ -19,17 +19,21 @@ public class TestStudent {
 		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions(submissionDirectory);
 	}
-	
+
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testStudent() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testAddSubmission() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
 	@Test
 	public void testGetPrioritySubmission() {
 		
@@ -82,19 +86,24 @@ public class TestStudent {
 		
 	} // End of testGetTotalCodeLineCount()
 
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testEqualsObject() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testCompareTo() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testToString() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

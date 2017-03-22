@@ -215,26 +215,29 @@ public class TestInstructor {
 		assertTrue( instructor.isSubmissionReceived() );
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 3 , instructor.getTotalStudentPairCount() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testIsSubmissionReceived()
 
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testIsSubmissionParsed() {
 		fail("Not yet implemented");
-
 		
 	} // End of testIsSubmissionParsed()
-
+*/
+	
+	/* NOT YET IMPLEMENTED
 	@Test
 	public void testIsTokenSequenceAnalyzed() {
 		fail("Not yet implemented");
 
 		
 	} // End of testIsTokenSequenceAnalyzed()
-
+*/
+	
 	@Test
 	public void testGetStudent() {
 		
@@ -299,8 +302,8 @@ public class TestInstructor {
 		assertTrue( instructor.isSubmissionReceived() );
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 3 , instructor.getTotalStudentPairCount() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testGetTotalStudentCount()
@@ -323,8 +326,8 @@ public class TestInstructor {
 		assertTrue( instructor.isSubmissionReceived() );
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 3 , instructor.getTotalStudentPairCount() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testGetTotalStudentPairCount()
@@ -365,25 +368,31 @@ public class TestInstructor {
 		assertTrue( instructor.isSubmissionReceived() );
 		assertFalse( instructor.isSubmissionParsed() );
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
-		assertEquals( 3 , instructor.getTotalStudentCount() );
-		assertEquals( 3 , instructor.getTotalStudentPairCount() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
 		/***************************************************************/
 		
 	} // End of testAcceptStudentSubmission()
 	
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testProcess() {
 		fail("Not yet implemented");
 	}
-	
+*/
+
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testAnalyze() {
 		fail("Not yet implemented");
 	}
+*/
 	
+/* NOT YET IMPLEMENTED
 	@Test
 	public void testDisplayResult() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
 } // End of TestInstructor
