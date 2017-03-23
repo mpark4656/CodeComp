@@ -39,7 +39,7 @@ public class CodeComp
 		
 		// Check that the command-line parameter is proper
 		if( !param.isProperArgs() ) {
-			System.out.println( "Usage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
+			System.out.println( "\nUsage: java -jar CodeComp.jar [options] assignmentDirectory outputSpreadsheet" );
 			System.out.println();
 			System.out.println( "For Help: java -jar CodeComp.jar -help" );
 			System.exit(1);
@@ -72,7 +72,7 @@ public class CodeComp
 		// Recursively search the assignment directory and get all student submissions
 		// Once submissions are accepted, Instructor will automatically process and analyze the data.
 		if( !instructor.acceptStudentSubmissions(assignmentDirectory) ) {
-			System.out.println( "There was a problem searching student submissions." );
+			System.out.println( "\nThere was a problem searching student submissions." );
 			System.exit(2);
 		}
 		else {
@@ -82,7 +82,7 @@ public class CodeComp
 		
 		// Process submissions and parse the codes
 		if( !instructor.process() ) {
-			System.out.println( "A problem occurred during lexical analysis." );
+			System.out.println( "\nA problem occurred during lexical analysis." );
 			System.exit(3);
 		}
 		else {
@@ -92,7 +92,7 @@ public class CodeComp
 		
 		// Analyze similarity
 		if( !instructor.analyze() ) {
-			System.out.println( "A problem occurred during similarity analysis." );
+			System.out.println( "\nA problem occurred during similarity analysis." );
 			System.exit(4);
 		}
 		else {
@@ -108,7 +108,7 @@ public class CodeComp
 	public static void helpUser()
 	{
 		// Print Summary of Usage and Options
-		System.out.println( "Usage: java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]" );
+		System.out.println( "\nUsage: java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]" );
 		System.out.println();
 		System.out.print  ( "\tThe [assignmentDirectory] is a path to the root directory of the assignment, " );
 		System.out.println( "containing a number of submission directories." );
