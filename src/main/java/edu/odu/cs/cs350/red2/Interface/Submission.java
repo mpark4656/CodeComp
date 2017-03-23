@@ -206,6 +206,13 @@ public class Submission implements Comparable<Submission>
 				while( buffer.readLine() != null ) {
 					total++;
 				}
+				
+				// Close the BufferedReader
+				buffer.close();
+				
+				// Close the FileReader
+				freader.close();
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -25,7 +25,7 @@ public class CodeComp
 	 * Make sure to check both absolute and relative path.
 	 * For example, 
 	 * Absolute Path: C:\Users\mpark\Documents\test.txt 
-	 * Relative Path: test.txt 
+	 * Relative Path: .\test.txt 
 	 * 
 	 * The example of relative path above assumes that program is stored in 
 	 * C:\Users\mpark\Documents\ 
@@ -53,7 +53,7 @@ public class CodeComp
 		}
 		
 		// Instantiate Instructor and provide the name of output directory path
-		Instructor instructor = new Instructor( args[args.length - 1]);
+		Instructor instructor = new Instructor( args[args.length - 1] );
 		
 		// If user provided optional argument for specifying Template, set the template
 		if( param.argsContainTemplate() ) {
