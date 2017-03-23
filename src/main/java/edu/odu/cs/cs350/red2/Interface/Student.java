@@ -7,6 +7,7 @@ import java.io.File;
  * Student Class -
  * Contains code submissions that belong to this student and unique identifier.
  * @author mpark
+ * @author nruf
  */
 public class Student implements Comparable<Student>
 {
