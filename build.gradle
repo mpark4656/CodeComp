@@ -9,3 +9,10 @@ dependencies {
     testCompile "junit:junit:4.11" 
 }
 
+jar {
+	manifest {
+		attributes 'Main-Class': 'edu.odu.cs.cs350.red2.CodeComp'
+	}
+	
+	baseName = "CodeComp"
+}
