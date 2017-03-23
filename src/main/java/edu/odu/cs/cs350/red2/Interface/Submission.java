@@ -82,6 +82,32 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
+	 * Public method to print the names of all files in this submission - 
+	 * This is mostly for testing and debugging
+	 */
+	public void printAllFiles()
+	{
+		System.out.println( "\nList of All Files in " + this.toString() );
+		
+		for( int i = 0 ; i < allFiles.size(); i++ ) {
+			System.out.println( allFiles.get(i).getName() );
+		}
+	}
+	
+	/**
+	 * Public accessor to print the names of all code files in this submission - 
+	 * This is mostly for testing and debugging
+	 */
+	public void printCodeFiles()
+	{
+		System.out.println( "\nList of All Code Files in " + this.toString() );
+		
+		for( int i = 0 ; i < codeFiles.size(); i++ ) {
+			System.out.println( codeFiles.get(i).getName() );
+		}
+	}
+	
+	/**
 	 * Private method to return the file extension for the given
 	 * file path.
 	 * For example, test.java would return "java"

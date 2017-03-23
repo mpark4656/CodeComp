@@ -80,6 +80,16 @@ public class CodeComp
 			instructor.outputFeedback();
 		}
 		
+		// These are debugging output - Print all files and code files in the priority submission
+		// instructor.getStudent("Asa").getPrioritySubmission().printAllFiles();
+		// instructor.getStudent("Asa").getPrioritySubmission().printCodeFiles();
+		// instructor.getStudent("Jen").getPrioritySubmission().printAllFiles();
+		// instructor.getStudent("Jen").getPrioritySubmission().printCodeFiles();
+		// instructor.getStudent("Mike").getPrioritySubmission().printAllFiles();
+		// instructor.getStudent("Mike").getPrioritySubmission().printCodeFiles();
+		// instructor.getStudent("Nathan").getPrioritySubmission().printAllFiles();
+		// instructor.getStudent("Nathan").getPrioritySubmission().printCodeFiles();
+		
 		// Process submissions and parse the codes
 		if( !instructor.process() ) {
 			System.out.println( "\nA problem occurred during lexical analysis." );
