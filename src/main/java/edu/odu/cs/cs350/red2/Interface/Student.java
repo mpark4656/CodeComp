@@ -49,6 +49,24 @@ public class Student implements Comparable<Student>
 	}
 	
 	/**
+	 * Public accessor to return a submission
+	 * @param String subName
+	 * @return Submission Submission object for the given submission name 
+	 * Return null if not found
+	 */
+	public Submission getSubmission( String subName )
+	{
+		// Iterate through submissions and find matching submission name
+		for( int i = 0 ; i < submissions.size() ; i++ ) {
+			if( submissions.get(i).toString().equals(subName) ) {
+				return submissions.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
 	 * Return the object of the Submission that "counts" and will
 	 * be graded.
 	 * @pre submissions.size() != 0

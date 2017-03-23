@@ -34,62 +34,115 @@ public class TestSubmission {
 
 	@Test
 	public void testSubmission() {
-		assertFalse ( AsaSub.isTokenized() );
 		
+		// Asa's unit tests
+		assertFalse( AsaSub.isTokenized() );
+		assertEquals( 1 , AsaSub.getNumCodeFiles() );
+		assertEquals( 3 , AsaSub.getNumCodeLines() );
+		assertEquals( "Asa.1" , AsaSub.toString() );
+		
+		// Jen's unit tests
 		assertFalse ( JenSub.isTokenized() );
+		assertEquals( 1 , JenSub.getNumCodeFiles() );
+		assertEquals( 4 , JenSub.getNumCodeLines() );
+		assertEquals( "Jen" , JenSub.toString() );
 		
+		// Mike's unit tests
 		assertFalse ( MikeSub.isTokenized() );
+		assertEquals( 1 , MikeSub.getNumCodeFiles() );
+		assertEquals( 2 , MikeSub.getNumCodeLines() );
+		assertEquals( "Mike" , MikeSub.toString() );
 		
+		// Nathan's unit tests
 		assertFalse ( NathanSub.isTokenized() );
-	}
+		assertEquals( 3 , NathanSub.getNumCodeFiles() );
+		assertEquals( 8 , NathanSub.getNumCodeLines() );
+		assertEquals( "Nathan.2" , NathanSub.toString() );
+		
+	} // End of testSubmission()
 
-	
 
 	@Test
 	public void testTokenize() {
 		fail("Not yet implemented");
 	}
 
-	
 
 	@Test
 	public void testIsTokenized() {
-		fail("Not yet implemented");
-	}
+		
+		assertFalse( AsaSub.isTokenized() );
+		assertFalse ( JenSub.isTokenized() );
+		assertFalse ( MikeSub.isTokenized() );
+		assertFalse ( NathanSub.isTokenized() );
+		
+	} // End of testIsTokenized()
 
-	
 
 	@Test
 	public void testGetTokenSequenceLength() {
 		fail("Not yet implemented");
 	}
 
-	
 
 	@Test
 	public void testGetNumCodeLines() {
-		fail("Not yet implemented");
-	}
+		
+		assertEquals( 3 , AsaSub.getNumCodeLines() );
+		assertEquals( 4 , JenSub.getNumCodeLines() );
+		assertEquals( 2 , MikeSub.getNumCodeLines() );
+		assertEquals( 8 , NathanSub.getNumCodeLines() );
+		
+	} // End of testGetNumCodeLines()
 
-	
 
 	@Test
 	public void testGetNumCodeFiles() {
-		fail("Not yet implemented");
-	}
+		
+		assertEquals( 1 , AsaSub.getNumCodeFiles() );
+		assertEquals( 1 , JenSub.getNumCodeFiles() );
+		assertEquals( 1 , MikeSub.getNumCodeFiles() );
+		assertEquals( 3 , NathanSub.getNumCodeFiles() );
+		
+	} // End of testGetNumCodeFiles()
 
-	
 
 	@Test
 	public void testCompareTo() {
-		fail("Not yet implemented");
-	}
+		// Will mainly compare Mike, Mike.1, Mike.2
+		//
+		// Mike.2 should be the highest - Mike.2 > Mike.1 && Mike.2 > Mike
+		// Mike.1 should be the next highest - Mike.2 > Mike
+		// Mike is the lowest
+		
+		// Obtain 3 submissions that belong to Mike
+		Submission Mike = instructor.getStudent("Mike").getSubmission("Mike");
+		Submission Mike1 = instructor.getStudent("Mike").getSubmission("Mike.1");
+		Submission Mike2 = instructor.getStudent("Mike").getSubmission("Mike.2");
+		
+		assertTrue( Mike.compareTo(Mike) == 0 );
+		assertTrue( Mike.compareTo(Mike1) < 0 );
+		assertTrue( Mike.compareTo(Mike2) < 0 );
+		
+		assertTrue( Mike1.compareTo(Mike) > 0 );
+		assertTrue( Mike1.compareTo(Mike1) == 0 );
+		assertTrue( Mike1.compareTo(Mike2) < 0 );
+		
+		assertTrue( Mike2.compareTo(Mike) > 0 );
+		assertTrue( Mike2.compareTo(Mike1) > 0 );
+		assertTrue( Mike2.compareTo(Mike2) == 0 );
+		
+	} // End of testCompareTo()
 
 	
-
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
-	}
+		
+		assertEquals( "Asa.1" , AsaSub.toString() );
+		assertEquals( "Jen" , JenSub.toString() );
+		assertEquals( "Mike" , MikeSub.toString() );
+		assertEquals( "Nathan.2" , NathanSub.toString() );
+		
+	} // End of testCompareTo()
 
 }

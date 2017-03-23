@@ -79,6 +79,21 @@ public class TestStudent {
 	}
 	
 	@Test
+	public void testGetSubmission() {
+		
+		assertEquals( null , Asa.getSubmission("ThisDoesNotExist") );
+		assertEquals( null , Jen.getSubmission("ThisDoesNotExist") );
+		assertEquals( null , Mike.getSubmission("ThisDoesNotExist") );
+		assertEquals( null , Nathan.getSubmission("ThisDoesNotExist") );
+		
+		assertEquals( Asa.getPrioritySubmission() , Asa.getSubmission("Asa.1") );
+		assertEquals( Jen.getPrioritySubmission() , Jen.getSubmission("Jen") );
+		assertEquals( Mike.getPrioritySubmission() , Mike.getSubmission("Mike") );
+		assertEquals( Nathan.getPrioritySubmission() , Nathan.getSubmission("Nathan.2") );
+		
+	} // End of testGetSubmission
+	
+	@Test
 	public void testGetPrioritySubmission() {
 		
 		// Asa's priority submission is "Asa.1"
@@ -151,14 +166,36 @@ public class TestStudent {
 		assertFalse( Nathan.equals(Mike) );
 		
 	} // End of TestEqualsObject()
-
 	
 
 	@Test
 	public void testCompareTo() {
-		fail("Not yet implemented");
-	}
-
+		
+		// Unit tests for Asa
+		assertTrue( Asa.compareTo(Asa) == 0 );
+		assertTrue( Asa.compareTo(Jen) < 0 );
+		assertTrue( Asa.compareTo(Mike) < 0 );
+		assertTrue( Asa.compareTo(Nathan) < 0 );
+		
+		// Unit tests for Jen
+		assertTrue( Jen.compareTo(Asa) > 0 );
+		assertTrue( Jen.compareTo(Jen) == 0 );
+		assertTrue( Jen.compareTo(Mike) < 0 );
+		assertTrue( Jen.compareTo(Nathan) < 0 );
+		
+		// Unit tests for Mike
+		assertTrue( Mike.compareTo(Asa) > 0 );
+		assertTrue( Mike.compareTo(Jen) > 0 );
+		assertTrue( Mike.compareTo(Mike) == 0 );
+		assertTrue( Mike.compareTo(Nathan) < 0 );
+		
+		// Unit tests for Nathan
+		assertTrue( Nathan.compareTo(Asa) > 0 );
+		assertTrue( Nathan.compareTo(Jen) > 0 );
+		assertTrue( Nathan.compareTo(Mike) > 0 );
+		assertTrue( Nathan.compareTo(Nathan) == 0 );
+		
+	} // End of testCompareTo()
 	
 
 	@Test
