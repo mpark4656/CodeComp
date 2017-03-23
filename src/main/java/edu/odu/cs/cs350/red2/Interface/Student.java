@@ -20,7 +20,7 @@ public class Student implements Comparable<Student>
 	/**
 	 * Constructor 
 	 * Instantiates Student with the given identifier
-	 * @param identifier
+	 * @param String identifier
 	 */
 	public Student( String identifier )
 	{
@@ -39,9 +39,20 @@ public class Student implements Comparable<Student>
 	}
 	
 	/**
+	 * The accessor method to return the total number of submissions
+	 * this student made.
+	 * @return int Number of Submissions for this student
+	 */
+	public int getSubmissionCount()
+	{
+		return submissions.size();
+	}
+	
+	/**
 	 * Return the object of the Submission that "counts" and will
 	 * be graded.
-	 * @return prioritySub Submission priority Submission object
+	 * @pre submissions.size() != 0
+	 * @return Submission Priority submission object
 	 */
 	public Submission getPrioritySubmission()
 	{
@@ -66,7 +77,7 @@ public class Student implements Comparable<Student>
 		
 	/**
 	 * Return the total number of code file count in the priority submission.
-	 * @return count int Total number of Code Files this student submitted
+	 * @return int Total number of Code Files this student submitted
 	 */
 	public int getTotalCodeFileCount()
 	{
@@ -75,7 +86,7 @@ public class Student implements Comparable<Student>
 	
 	/**
 	 * Return the total number of lines of code in the priority submission
-	 * @return count int Total number of lines of code
+	 * @return int Total number of lines of code
 	 */
 	public int getTotalCodeLineCount()
 	{
@@ -84,7 +95,7 @@ public class Student implements Comparable<Student>
 	
 	/**
 	 * Override the equals method from java.lang.Object
-	 * @return True boolean true if toCompare equals this Student object
+	 * @return boolean True if toCompare equals this Student object
 	 */
 	@Override
 	public boolean equals( Object theStudent )
@@ -94,7 +105,7 @@ public class Student implements Comparable<Student>
 	
 	/**
 	 * Compare this contact to another.
-	 * @return val int value > 0 if this contact precedes the other,
+	 * @return int value > 0 if this contact precedes the other,
 	 * == 0 if the two are equal, and < 0 if this contact
 	 * follows the other.  
 	 */
@@ -106,7 +117,7 @@ public class Student implements Comparable<Student>
 	
 	/**
 	 * Return the unique identifier as String
-	 * @return id String identifier
+	 * @return String identifier
 	 */
 	@Override
 	public String toString()

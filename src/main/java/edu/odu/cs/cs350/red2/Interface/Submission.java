@@ -14,6 +14,7 @@ import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
  * Represents individual submission by students - 
  * Stores token sequence.
  * @author mpark
+ * @author nruf
  */
 public class Submission implements Comparable<Submission>
 {
@@ -33,7 +34,7 @@ public class Submission implements Comparable<Submission>
 	/**
 	 * Calls private method, searchAllFiles to recursively search all
 	 * files in the given directory and add each file to the collection.
-	 * @param directory
+	 * @param File directory
 	 */
 	public Submission( File directory )
 	{
@@ -84,8 +85,8 @@ public class Submission implements Comparable<Submission>
 	 * Private method to return the file extension for the given
 	 * file path.
 	 * For example, test.java would return "java"
-	 * @param filePath
-	 * @return extension String file extension
+	 * @param File filePath
+	 * @return String File extension
 	 */
 	private String getExtension( File filePath )
 	{
@@ -98,7 +99,7 @@ public class Submission implements Comparable<Submission>
 	
 	/**
 	 * Parse this submission and produce the token sequence.
-	 * @return tokenized boolean true if this submission  was successfuly parsed.
+	 * @return boolean True if this submission  was successfully parsed.
 	 */
 	public boolean tokenize()
 	{
@@ -111,25 +112,26 @@ public class Submission implements Comparable<Submission>
 	/**
 	 * Return true if this submission has been parsed and token sequence 
 	 * has been generated.
-	 * @return True boolean true if this submission has been parsed 
+	 * @return boolean True if this submission has been parsed 
 	 */
 	public boolean isTokenized()
 	{
-		return false;
+		return tokenized;
 	}
 	
 	/**
 	 * Return the length of all token sequences in this submission
-	 * @return length int Length of All Token Sequences
+	 * @return int Length of All Token Sequences
 	 */
 	public int getTokenSequenceLength()
 	{
+		// Not yet implemented
 		return 0;
 	}
 	
 	/**
 	 * Return the number of LOC in all code files in this submission
-	 * @return num int number of code lines in the code files
+	 * @return int The number of code lines in all code files
 	 */
 	public int getNumCodeLines()
 	{
@@ -172,7 +174,7 @@ public class Submission implements Comparable<Submission>
 	
 	/**
 	 * Return the number of code files in this submission.
-	 * @return num int Number of Code Files in this submission
+	 * @return int Number of Code Files in this submission
 	 */
 	public int getNumCodeFiles()
 	{
@@ -193,7 +195,7 @@ public class Submission implements Comparable<Submission>
 	
 	/**
 	 * Return the relative path (Folder name) as String
-	 * @return folderName String Name of the Submission Directory
+	 * @return String Name of the Submission Directory
 	 */
 	@Override
 	public String toString()

@@ -15,7 +15,7 @@ public class ArgumentParser
 	
 	/**
 	 * Constructor that accepts an array of String
-	 * @param args String[] command-line parameter
+	 * @param String[] command-line parameter
 	 */
 	public ArgumentParser( String[] args )
 	{
@@ -25,7 +25,7 @@ public class ArgumentParser
 	/**
 	 * Checks the command-line parameter and see if the usage is proper - 
 	 * This also checks that the given directory paths are valid.
-	 * @return True boolean true if the arguments are proper.
+	 * @return boolean Return true if the arguments are proper.
 	 */
 	public boolean isProperArgs()
 	{
@@ -135,7 +135,7 @@ public class ArgumentParser
 	 * Checks the command-line parameter and see if user asked for help
 	 * by including the -help option.
 	 * @pre isProperArgs() == true
-	 * @return True boolean true if user used the -help option
+	 * @return boolean Return true if user used the -help option
 	 */
 	public boolean argsContainHelp()
 	{
@@ -151,7 +151,7 @@ public class ArgumentParser
 	/**
 	 * Checks the command-line parameter and see if user specified -raw.
 	 * @pre isProperArgs() == true
-	 * @return True boolean True if user used the -raw option
+	 * @return boolean Return true if user used the -raw option
 	 */
 	public boolean argsContainSheetName()
 	{
@@ -173,7 +173,7 @@ public class ArgumentParser
 	/**
 	 * Checks the command-line parameter and see if user specified -template.
 	 * @pre isProperArgs() == true
-	 * @return True boolean true if user used the -template option
+	 * @return boolean Return true if user used the -template option
 	 */
 	public boolean argsContainTemplate()
 	{
@@ -194,7 +194,7 @@ public class ArgumentParser
 	
 	/**
 	 * Return -template arg as String
-	 * @return tempArg String The string after -template
+	 * @return String The actual argument after -template flag
 	 */
 	public String getTemplateArg()
 	{
@@ -225,7 +225,7 @@ public class ArgumentParser
 	/**
 	 * Return -raw arg as String
 	 * @pre argsContainSheetName() == true
-	 * @return rawArg String The string after -raw
+	 * @return String The actual argument after -raw flag
 	 */
 	public String getSheetNameArg()
 	{

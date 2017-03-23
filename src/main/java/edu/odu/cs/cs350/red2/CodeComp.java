@@ -30,7 +30,7 @@ public class CodeComp
 	 * The example of relative path above assumes that program is stored in 
 	 * C:\Users\mpark\Documents\ 
 	 * 
-	 * @param args command-line arguments
+	 * @param String[] args command-line arguments
 	 */
 	public static void main( String[] args )
 	{

@@ -9,6 +9,10 @@ public class TestStudent {
 
 	private Instructor instructor;
 	private File submissionDirectory;
+	private Student Asa;
+	private Student Jen;
+	private Student Mike;
+	private Student Nathan;
 	
 	public TestStudent()
 	{
@@ -18,37 +22,75 @@ public class TestStudent {
 		// backslashes (\\).
 		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions(submissionDirectory);
+		
+		Asa = instructor.getStudent( "Asa" );
+		Jen = instructor.getStudent( "Jen" );
+		Mike = instructor.getStudent( "Mike" );
+		Nathan = instructor.getStudent( "Nathan" );
 	}
 
-/* NOT YET IMPLEMENTED
+
 	@Test
 	public void testStudent() {
-		fail("Not yet implemented");
+
+		// Unit Tests for Asa
+		assertEquals( "Asa" , Asa.toString() );
+		assertTrue( Asa.equals(Asa) );
+		assertFalse( Asa.equals(Jen) );
+		assertFalse( Asa.equals(Nathan) );
+		assertFalse( Asa.equals(Mike) );
+		assertEquals( 1 , Asa.getSubmissionCount() );
+		assertEquals( "Asa.1" , Asa.getPrioritySubmission().toString() );
+		assertEquals( 1 , Asa.getTotalCodeFileCount() );
+		assertEquals( 3 , Asa.getTotalCodeLineCount() );
+		
+		// Unit Tests for Jen
+		assertEquals( "Jen" , Jen.toString() );
+		assertTrue( Jen.equals(Jen) );
+		assertFalse( Jen.equals(Asa) );
+		assertFalse( Jen.equals(Nathan) );
+		assertFalse( Jen.equals(Mike) );
+		assertEquals( 2 , Jen.getSubmissionCount() );
+		assertEquals( "Jen" , Jen.getPrioritySubmission().toString() );
+		assertEquals( 1 , Jen.getTotalCodeFileCount() );
+		assertEquals( 4 , Jen.getTotalCodeLineCount() );
+		
+		// Unit Tests for Mike
+		assertEquals( "Mike" , Mike.toString() );
+		assertTrue( Mike.equals(Mike) );
+		assertFalse( Mike.equals(Asa) );
+		assertFalse( Mike.equals(Jen) );
+		assertFalse( Mike.equals(Nathan) );
+		assertEquals( 3 , Mike.getSubmissionCount() );
+		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
+		assertEquals( 1 , Mike.getTotalCodeFileCount() );
+		assertEquals( 2 , Mike.getTotalCodeLineCount() );
+		
+		// Unit Tests for Nathan
+		assertEquals( "Nathan" , Nathan.toString() );
+		assertTrue( Nathan.equals(Nathan) );
+		assertFalse( Nathan.equals(Asa) );
+		assertFalse( Nathan.equals(Jen) );
+		assertFalse( Nathan.equals(Mike) );
+		assertEquals( 2 , Nathan.getSubmissionCount() );
+		assertEquals( "Nathan.2" , Nathan.getPrioritySubmission().toString() );
+		assertEquals( 3 , Nathan.getTotalCodeFileCount() );
+		assertEquals( 8 , Nathan.getTotalCodeLineCount() );
 	}
-*/
-	
-/* NOT YET IMPLEMENTED
-	@Test
-	public void testAddSubmission() {
-		fail("Not yet implemented");
-	}
-*/
 	
 	@Test
 	public void testGetPrioritySubmission() {
 		
-		// Create Student objects
-		Student Jen = instructor.getStudent( "Jen" );
-		Student Mike = instructor.getStudent( "Mike" );
-		Student Nathan = instructor.getStudent( "Nathan" );
+		// Asa's priority submission is "Asa.1"
+		assertEquals( "Asa.1" , Asa.getPrioritySubmission().toString() );
 		
-		// Jen's priority submission is the "Jen" directory
+		// Jen's priority submission is "Jen"
 		assertEquals( "Jen" , Jen.getPrioritySubmission().toString() );
 		
-		// Mike's priority submission is the "Mike" directory
+		// Mike's priority submission is "Mike"
 		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
 		
-		// Nathan's priority submission is the "Nathan.2" directory
+		// Nathan's priority submission is "Nathan.2"
 		assertEquals( "Nathan.2" , Nathan.getPrioritySubmission().toString() );
 		
 	} // End of testGetPrioritySubmission()
@@ -56,10 +98,8 @@ public class TestStudent {
 	@Test
 	public void testGetTotalCodeFileCount() {
 		
-		// Create Student objects
-		Student Jen = instructor.getStudent( "Jen" );
-		Student Mike = instructor.getStudent( "Mike" );
-		Student Nathan = instructor.getStudent( "Nathan" );
+		// Asa'a priority submission has 1 code file
+		assertEquals( 1 , Asa.getTotalCodeFileCount() );
 		
 		// Jen's priority submission has 1 code file.
 		assertEquals( 1 , Jen.getTotalCodeFileCount() );
@@ -75,23 +115,43 @@ public class TestStudent {
 	@Test
 	public void testGetTotalCodeLineCount() {
 		
-		// Create Student objects
-		Student Jen = instructor.getStudent( "Jen" );
-		Student Mike = instructor.getStudent( "Mike" );
-		Student Nathan = instructor.getStudent( "Nathan" );
-		
+		assertEquals( 3 , Asa.getTotalCodeLineCount() );
 		assertEquals( 4 , Jen.getTotalCodeLineCount());
 		assertEquals( 2 , Mike.getTotalCodeLineCount());
 		assertEquals( 8 , Nathan.getTotalCodeLineCount());
 		
 	} // End of testGetTotalCodeLineCount()
 
-/* NOT YET IMPLEMENTED
+
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-*/
+		
+		// Unit Tests for Asa
+		assertTrue( Asa.equals(Asa) );
+		assertFalse( Asa.equals(Jen) );
+		assertFalse( Asa.equals(Nathan) );
+		assertFalse( Asa.equals(Mike) );
+		
+		// Unit Tests for Jen
+		assertTrue( Jen.equals(Jen) );
+		assertFalse( Jen.equals(Asa) );
+		assertFalse( Jen.equals(Nathan) );
+		assertFalse( Jen.equals(Mike) );
+		
+		// Unit Tests for Mike
+		assertTrue( Mike.equals(Mike) );
+		assertFalse( Mike.equals(Asa) );
+		assertFalse( Mike.equals(Jen) );
+		assertFalse( Mike.equals(Nathan) );
+		
+		// Unit Tests for Nathan
+		assertTrue( Nathan.equals(Nathan) );
+		assertFalse( Nathan.equals(Asa) );
+		assertFalse( Nathan.equals(Jen) );
+		assertFalse( Nathan.equals(Mike) );
+		
+	} // End of TestEqualsObject()
+
 	
 /* NOT YET IMPLEMENTED
 	@Test
@@ -100,10 +160,26 @@ public class TestStudent {
 	}
 */
 	
-/* NOT YET IMPLEMENTED
+
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
-	}
-*/
-}
+		
+		// Asa
+		assertEquals( "Asa" , Asa.toString() );
+		
+		// Jen
+		assertEquals( "Jen" , Jen.toString() );
+		
+		// Mike
+		assertEquals( "Mike" , Mike.toString() );
+		
+		// Nathan
+		assertEquals( "Nathan" , Nathan.toString() );
+		
+	} // End of TestToString()
+
+} // End of TestStudent class
+
+
+
+

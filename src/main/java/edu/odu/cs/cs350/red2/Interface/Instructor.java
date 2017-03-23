@@ -9,6 +9,7 @@ import java.io.File;
  * This class will be responsible for invoking the methods of other interfaces 
  * and passing information from one interface to another.
  * @author mpark
+ * @author nruf
  */
 public class Instructor
 {
@@ -38,9 +39,9 @@ public class Instructor
 	 * The submission directory will be obtained via acceptStudentSubmissions(), 
 	 * so it's not one of the parameters of this constructor.
 	 * 
-	 * @param template String template specified by user
-	 * @param sheetname String sheetname specified by user
-	 * @param outputSpreadsheet File directory where output files should be written to
+	 * @param String template specified by user
+	 * @param String sheetname specified by user
+	 * @param File directory where output files should be written to
 	 */
 	public Instructor( String outputSpreadsheet)
 	{
@@ -60,7 +61,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns true if a specific template is set.
-	 * @return templateSpecified boolean Return true if user specified template.
+	 * @return boolean Return true if user specified template.
 	 */
 	public boolean isTemplateSpecified()
 	{
@@ -69,7 +70,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns true if a specific sheetname is set.
-	 * @return sheetNameSpecified boolean Return true if user specified sheet name.
+	 * @return boolean Return true if user specified sheet name.
 	 */
 	public boolean isSheetNameSpecified()
 	{
@@ -78,7 +79,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns template name as String
-	 * @return template String Name of user-specified template
+	 * @return String Name of user-specified template
 	 */
 	public String getTemplate()
 	{
@@ -87,7 +88,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns sheet name as String
-	 * @return sheetName String Name of user-specified sheet name
+	 * @return String Name of user-specified sheet name
 	 */
 	public String getSheetName()
 	{
@@ -96,7 +97,7 @@ public class Instructor
 	
 	/**
 	 * Public Mutator method for setting the template
-	 * @param template String
+	 * @param String Template name
 	 * @pre templateSpecified == false
 	 * @post templateSpecified == true
 	 */
@@ -109,7 +110,7 @@ public class Instructor
 	
 	/**
 	 * Public Mutator method for setting the raw sheetname
-	 * @param sheetname String
+	 * @param String Sheet name
 	 */
 	public void setSheetName( String sheetName )
 	{
@@ -121,7 +122,7 @@ public class Instructor
 	/**
 	 * Public Accessor Method that returns true if this instructor received student
 	 * submissions
-	 * @return
+	 * @return boolean Return true if this instructor accepted student submissions
 	 */
 	public boolean isSubmissionReceived()
 	{
@@ -130,7 +131,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns true if student codes have been parsed
-	 * @return parsedStudentSubmissions boolean Return true if submissions were parsed.
+	 * @return boolean Return true if submissions were parsed.
 	 */
 	public boolean isSubmissionParsed()
 	{
@@ -139,7 +140,7 @@ public class Instructor
 	
 	/**
 	 * Public Accessor method that returns true if Token Sequences have been analyzed
-	 * @return analyzedTokenSequences boolean Return true if raw scores and z-scores 
+	 * @return boolean Return true if raw scores and z-scores 
 	 * have been calculated
 	 */
 	public boolean isTokenSequenceAnalyzed()
@@ -149,8 +150,8 @@ public class Instructor
 	
 	/**
 	 * Return Student object for the given identifier.
-	 * @param identifier
-	 * @return Student object that corresponds to the given identifier - 
+	 * @param String identifier
+	 * @return Student student object that corresponds to the given identifier - 
 	 * If not found, return null;
 	 */
 	public Student getStudent( String identifier )
@@ -170,7 +171,7 @@ public class Instructor
 	
 	/**
 	 * Public Accssor method to return the total number of students
-	 * @return count int Total Number of Students
+	 * @return int Total Number of Students
 	 */
 	public int getTotalStudentCount()
 	{
@@ -179,7 +180,7 @@ public class Instructor
 	
 	/**
 	 * Public Accssor method to return the total number of student pairs
-	 * @return count int Total Number of Student Pairs
+	 * @return int Total Number of Student Pairs
 	 */
 	public int getTotalStudentPairCount()
 	{
@@ -189,10 +190,10 @@ public class Instructor
 	/**
 	 * Add each student and student pairs and set receivedSubmissions to true.
 	 * Then, process the data and analyze them.
-	 * @param submissionDirectory
+	 * @param File submissionDirectory
 	 * @pre receivedSubmission == false
 	 * @post receivedSubmissions == true
-	 * @return receivedSubmission boolean Return true if the submissions were successfully received.
+	 * @return boolean Return true if the submissions were successfully received.
 	 */
 	public boolean acceptStudentSubmissions( File submissionDirectory )
 	{
@@ -305,7 +306,7 @@ public class Instructor
 	 * "Tokenize" all codes in each student submission.
 	 * @pre receivedSubmission == true && parsedStudentSubmissions == false
 	 * @post parsedStudentSubmissions == true;
-	 * @return parsedStudentSubmission boolean Return true if the submissions were successfully parsed.
+	 * @return boolean Return true if the submissions were successfully parsed.
 	 */
 	public boolean process()
 	{
@@ -328,7 +329,7 @@ public class Instructor
 	 * Analyze similarity and calculate the raw scores and the z-scores.
 	 * @pre parsedStudentSubmissions == true && analyzedTokenSequence == false
 	 * @post analysedTokenSequence == true
-	 * @return analyzedTokenSequences boolean Return true if the token sequences were 
+	 * @return boolean Return true if the token sequences were 
 	 * successfully analyzed.
 	 */
 	public boolean analyze()
