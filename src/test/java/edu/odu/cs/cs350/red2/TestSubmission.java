@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import org.junit.Test;
 import edu.odu.cs.cs350.red2.Interface.*;
+import java.util.ArrayList;
 
 public class TestSubmission {
 
@@ -106,7 +107,48 @@ public class TestSubmission {
 		
 	} // End of testGetNumCodeFiles()
 
-
+	@Test
+	public void testSearchAllFiles() {
+		
+		// Get a list of all files in Nathan.2 submission
+		// Only nathan has subdirectory structure complex enough for testing
+		ArrayList<File> allFiles = NathanSub.getAllFiles();
+		
+		// These are files that should be present
+		File file1 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/code4.cpp" );
+		File file2 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile.c" );
+		File file3 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile1.java" );
+		File file4 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/subDir/codeFile3.cpp" );
+		
+		assertTrue( allFiles.contains(file1) );
+		assertTrue( allFiles.contains(file2) );
+		assertTrue( allFiles.contains(file3) );
+		assertTrue( allFiles.contains(file4) );
+		assertEquals( 4 , allFiles.size() );
+		
+	} // End of testSearchAllFiles()
+	
+	@Test
+	public void testSearchAllCodeFiles() {
+		
+		// Get a list of all code files in Nathan.2 submission
+		ArrayList<File> codeFiles = NathanSub.getCodeFiles();
+		
+		// These are files that should be present
+		// Note that codeFile.c is c code file and it is not yet supported, so it should not be in here
+		File file1 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/code4.cpp" );
+		File file2 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile.c" );
+		File file3 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile1.java" );
+		File file4 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/subDir/codeFile3.cpp" );
+		
+		assertTrue( codeFiles.contains(file1) );
+		assertFalse( codeFiles.contains(file2) );
+		assertTrue( codeFiles.contains(file3) );
+		assertTrue( codeFiles.contains(file4) );
+		assertEquals( 3 , codeFiles.size() );
+		
+	} // End of testSearchAllCodeFiles()
+	
 	@Test
 	public void testCompareTo() {
 		// Will mainly compare Mike, Mike.1, Mike.2

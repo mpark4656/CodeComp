@@ -95,7 +95,7 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Public accessor to print the names of all code files in this submission - 
+	 * Public method to print the names of all code files in this submission - 
 	 * This is mostly for testing and debugging
 	 */
 	public void printCodeFiles()
@@ -105,6 +105,24 @@ public class Submission implements Comparable<Submission>
 		for( int i = 0 ; i < codeFiles.size(); i++ ) {
 			System.out.println( codeFiles.get(i).getName() );
 		}
+	}
+	
+	/**
+	 * Public accessor that returns all files in ArrayList
+	 * @return ArrayList<File> All files in this submission
+	 */
+	public ArrayList<File> getAllFiles()
+	{
+		return allFiles;
+	}
+	
+	/**
+	 * Public accessor that returns all code files in ArrayList
+	 * @return ArrayList<File> All code files in this submission
+	 */
+	public ArrayList<File> getCodeFiles()
+	{
+		return codeFiles;
 	}
 	
 	/**
