@@ -153,12 +153,12 @@ public class TestStudent {
 	} // End of TestEqualsObject()
 
 	
-/* NOT YET IMPLEMENTED
+
 	@Test
 	public void testCompareTo() {
 		fail("Not yet implemented");
 	}
-*/
+
 	
 
 	@Test
