@@ -221,7 +221,6 @@ public class TestInstructor {
 		
 	} // End of testIsSubmissionReceived()
 
-/*
 	@Test
 	public void testIsSubmissionParsed() {
 		fail("Not yet implemented");
@@ -237,7 +236,6 @@ public class TestInstructor {
 		
 	} // End of testIsTokenSequenceAnalyzed()
 
-*/
 	
 	@Test
 	public void testGetStudent() {
@@ -375,7 +373,6 @@ public class TestInstructor {
 		
 	} // End of testAcceptStudentSubmission()
 	
-/*
 	@Test
 	public void testProcess() {
 		fail("Not yet implemented");
@@ -394,6 +391,6 @@ public class TestInstructor {
 	public void testDisplayResult() {
 		fail("Not yet implemented");
 	}
-*/
+
 	
 } // End of TestInstructor

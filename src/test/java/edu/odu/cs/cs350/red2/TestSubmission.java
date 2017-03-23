@@ -62,12 +62,12 @@ public class TestSubmission {
 		
 	} // End of testSubmission()
 
-/*
+
 	@Test
 	public void testTokenize() {
 		fail("Not yet implemented");
 	}
-*/
+
 
 	@Test
 	public void testIsTokenized() {
@@ -79,12 +79,12 @@ public class TestSubmission {
 		
 	} // End of testIsTokenized()
 
-/*
+
 	@Test
 	public void testGetTokenSequenceLength() {
 		fail("Not yet implemented");
 	}
-*/
+
 
 	@Test
 	public void testGetNumCodeLines() {
