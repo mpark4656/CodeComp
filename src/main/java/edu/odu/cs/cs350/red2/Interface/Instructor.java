@@ -34,6 +34,9 @@ public class Instructor
 	private boolean parsedStudentSubmissions;
 	private boolean analyzedTokenSequences;
 	
+	// Stores output directory path
+	private File outputDirectory;
+	
 	/**
 	 * Constructor - 
 	 * The submission directory will be obtained via acceptStudentSubmissions(), 
@@ -54,6 +57,8 @@ public class Instructor
 		receivedSubmissions = false;
 		parsedStudentSubmissions = false;
 		analyzedTokenSequences = false;
+		
+		outputDirectory = new File( outputSpreadsheet );
 		
 		template = "";
 		sheetName = "";
@@ -346,6 +351,12 @@ public class Instructor
 	public void displayResult()
 	{
 		// Not yet implemented
+	}
+	
+	
+	private void writeToFile()
+	{
+		
 	}
 	
 } // End of Instructor Class

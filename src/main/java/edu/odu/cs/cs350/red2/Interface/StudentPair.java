@@ -12,6 +12,9 @@ public class StudentPair
 	private Student student1;
 	private Student student2;
 	
+	private double rawScore;
+	private double zScore;
+	
 	public StudentPair( Student student1 , Student student2 )
 	{
 		this.student1 = student1;
