@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+	compile 'edu.odu.cs.cs350:codeCompCommon:1.3+'
     testCompile "junit:junit:4.11" 
 }
 

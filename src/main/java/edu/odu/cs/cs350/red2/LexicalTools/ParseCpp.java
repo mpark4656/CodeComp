@@ -2,7 +2,7 @@
 
 package edu.odu.cs.cs350.red2.LexicalTools;
 
-public class AParceCpp
+public class ParseCpp
 {
 	//Takes in the code for Parsing
 	String code;
