@@ -14,7 +14,7 @@ public class Token
 		// Testing JFlex
 		String inputString = "123\tident1 \nKEYWORD   42\n";
 		Reader input = new StringReader( inputString );
-		//GeneratedScanner = new GeneratedScanner ( input );
+		// GeneratedScanner = new GeneratedScanner ( input );
 		
 	}
 }

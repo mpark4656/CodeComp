@@ -6,7 +6,7 @@
  */
 
 package edu.odu.cs.cs350.red2.LexicalTools;
-@SupressWarnings("unused")
+@SuppressWarnings("unused")
 
 %%
 
@@ -52,6 +52,7 @@ IntegerLiteral = [0-9][0-9]* | [0-9][_0-9]*[0-9]
 {Identifier}		{ return symbol( TokenTypes.IDENTIFIER , yytext() ); }
 
 {WhiteSpace}		{ /* Ignore */ }
+
 
 
 
