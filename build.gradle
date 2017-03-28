@@ -4,14 +4,14 @@ apply plugin: 'eclipse'
 repositories {
 	jcenter()
 	
-     ivy {
-        url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
-     }
+	ivy {
+		url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
+	}
 }
 
 dependencies {
 	compile 'edu.odu.cs.cs350:codeCompCommon:1.3+'
-    testCompile "junit:junit:4.11" 
+	testCompile "junit:junit:4.11" 
 }
 
 jar {
