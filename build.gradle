@@ -3,6 +3,10 @@ apply plugin: 'eclipse'
 
 repositories {
 	jcenter()
+	
+     ivy {
+        url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
+     }
 }
 
 dependencies {
