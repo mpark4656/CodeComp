@@ -61,8 +61,4 @@ public class Token
 		lexeme = theLex;
 	}
 	
-
-	
-	
->>>>>>> master
 }
