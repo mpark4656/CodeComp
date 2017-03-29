@@ -12,8 +12,8 @@ build-job:
     
   stage: build
   script:
-    (\t)  #Changing directory to root
-    (\t)./gradlew build  #Ask about the commands that need to go before build
+    #Changing directory to root
+    - ./gradlew build  #Ask about the commands that need to go before build
 
   only:
     - master
