@@ -8,7 +8,7 @@ stages:
 
 build-job:
   tags:
-    runner350 shell runner
+    5dc73e18
     
   stage: build
   script:
