@@ -19,31 +19,30 @@
    this could be optimized */
 
 
+package edu.odu.cs.cs350.red2.LexicalTools;
 import java_cup.runtime.*;
 
 %%
 
 %public
 %class Scanner
-%implements sym
-
-%unicode
 
 %line
 %column
 
-%cup
-%cupdebug
+%unicode
+%type Token
+
 
 %{
   StringBuilder string = new StringBuilder();
   
-  private Symbol symbol(int type) {
-    return new JavaSymbol(type, yyline+1, yycolumn+1);
+  private Token symbol(TokenTypes type) {
+    return new Token(type, yyline+1, yycolumn+1);
   }
 
-  private Symbol symbol(int type, Object value) {
-    return new JavaSymbol(type, yyline+1, yycolumn+1, value);
+  private Token symbol(TokenTypes type, Object value) {
+    return new Token(type, yyline+1, yycolumn+1, value);
   }
 
   /** 
@@ -114,112 +113,112 @@ SingleCharacter = [^\r\n\'\\]
 <YYINITIAL> {
 
   /* keywords */
-  "abstract"                     { return symbol(ABSTRACT); }
-  "boolean"                      { return symbol(BOOLEAN); }
-  "break"                        { return symbol(BREAK); }
-  "byte"                         { return symbol(BYTE); }
-  "case"                         { return symbol(CASE); }
-  "catch"                        { return symbol(CATCH); }
-  "char"                         { return symbol(CHAR); }
-  "class"                        { return symbol(CLASS); }
-  "const"                        { return symbol(CONST); }
-  "continue"                     { return symbol(CONTINUE); }
-  "do"                           { return symbol(DO); }
-  "double"                       { return symbol(DOUBLE); }
-  "else"                         { return symbol(ELSE); }
-  "extends"                      { return symbol(EXTENDS); }
-  "final"                        { return symbol(FINAL); }
-  "finally"                      { return symbol(FINALLY); }
-  "float"                        { return symbol(FLOAT); }
-  "for"                          { return symbol(FOR); }
-  "default"                      { return symbol(DEFAULT); }
-  "implements"                   { return symbol(IMPLEMENTS); }
-  "import"                       { return symbol(IMPORT); }
-  "instanceof"                   { return symbol(INSTANCEOF); }
-  "int"                          { return symbol(INT); }
-  "interface"                    { return symbol(INTERFACE); }
-  "long"                         { return symbol(LONG); }
-  "native"                       { return symbol(NATIVE); }
-  "new"                          { return symbol(NEW); }
-  "goto"                         { return symbol(GOTO); }
-  "if"                           { return symbol(IF); }
-  "public"                       { return symbol(PUBLIC); }
-  "short"                        { return symbol(SHORT); }
-  "super"                        { return symbol(SUPER); }
-  "switch"                       { return symbol(SWITCH); }
-  "synchronized"                 { return symbol(SYNCHRONIZED); }
-  "package"                      { return symbol(PACKAGE); }
-  "private"                      { return symbol(PRIVATE); }
-  "protected"                    { return symbol(PROTECTED); }
-  "transient"                    { return symbol(TRANSIENT); }
-  "return"                       { return symbol(RETURN); }
-  "void"                         { return symbol(VOID); }
-  "static"                       { return symbol(STATIC); }
-  "while"                        { return symbol(WHILE); }
-  "this"                         { return symbol(THIS); }
-  "throw"                        { return symbol(THROW); }
-  "throws"                       { return symbol(THROWS); }
-  "try"                          { return symbol(TRY); }
-  "volatile"                     { return symbol(VOLATILE); }
-  "strictfp"                     { return symbol(STRICTFP); }
+  "abstract"                     { return symbol(TokenTypes.ABSTRACT); }
+  "boolean"                      { return symbol(TokenTypes.BOOLEAN); }
+  "break"                        { return symbol(TokenTypes.BREAK); }
+  "byte"                         { return symbol(TokenTypes.BYTE); }
+  "case"                         { return symbol(TokenTypes.CASE); }
+  "catch"                        { return symbol(TokenTypes.CATCH); }
+  "char"                         { return symbol(TokenTypes.CHAR); }
+  "class"                        { return symbol(TokenTypes.CLASS); }
+  "const"                        { return symbol(TokenTypes.CONST); }
+  "continue"                     { return symbol(TokenTypes.CONTINUE); }
+  "do"                           { return symbol(TokenTypes.DO); }
+  "double"                       { return symbol(TokenTypes.DOUBLE); }
+  "else"                         { return symbol(TokenTypes.ELSE); }
+  "extends"                      { return symbol(TokenTypes.EXTENDS); }
+  "final"                        { return symbol(TokenTypes.FINAL); }
+  "finally"                      { return symbol(TokenTypes.FINALLY); }
+  "float"                        { return symbol(TokenTypes.FLOAT); }
+  "for"                          { return symbol(TokenTypes.FOR); }
+  "default"                      { return symbol(TokenTypes.DEFAULT); }
+  "implements"                   { return symbol(TokenTypes.IMPLEMENTS); }
+  "import"                       { return symbol(TokenTypes.IMPORT); }
+  "instanceof"                   { return symbol(TokenTypes.INSTANCEOF); }
+  "int"                          { return symbol(TokenTypes.INT); }
+  "interface"                    { return symbol(TokenTypes.INTERFACE); }
+  "long"                         { return symbol(TokenTypes.LONG); }
+  "native"                       { return symbol(TokenTypes.NATIVE); }
+  "new"                          { return symbol(TokenTypes.NEW); }
+  "goto"                         { return symbol(TokenTypes.GOTO); }
+  "if"                           { return symbol(TokenTypes.IF); }
+  "public"                       { return symbol(TokenTypes.PUBLIC); }
+  "short"                        { return symbol(TokenTypes.SHORT); }
+  "super"                        { return symbol(TokenTypes.SUPER); }
+  "switch"                       { return symbol(TokenTypes.SWITCH); }
+  "synchronized"                 { return symbol(TokenTypes.SYNCHRONIZED); }
+  "package"                      { return symbol(TokenTypes.PACKAGE); }
+  "private"                      { return symbol(TokenTypes.PRIVATE); }
+  "protected"                    { return symbol(TokenTypes.PROTECTED); }
+  "transient"                    { return symbol(TokenTypes.TRANSIENT); }
+  "return"                       { return symbol(TokenTypes.RETURN); }
+  "void"                         { return symbol(TokenTypes.VOID); }
+  "static"                       { return symbol(TokenTypes.STATIC); }
+  "while"                        { return symbol(TokenTypes.WHILE); }
+  "this"                         { return symbol(TokenTypes.THIS); }
+  "throw"                        { return symbol(TokenTypes.THROW); }
+  "throws"                       { return symbol(TokenTypes.THROWS); }
+  "try"                          { return symbol(TokenTypes.TRY); }
+  "volatile"                     { return symbol(TokenTypes.VOLATILE); }
+  "strictfp"                     { return symbol(TokenTypes.STRICTFP); }
   
   /* boolean literals */
-  "true"                         { return symbol(BOOLEAN_LITERAL, true); }
-  "false"                        { return symbol(BOOLEAN_LITERAL, false); }
+  "true"                         { return symbol(TokenTypes.BOOLEAN_LITERAL, true); }
+  "false"                        { return symbol(TokenTypes.BOOLEAN_LITERAL, false); }
   
   /* null literal */
-  "null"                         { return symbol(NULL_LITERAL); }
+  "null"                         { return symbol(TokenTypes.NULL_LITERAL); }
   
   
   /* separators */
-  "("                            { return symbol(LPAREN); }
-  ")"                            { return symbol(RPAREN); }
-  "{"                            { return symbol(LBRACE); }
-  "}"                            { return symbol(RBRACE); }
-  "["                            { return symbol(LBRACK); }
-  "]"                            { return symbol(RBRACK); }
-  ";"                            { return symbol(SEMICOLON); }
-  ","                            { return symbol(COMMA); }
-  "."                            { return symbol(DOT); }
+  "("                            { return symbol(TokenTypes.LPAREN); }
+  ")"                            { return symbol(TokenTypes.RPAREN); }
+  "{"                            { return symbol(TokenTypes.LBRACE); }
+  "}"                            { return symbol(TokenTypes.RBRACE); }
+  "["                            { return symbol(TokenTypes.LBRACK); }
+  "]"                            { return symbol(TokenTypes.RBRACK); }
+  ";"                            { return symbol(TokenTypes.SEMICOLON); }
+  ","                            { return symbol(TokenTypes.COMMA); }
+  "."                            { return symbol(TokenTypes.DOT); }
   
   /* operators */
-  "="                            { return symbol(EQ); }
-  ">"                            { return symbol(GT); }
-  "<"                            { return symbol(LT); }
-  "!"                            { return symbol(NOT); }
-  "~"                            { return symbol(COMP); }
-  "?"                            { return symbol(QUESTION); }
-  ":"                            { return symbol(COLON); }
-  "=="                           { return symbol(EQEQ); }
-  "<="                           { return symbol(LTEQ); }
-  ">="                           { return symbol(GTEQ); }
-  "!="                           { return symbol(NOTEQ); }
-  "&&"                           { return symbol(ANDAND); }
-  "||"                           { return symbol(OROR); }
-  "++"                           { return symbol(PLUSPLUS); }
-  "--"                           { return symbol(MINUSMINUS); }
-  "+"                            { return symbol(PLUS); }
-  "-"                            { return symbol(MINUS); }
-  "*"                            { return symbol(MULT); }
-  "/"                            { return symbol(DIV); }
-  "&"                            { return symbol(AND); }
-  "|"                            { return symbol(OR); }
-  "^"                            { return symbol(XOR); }
-  "%"                            { return symbol(MOD); }
-  "<<"                           { return symbol(LSHIFT); }
-  ">>"                           { return symbol(RSHIFT); }
-  ">>>"                          { return symbol(URSHIFT); }
-  "+="                           { return symbol(PLUSEQ); }
-  "-="                           { return symbol(MINUSEQ); }
-  "*="                           { return symbol(MULTEQ); }
-  "/="                           { return symbol(DIVEQ); }
-  "&="                           { return symbol(ANDEQ); }
-  "|="                           { return symbol(OREQ); }
-  "^="                           { return symbol(XOREQ); }
-  "%="                           { return symbol(MODEQ); }
-  "<<="                          { return symbol(LSHIFTEQ); }
-  ">>="                          { return symbol(RSHIFTEQ); }
-  ">>>="                         { return symbol(URSHIFTEQ); }
+  "="                            { return symbol(TokenTypes.EQ); }
+  ">"                            { return symbol(TokenTypes.GT); }
+  "<"                            { return symbol(TokenTypes.LT); }
+  "!"                            { return symbol(TokenTypes.NOT); }
+  "~"                            { return symbol(TokenTypes.COMP); }
+  "?"                            { return symbol(TokenTypes.QUESTION); }
+  ":"                            { return symbol(TokenTypes.COLON); }
+  "=="                           { return symbol(TokenTypes.EQEQ); }
+  "<="                           { return symbol(TokenTypes.LTEQ); }
+  ">="                           { return symbol(TokenTypes.GTEQ); }
+  "!="                           { return symbol(TokenTypes.NOTEQ); }
+  "&&"                           { return symbol(TokenTypes.ANDAND); }
+  "||"                           { return symbol(TokenTypes.OROR); }
+  "++"                           { return symbol(TokenTypes.PLUSPLUS); }
+  "--"                           { return symbol(TokenTypes.MINUSMINUS); }
+  "+"                            { return symbol(TokenTypes.PLUS); }
+  "-"                            { return symbol(TokenTypes.MINUS); }
+  "*"                            { return symbol(TokenTypes.MULT); }
+  "/"                            { return symbol(TokenTypes.DIV); }
+  "&"                            { return symbol(TokenTypes.AND); }
+  "|"                            { return symbol(TokenTypes.OR); }
+  "^"                            { return symbol(TokenTypes.XOR); }
+  "%"                            { return symbol(TokenTypes.MOD); }
+  "<<"                           { return symbol(TokenTypes.LSHIFT); }
+  ">>"                           { return symbol(TokenTypes.RSHIFT); }
+  ">>>"                          { return symbol(TokenTypes.URSHIFT); }
+  "+="                           { return symbol(TokenTypes.PLUSEQ); }
+  "-="                           { return symbol(TokenTypes.MINUSEQ); }
+  "*="                           { return symbol(TokenTypes.MULTEQ); }
+  "/="                           { return symbol(TokenTypes.DIVEQ); }
+  "&="                           { return symbol(TokenTypes.ANDEQ); }
+  "|="                           { return symbol(TokenTypes.OREQ); }
+  "^="                           { return symbol(TokenTypes.XOREQ); }
+  "%="                           { return symbol(TokenTypes.MODEQ); }
+  "<<="                          { return symbol(TokenTypes.LSHIFTEQ); }
+  ">>="                          { return symbol(TokenTypes.RSHIFTEQ); }
+  ">>>="                         { return symbol(TokenTypes.URSHIFTEQ); }
   
   /* string literal */
   \"                             { yybegin(STRING); string.setLength(0); }
@@ -231,20 +230,20 @@ SingleCharacter = [^\r\n\'\\]
 
   /* This is matched together with the minus, because the number is too big to 
      be represented by a positive integer. */
-  "-2147483648"                  { return symbol(INTEGER_LITERAL, new Integer(Integer.MIN_VALUE)); }
+  "-2147483648"                  { return symbol(TokenTypes.INTEGER_LITERAL, new Integer(Integer.MIN_VALUE)); }
   
-  {DecIntegerLiteral}            { return symbol(INTEGER_LITERAL, new Integer(yytext())); }
-  {DecLongLiteral}               { return symbol(INTEGER_LITERAL, new Long(yytext().substring(0,yylength()-1))); }
+  {DecIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer(yytext())); }
+  {DecLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(yytext().substring(0,yylength()-1))); }
   
-  {HexIntegerLiteral}            { return symbol(INTEGER_LITERAL, new Integer((int) parseLong(2, yylength(), 16))); }
-  {HexLongLiteral}               { return symbol(INTEGER_LITERAL, new Long(parseLong(2, yylength()-1, 16))); }
+  {HexIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(2, yylength(), 16))); }
+  {HexLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(parseLong(2, yylength()-1, 16))); }
  
-  {OctIntegerLiteral}            { return symbol(INTEGER_LITERAL, new Integer((int) parseLong(0, yylength(), 8))); }  
-  {OctLongLiteral}               { return symbol(INTEGER_LITERAL, new Long(parseLong(0, yylength()-1, 8))); }
+  {OctIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(0, yylength(), 8))); }  
+  {OctLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(parseLong(0, yylength()-1, 8))); }
   
-  {FloatLiteral}                 { return symbol(FLOATING_POINT_LITERAL, new Float(yytext().substring(0,yylength()-1))); }
-  {DoubleLiteral}                { return symbol(FLOATING_POINT_LITERAL, new Double(yytext())); }
-  {DoubleLiteral}[dD]            { return symbol(FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
+  {FloatLiteral}                 { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Float(yytext().substring(0,yylength()-1))); }
+  {DoubleLiteral}                { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext())); }
+  {DoubleLiteral}[dD]            { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
   
   /* comments */
   {Comment}                      { /* ignore */ }
@@ -253,11 +252,11 @@ SingleCharacter = [^\r\n\'\\]
   {WhiteSpace}                   { /* ignore */ }
 
   /* identifiers */ 
-  {Identifier}                   { return symbol(IDENTIFIER, yytext()); }  
+  {Identifier}                   { return symbol(TokenTypes.IDENTIFIER, yytext()); }  
 }
 
 <STRING> {
-  \"                             { yybegin(YYINITIAL); return symbol(STRING_LITERAL, string.toString()); }
+  \"                             { yybegin(YYINITIAL); return symbol(TokenTypes.STRING_LITERAL, string.toString()); }
   
   {StringCharacter}+             { string.append( yytext() ); }
   
@@ -279,20 +278,20 @@ SingleCharacter = [^\r\n\'\\]
 }
 
 <CHARLITERAL> {
-  {SingleCharacter}\'            { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, yytext().charAt(0)); }
+  {SingleCharacter}\'            { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, yytext().charAt(0)); }
   
   /* escape sequences */
-  "\\b"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\b');}
-  "\\t"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\t');}
-  "\\n"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\n');}
-  "\\f"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\f');}
-  "\\r"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\r');}
-  "\\\""\'                       { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\"');}
-  "\\'"\'                        { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\'');}
-  "\\\\"\'                       { yybegin(YYINITIAL); return symbol(CHARACTER_LITERAL, '\\'); }
+  "\\b"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\b');}
+  "\\t"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\t');}
+  "\\n"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\n');}
+  "\\f"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\f');}
+  "\\r"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\r');}
+  "\\\""\'                       { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\"');}
+  "\\'"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\'');}
+  "\\\\"\'                       { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\\'); }
   \\[0-3]?{OctDigit}?{OctDigit}\' { yybegin(YYINITIAL); 
 			                              int val = Integer.parseInt(yytext().substring(1,yylength()-1),8);
-			                            return symbol(CHARACTER_LITERAL, (char)val); }
+			                            return symbol(TokenTypes.CHARACTER_LITERAL, (char)val); }
   
   /* error cases */
   \\.                            { throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); }
@@ -302,4 +301,4 @@ SingleCharacter = [^\r\n\'\\]
 /* error fallback */
 .|\n                             { throw new RuntimeException("Illegal character \""+yytext()+
                                                               "\" at line "+yyline+", column "+yycolumn); }
-<<EOF>>                          { return symbol(EOF); }
+<<EOF>>                          { return symbol(TokenTypes.EOF); }
