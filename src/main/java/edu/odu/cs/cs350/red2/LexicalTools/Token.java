@@ -15,7 +15,7 @@ public class Token
 	/**
 	 * This represents the actual character string.
 	 */
-	private String lexeme;
+	private Object lexeme;
 	
 	/**
 	 * The line number where this lexeme was found
@@ -46,7 +46,7 @@ public class Token
 		
 =======
 		type = null;
-		lexeme = "";
+		lexeme = null;
 		lineNumber = 0;
 		columnNumber = 0;
 >>>>>>> master
@@ -63,10 +63,10 @@ public class Token
 		type = theType;
 		lineNumber = line;
 		columnNumber = column;
-		lexeme = "";
+		lexeme = null;
 	}
 	
-	public Token( final TokenTypes theType , final int line , final int column , final String theLex )
+	public Token( final TokenTypes theType , final int line , final int column , final Object theLex )
 	{
 		type = theType;
 		lineNumber = line;
