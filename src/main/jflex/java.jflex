@@ -1,8 +1,10 @@
 /**
- * Testing flex file
+ * Testing jflex file
  * This is a very simple language. It has identifiers, integer literals, and a single keyword.
  * This is from http://forge350.cs.odu.edu:8090/zeil/jflexdemo/blob/master/src/main/jflex/demo.flex
  * Created by Steven Zeil
+ *
+ * @author mpark
  */
 
 package edu.odu.cs.cs350.red2.LexicalTools;
@@ -42,6 +44,8 @@ Identifier = [:jletter:][:jletterdigit:]*
 /* integer literals */
 IntegerLiteral = [0-9][0-9]* | [0-9][_0-9]*[0-9]
 
+Commentary = "//".*
+
 %%
 
 /* keywords */
@@ -53,8 +57,7 @@ IntegerLiteral = [0-9][0-9]* | [0-9][_0-9]*[0-9]
 
 {WhiteSpace}		{ /* Ignore */ }
 
-
-
+{Commentary}		{ /* Ignore */ }
 
 <<EOF>>				{ return symbol( TokenTypes.EOF ); }
 

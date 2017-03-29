@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
+import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
 
 /**
  * Submission Class - 
