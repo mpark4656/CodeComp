@@ -1,0 +1,20 @@
+#First draft of the CI file 
+#Using runner 350 shell runner as shared runner
+
+stages:
+  - build
+  - deploy
+
+
+build-job:
+  tags:
+    - ssh
+    
+  stage: build
+  script:
+    #Changing directory to root
+    - ./gradlew build  #Ask about the commands that need to go before build
+
+  only:
+    - master
+
