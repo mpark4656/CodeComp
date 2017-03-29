@@ -8,7 +8,7 @@ stages:
 
 build-job:
   tags:
-    - runner350
+    - ssh
     
   stage: build
   script:
