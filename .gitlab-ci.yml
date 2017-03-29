@@ -7,13 +7,14 @@ stages:
 
 
 build-job:
-tags:
-5dc73e18
+  tags:
+    runner350
     
-stage: build
-script:
-  (\t)#Changing directory to root
-  (\t)./gradlew build  #Ask about the commands that need to go before build
+  stage: build
+  script:
+    (\t)  #Changing directory to root
+    (\t)./gradlew build  #Ask about the commands that need to go before build
 
-only:
-- master
+  only:
+    - master
+
