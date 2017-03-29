@@ -12,6 +12,7 @@ build-job:
     
   stage: build
   script:
+  	cd ~/  #Changing directory to root
     ./gradlew build  #Ask about the commands that need to go before build
     
     - # script line 2
