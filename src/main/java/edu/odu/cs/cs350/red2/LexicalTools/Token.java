@@ -33,23 +33,10 @@ public class Token
 	 */
 	public Token()
 	{
-<<<<<<< HEAD
-		// Testing JFlex
-		String inputString = "123\tident1 \nKEYWORD   42\n";
-		Reader input = new StringReader( inputString );
-<<<<<<< HEAD
-		// GeneratedScanner = new GeneratedScanner ( input );
-		
-	}
-=======
-		//GeneratedScanner = new GeneratedScanner ( input );
-		
-=======
 		type = null;
 		lexeme = null;
 		lineNumber = 0;
 		columnNumber = 0;
->>>>>>> master
 	}
 	
 	/**
