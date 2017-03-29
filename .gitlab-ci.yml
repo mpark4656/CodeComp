@@ -8,7 +8,7 @@ stages:
 
 build-job:
   tags:
-    -runner350
+    - runner350
     
   stage: build
   script:
