@@ -20,12 +20,11 @@
 
 
 package edu.odu.cs.cs350.red2.LexicalTools;
-import java_cup.runtime.*;
 
 %%
 
 %public
-%class Scanner
+%class JavaScanner
 
 %line
 %column

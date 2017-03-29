@@ -1,6 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+task copyJFlexFiles(type: Copy) {
+	from 'build/generated-src/jflex'
+	into 'src/main/java/edu/odu/cs/cs350/red2/LexicalTools'
+}
+
 buildscript {
 	repositories {
 		jcenter()
