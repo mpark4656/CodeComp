@@ -17,4 +17,12 @@ build-job:
 
   only:
     - master
-
+build-job:
+  tags:
+    ⋮
+  only:
+    - master
+  artifacts:
+    paths:
+      - ~/
+      - ~/gradle/wrapper
