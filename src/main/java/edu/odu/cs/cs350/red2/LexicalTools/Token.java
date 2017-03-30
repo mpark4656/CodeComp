@@ -5,7 +5,7 @@ package edu.odu.cs.cs350.red2.LexicalTools;
  * and the location (line number and column)
  * @author mpark
  */
-public class Token
+public class Token implements Cloneable
 {
 	/**
 	 * The type of token, see TokenTypes.java for more details.
@@ -15,7 +15,7 @@ public class Token
 	/**
 	 * This represents the actual character string.
 	 */
-	private String lexeme;
+	private Object lexeme;
 	
 	/**
 	 * The line number where this lexeme was found
@@ -27,20 +27,9 @@ public class Token
 	 */
 	private int columnNumber;
 	
-	/**
-	 * Constructor that creates an empty token, should rarely be 
-	 * invoked.
-	 */
-	public Token()
-	{
-		type = null;
-		lexeme = "";
-		lineNumber = 0;
-		columnNumber = 0;
-	}
 	
 	/**
-	 * 
+	 * Constructor that accepts the type, the line number, and the column number.
 	 * @param theType
 	 * @param line
 	 * @param column
@@ -50,10 +39,17 @@ public class Token
 		type = theType;
 		lineNumber = line;
 		columnNumber = column;
-		lexeme = "";
+		lexeme = null;
 	}
 	
-	public Token( final TokenTypes theType , final int line , final int column , final String theLex )
+	/**
+	 * Constructor that accepts the type, the line number, the column number and the lexeme.
+	 * @param theType
+	 * @param line
+	 * @param column
+	 * @param theLex
+	 */
+	public Token( final TokenTypes theType , final int line , final int column , final Object theLex )
 	{
 		type = theType;
 		lineNumber = line;
@@ -61,7 +57,98 @@ public class Token
 		lexeme = theLex;
 	}
 	
-
+	/**
+	 * Copy Constructor
+	 * @param toCopy Token Object to copy
+	 */
+	public Token( Token toCopy )
+	{
+		this.type = toCopy.type;
+		this.lineNumber = toCopy.lineNumber;
+		this.columnNumber = toCopy.columnNumber;
+		// Need to copy lexeme. Will figure this out later
+		
+	}
+	
+	/**
+	 * Return the token type.
+	 * @return
+	 */
+	public TokenTypes getTokenType()
+	{
+		return type;
+	}
+	
+	/**
+	 * Return the lexeme.
+	 * @return Object lexeme
+	 */
+	public Object getLexeme()
+	{
+		return lexeme;
+	}
+	
+	/**
+	 * Return the line number of this token.
+	 * @return int Line Number
+	 */
+	public int getLineNumber()
+	{
+		return lineNumber;
+	}
+	
+	/**
+	 * Return the column number of this token.
+	 * @return int Column Number
+	 */
+	public int getColumnNumber()
+	{
+		return columnNumber;
+	}
+	
+	/**
+	 * Override clone() in Object
+	 */
+	@Override
+	public Object clone()
+	{
+		return new Token( this );
+	}
+	
+	/**
+	 * Override equals() in Object
+	 */
+	@Override
+	public boolean equals( Object obj )
+	{
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( !(obj instanceof Token) ) {
+			return false;
+		}
+		
+		if( this == obj ) {
+			return true;
+		}
+		
+		Token otherObj = (Token)obj;
+		
+		return this.lexeme.equals(otherObj.lexeme) && 
+			   this.type.equals(otherObj.type) && 
+			   this.lineNumber == otherObj.lineNumber && 
+			   this.columnNumber == otherObj.columnNumber;
+	}
+	
+	/**
+	 * Override hashCode method in Object
+	 */
+	@Override
+	public int hashCode()
+	{
+		return type.hashCode() + lexeme.hashCode() + lineNumber + columnNumber;
+	}
 	
 	
 }
