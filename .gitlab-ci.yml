@@ -7,7 +7,7 @@ stages:
 
 build-job:
   tags:
-    - ssh
+    #- ssh
     - runner350
     
   stage: build
@@ -23,7 +23,7 @@ build-job:
       - ~/gradle/wrapper  #path to .jar file
 deploy-job:
   tags:
-    - ssh
+    #- ssh
     - runner350
   stage: deploy
   script:
