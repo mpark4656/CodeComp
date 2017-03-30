@@ -8,6 +8,7 @@ package edu.odu.cs.cs350.red2.LexicalTools;
  * 3. Separators
  * 4. Identifier
  * 5. Literals
+ * This will combine both C++ and Java Token Types
  * 
  * @author mpark
  *
