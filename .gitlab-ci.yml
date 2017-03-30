@@ -19,11 +19,12 @@ build-job:
     - master
 build-job:
   tags:
-    ⋮
+    -ssh
   only:
     - master
   artifacts:
     paths:
-      - ~/
-      - ~/gradle/wrapper
+      - ~/      #path to root
+      - ~/gradle/wrapper  #path to .jar file
+      
       
