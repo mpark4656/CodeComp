@@ -8,6 +8,7 @@ stages:
 build-job:
   tags:
     - ssh
+    - runner350
     
   stage: build
   script:
@@ -23,6 +24,7 @@ build-job:
 deploy-job:
   tags:
     - ssh
+    - runner350
   stage: deploy
   script:
     - eval $(ssh-agent -s)  #set up SSH for CI 
