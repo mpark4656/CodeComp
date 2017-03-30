@@ -21,8 +21,8 @@ build-job:
     - master
   artifacts:
     paths:
-      - ~/      #path to root
-      - ~/gradle/wrapper  #path to .jar file
+      - /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2   #path to root
+      - /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2/gradle/wrapper  #path to .jar file
 deploy-job:
   tags:
     #- ssh
