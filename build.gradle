@@ -6,6 +6,11 @@ task copyJFlexFiles(type: Copy) {
 	into 'src/main/java/edu/odu/cs/cs350/red2/LexicalTools'
 }
 
+javadoc {
+	source = sourceSets.main.allJava
+	classpath = configurations.compile
+}
+
 buildscript {
 	repositories {
 		jcenter()
