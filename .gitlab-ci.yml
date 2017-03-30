@@ -22,7 +22,7 @@ build-job:
       - ~/gradle/wrapper  #path to .jar file
 deploy-job:
   tags:
-    - same-as-for-the-build-job
+    - ssh
   stage: deploy
   script:
     - eval $(ssh-agent -s)  #set up SSH for CI 
