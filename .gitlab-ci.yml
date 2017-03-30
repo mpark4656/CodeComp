@@ -14,6 +14,7 @@ build-job:
   script:
     #Changing directory to root
     - ls -l
+    - cd /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2
     - ./gradlew build  #Ask about the commands that need to go before build
 
   only:
