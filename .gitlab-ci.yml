@@ -17,14 +17,10 @@ build-job:
 
   only:
     - master
-build-job:
-  tags:
-    -ssh
-  only:
-    - master
   artifacts:
     paths:
       - ~/      #path to root
       - ~/gradle/wrapper  #path to .jar file
       
+
       
