@@ -23,8 +23,8 @@ build-job:
       - ~/gradle/wrapper  #path to .jar file
 deploy-job:
   tags:
-    - ssh
-    #- runner350
+    #- ssh
+    - runner350
   stage: deploy
   script:
     - eval $(ssh-agent -s)  #set up SSH for CI 
