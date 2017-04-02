@@ -334,6 +334,7 @@ public class Instructor
 	 */
 	public boolean analyze()
 	{
+		
 		// Not yet implemented
 		analyzedTokenSequences = true;
 		return analyzedTokenSequences;

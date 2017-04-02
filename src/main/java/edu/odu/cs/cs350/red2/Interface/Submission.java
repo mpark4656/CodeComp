@@ -215,11 +215,26 @@ public class Submission implements Comparable<Submission>
 	{
 		int total = 0;
 		
-		for( TokenSequence tSeq : this.tSeq ) {
-			total += tSeq.getTokenCount();
+		for( TokenSequence seq : this.tSeq ) {
+			total += seq.getTokenCount();
 		}
 		
 		return total;
+	}
+	
+	/**
+	 * Return the token sequences of this submission as StringBuilder
+	 * @return ArrayList<StringBuilder> Token Sequences as StringBuilder
+	 */
+	public ArrayList<StringBuilder> getTokenSequences()
+	{
+		ArrayList<StringBuilder> result = new ArrayList<> ();
+		
+		for( TokenSequence seq : tSeq ) {
+			result.add( seq.getSequence() );
+		}
+		
+		return result;
 	}
 	
 	/**
