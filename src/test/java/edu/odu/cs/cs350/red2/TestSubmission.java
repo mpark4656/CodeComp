@@ -39,7 +39,7 @@ public class TestSubmission {
 		// Asa's unit tests
 		assertFalse( AsaSub.isTokenized() );
 		assertEquals( 1 , AsaSub.getNumCodeFiles() );
-		assertEquals( 3 , AsaSub.getNumCodeLines() );
+		assertEquals( 13 , AsaSub.getNumCodeLines() );
 		assertEquals( "Asa.1" , AsaSub.toString() );
 		
 		// Jen's unit tests
@@ -89,7 +89,7 @@ public class TestSubmission {
 	@Test
 	public void testGetNumCodeLines() {
 		
-		assertEquals( 3 , AsaSub.getNumCodeLines() );
+		assertEquals( 13 , AsaSub.getNumCodeLines() );
 		assertEquals( 4 , JenSub.getNumCodeLines() );
 		assertEquals( 2 , MikeSub.getNumCodeLines() );
 		assertEquals( 8 , NathanSub.getNumCodeLines() );

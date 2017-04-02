@@ -245,7 +245,7 @@ SingleCharacter = [^\r\n\'\\]
   {DoubleLiteral}[dD]            { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
   
   /* comments */
-  {Comment}                      { /* ignore */ }
+  {Comment}                      { return symbol(TokenTypes.COMMENT); }
 
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }

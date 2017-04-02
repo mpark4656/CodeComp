@@ -2,7 +2,10 @@ package edu.odu.cs.cs350.red2.LexicalTools;
 
 /**
  * Token Class, stores the token type, the actual string, 
- * and the location (line number and column)
+ * and the location (line number and column), 
+ * The design of this interface was borrowed from 
+ * Dr. Steven Zeil, 
+ * http://forge350.cs.odu.edu:8090/zeil/jflexdemo
  * @author mpark
  */
 public class Token implements Cloneable
@@ -150,5 +153,13 @@ public class Token implements Cloneable
 		return type.hashCode() + lexeme.hashCode() + lineNumber + columnNumber;
 	}
 	
-	
+	/**
+	 * Override toString() method
+	 * @return String Returns String representation of the lexeme
+	 */
+	@Override
+	public String toString()
+	{
+		return lexeme.toString();
+	}
 }

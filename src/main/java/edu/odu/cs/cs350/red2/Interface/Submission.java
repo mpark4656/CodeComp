@@ -1,11 +1,14 @@
 package edu.odu.cs.cs350.red2.Interface;
 
+import edu.odu.cs.cs350.red2.LexicalTools.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
 import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
 import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
@@ -135,10 +138,8 @@ public class Submission implements Comparable<Submission>
 	 */
 	private String getExtension( File filePath )
 	{
-		// Get the file name from filePath
 		String filename = filePath.getName();
 		
-		// Return the extension
 		return filename.substring( filename.lastIndexOf('.') + 1 );
 	}
 	
@@ -148,7 +149,51 @@ public class Submission implements Comparable<Submission>
 	 */
 	public boolean tokenize()
 	{
-		// Not yet implemented
+		for( File file : codeFiles ) {
+			if( getExtension(file).equals("java") ) {
+				
+				StringBuilder strBuilder = new StringBuilder();
+				
+				try {
+					BufferedReader bReader = new BufferedReader( new FileReader(file) );
+					
+					String ls = System.getProperty("line.separator");
+					String line = null;
+					
+					try {
+						while( (line = bReader.readLine()) != null ) {
+							strBuilder.append( line );
+							strBuilder.append( ls );
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Reader readerInput = new StringReader( strBuilder.toString() );
+				TokenSequence tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
+				
+				// Debugging Output
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				for( Token t : tokenSeq ) {
+					System.out.print( t.getTokenType().toString() );
+				}	
+				
+				tSeq.add( tokenSeq );
+			}
+			// The code file is C++ if it is not java
+			else {
+				// TODO To be implemented
+			}
+		}
 		
 		tokenized = true;
 		return tokenized;
@@ -170,7 +215,7 @@ public class Submission implements Comparable<Submission>
 	 */
 	public int getTokenSequenceLength()
 	{
-		// Not yet implemented
+		// TODO Not yet implemented
 		return 0;
 	}
 	
