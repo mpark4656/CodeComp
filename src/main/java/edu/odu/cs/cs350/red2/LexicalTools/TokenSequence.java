@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * TokenSequenbce Class, 
- * Stores tokens.
+ * Stores tokens from one code file, 
  * The design of this interface was borrowed from 
  * Dr. Steven Zeil, 
  * http://forge350.cs.odu.edu:8090/zeil/jflexdemo
@@ -16,11 +16,11 @@ import java.io.IOException;
  */
 public class TokenSequence implements Iterable<Token>
 {
-	/**
-	 * A collection of tokens in a linked list
-	 */
+	
+	// collection of tokens in a linked list
 	private LinkedList<Token> tokens;
 	
+	// Language Type - Jave or Cpluspus
 	LanguageTypes langType;
 	
 	/**
@@ -73,5 +73,20 @@ public class TokenSequence implements Iterable<Token>
 	public int getTokenCount()
 	{
 		return tokens.size();
+	}
+	
+	/**
+	 * Public get method that returns the token sequence as StringBuilder
+	 * @return StringBuilder Sequence of tokens
+	 */
+	public StringBuilder getSequence()
+	{
+		StringBuilder result = new StringBuilder();
+		
+		for( Token t : tokens ) {
+			result.append( t.getTokenType().toString() );
+		}
+		
+		return result;
 	}
 }

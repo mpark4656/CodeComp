@@ -157,7 +157,7 @@ public class Submission implements Comparable<Submission>
 				try {
 					BufferedReader bReader = new BufferedReader( new FileReader(file) );
 					
-					String ls = System.getProperty("line.separator");
+					String ls = System.getProperty( "line.separator" );
 					String line = null;
 					
 					try {
@@ -179,13 +179,11 @@ public class Submission implements Comparable<Submission>
 				Reader readerInput = new StringReader( strBuilder.toString() );
 				TokenSequence tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
 				
-				// Debugging Output
+				// Debugging Output Lines - Must be removed later
 				System.out.println();
 				System.out.println( "\nTokens found in " + file.getName() );
 				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				for( Token t : tokenSeq ) {
-					System.out.print( t.getTokenType() );
-				}
+				System.out.print( tokenSeq.getSequence() );
 				
 				tSeq.add( tokenSeq );
 			}
