@@ -17,7 +17,6 @@ public class TestDirectoryFilter {
 		DirectoryFilter filter = new DirectoryFilter( );
 		filter = new DirectoryFilter( );
 		
-		//Need to create a proper file to test the booleans
 		//first testcase
 		assertFalse( filter.accept(null) );
 		
