@@ -132,13 +132,23 @@ public enum TokenTypes
 	// End of File
 	EOF ( "eof" );
 	
+	// String representation of the token
 	private final String name;
 	
+	/**
+	 * Constructor
+	 * @param name String
+	 */
 	private TokenTypes( String name )
 	{
 		this.name = name;
 	}
 	
+	/**
+	 * Override toString() method
+	 * @return String Returns the type of token in String
+	 */
+	@Override
 	public String toString()
 	{
 		return this.name;

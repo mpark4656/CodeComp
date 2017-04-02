@@ -29,7 +29,7 @@ public class Submission implements Comparable<Submission>
 	private ArrayList<File> allFiles;
 	private ArrayList<File> codeFiles;
 	
-	// Collection of Token Sequences for each function block in the code files
+	// Collection of Token Sequences for each code file
 	private ArrayList<TokenSequence> tSeq;
 	
 	// A flag to indicate if this submission has been tokenized (Parsed)
@@ -184,8 +184,8 @@ public class Submission implements Comparable<Submission>
 				System.out.println( "\nTokens found in " + file.getName() );
 				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
 				for( Token t : tokenSeq ) {
-					System.out.print( t.getTokenType().toString() );
-				}	
+					System.out.print( t.getTokenType() );
+				}
 				
 				tSeq.add( tokenSeq );
 			}
@@ -215,8 +215,13 @@ public class Submission implements Comparable<Submission>
 	 */
 	public int getTokenSequenceLength()
 	{
-		// TODO Not yet implemented
-		return 0;
+		int total = 0;
+		
+		for( TokenSequence tSeq : this.tSeq ) {
+			total += tSeq.getTokenCount();
+		}
+		
+		return total;
 	}
 	
 	/**
@@ -291,7 +296,7 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Return the relative path (Folder name) as String
+	 * Return the relative path (Folder name) as String 
 	 * @return String Name of the Submission Directory
 	 */
 	@Override
@@ -299,4 +304,19 @@ public class Submission implements Comparable<Submission>
 	{
 		return directory.getName();
 	}
+	
+	/**
+	 * Overrides equals() method, 
+	 * Two submissions are equal if they both point to the same submission directory
+	 */
+	@Override
+	public boolean equals( Object obj )
+	{
+		Submission thatObj = (Submission) obj;
+		
+		return this.directory.getAbsolutePath().equals( thatObj.directory.getAbsolutePath() );
+	}
 }
+
+
+

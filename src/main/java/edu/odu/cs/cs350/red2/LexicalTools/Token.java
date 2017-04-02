@@ -18,7 +18,7 @@ public class Token implements Cloneable
 	/**
 	 * This represents the actual character string.
 	 */
-	private Object lexeme;
+	private String lexeme;
 	
 	/**
 	 * The line number where this lexeme was found
@@ -29,7 +29,6 @@ public class Token implements Cloneable
 	 * The column number where this lexeme was found
 	 */
 	private int columnNumber;
-	
 	
 	/**
 	 * Constructor that accepts the type, the line number, and the column number.
@@ -57,7 +56,7 @@ public class Token implements Cloneable
 		type = theType;
 		lineNumber = line;
 		columnNumber = column;
-		lexeme = theLex;
+		lexeme = theLex.toString();
 	}
 	
 	/**
@@ -69,8 +68,7 @@ public class Token implements Cloneable
 		this.type = toCopy.type;
 		this.lineNumber = toCopy.lineNumber;
 		this.columnNumber = toCopy.columnNumber;
-		// Need to copy lexeme. Will figure this out later
-		
+		this.lexeme = new String(toCopy.lexeme);
 	}
 	
 	/**
@@ -86,7 +84,7 @@ public class Token implements Cloneable
 	 * Return the lexeme.
 	 * @return Object lexeme
 	 */
-	public Object getLexeme()
+	public String getLexeme()
 	{
 		return lexeme;
 	}
@@ -160,6 +158,6 @@ public class Token implements Cloneable
 	@Override
 	public String toString()
 	{
-		return lexeme.toString();
+		return lexeme;
 	}
 }
