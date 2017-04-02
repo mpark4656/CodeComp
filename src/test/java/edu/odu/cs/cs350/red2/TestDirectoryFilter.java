@@ -19,10 +19,10 @@ public class TestDirectoryFilter {
 		
 		//Need to create a proper file to test the booleans
 		//first testcase
-		assertFalse( filter.accept(null) );
+		// assertFalse( filter.accept(null) );
 		
 		//second testcase
-		assertTrue(filter.accept(null));
+		// assertTrue(filter.accept(null));
 		
 		
 		
