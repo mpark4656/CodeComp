@@ -286,10 +286,12 @@ SingleCharacter = [^\r\n\'\\]
 
   /* identifiers */ 
   {Identifier}                   { return symbol(TokenTypes.IDENTIFIER, yytext()); }  
-}
-
+  
   /* Preprocessor Directive */
   {Preprocessor}				 { return symbol(TokenTypes.PREPROCESSOR); }
+}
+
+
   
 <STRING> {
   \"                             { yybegin(YYINITIAL); return symbol(TokenTypes.STRING_LITERAL, string.toString()); }
@@ -309,8 +311,8 @@ SingleCharacter = [^\r\n\'\\]
                         				   string.append( val ); }
   
   /* error cases */
-  \\.                            { throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); }
-  {LineTerminator}               { throw new RuntimeException("Unterminated string at end of line"); }
+  \\.                            { /* throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); */ }
+  {LineTerminator}               { /* throw new RuntimeException("Unterminated string at end of line"); */ }
 }
 
 <CHARLITERAL> {
@@ -330,11 +332,11 @@ SingleCharacter = [^\r\n\'\\]
 			                            return symbol(TokenTypes.CHARACTER_LITERAL, (char)val); }
   
   /* error cases */
-  \\.                            { throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); }
-  {LineTerminator}               { throw new RuntimeException("Unterminated character literal at end of line"); }
+  \\.                            { /* throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); */ }
+  {LineTerminator}               { /* throw new RuntimeException("Unterminated character literal at end of line"); */ }
 }
 
 /* error fallback */
-.|\n                             { throw new RuntimeException("Illegal character \""+yytext()+
-                                                              "\" at line "+yyline+", column "+yycolumn); }
+.|\n                             { /* throw new RuntimeException("Illegal character \""+yytext()+
+                                                              "\" at line "+yyline+", column "+yycolumn); */ }
 <<EOF>>                          { return symbol(TokenTypes.EOF); }

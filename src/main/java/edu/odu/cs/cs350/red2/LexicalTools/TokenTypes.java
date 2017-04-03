@@ -175,6 +175,9 @@ public enum TokenTypes
 	// Comment
 	COMMENT ( "comment" ),
 	
+	// Java Annotation
+	ANNOTATION ( "annotation" ),
+	
 	// Preprocessor Directive
 	PREPROCESSOR( "Preprocessor" ),
 	

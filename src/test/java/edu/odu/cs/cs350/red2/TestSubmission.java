@@ -50,8 +50,8 @@ public class TestSubmission {
 		
 		// Mike's unit tests
 		assertFalse ( MikeSub.isTokenized() );
-		assertEquals( 1 , MikeSub.getNumCodeFiles() );
-		assertEquals( 2 , MikeSub.getNumCodeLines() );
+		assertEquals( 2 , MikeSub.getNumCodeFiles() );
+		assertEquals( 171 , MikeSub.getNumCodeLines() );
 		assertEquals( "Mike" , MikeSub.toString() );
 		
 		// Nathan's unit tests
@@ -91,7 +91,7 @@ public class TestSubmission {
 		
 		assertEquals( 13 , AsaSub.getNumCodeLines() );
 		assertEquals( 4 , JenSub.getNumCodeLines() );
-		assertEquals( 2 , MikeSub.getNumCodeLines() );
+		assertEquals( 171 , MikeSub.getNumCodeLines() );
 		assertEquals( 43 , NathanSub.getNumCodeLines() );
 		
 	} // End of testGetNumCodeLines()
@@ -102,7 +102,7 @@ public class TestSubmission {
 		
 		assertEquals( 1 , AsaSub.getNumCodeFiles() );
 		assertEquals( 1 , JenSub.getNumCodeFiles() );
-		assertEquals( 1 , MikeSub.getNumCodeFiles() );
+		assertEquals( 2 , MikeSub.getNumCodeFiles() );
 		assertEquals( 5 , NathanSub.getNumCodeFiles() );
 		
 	} // End of testGetNumCodeFiles()
