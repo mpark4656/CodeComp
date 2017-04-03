@@ -20,7 +20,7 @@ import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
  * @author mpark
  * @author nruf
  */
-public class Submission implements Comparable<Submission>
+public class Submission implements Comparable<Submission> , Cloneable
 {
 	// The submission directory
 	private File directory;
@@ -49,6 +49,20 @@ public class Submission implements Comparable<Submission>
 		tokenized = false;
 		searchAllFiles( this.directory );
 		searchAllCodeFiles( this.directory );
+	}
+	
+	/**
+	 * Copy Constructor
+	 * @param obj Submission object to copy
+	 */
+	@SuppressWarnings("unchecked")
+	public Submission( Submission obj )
+	{
+		this.directory = new File( obj.directory.getPath() );
+		this.allFiles = (ArrayList<File>) obj.allFiles.clone();
+		this.codeFiles = (ArrayList<File>) obj.codeFiles.clone();
+		this.tSeq = (ArrayList<TokenSequence>) obj.tSeq.clone();
+		this.tokenized = obj.tokenized;
 	}
 	
 	/**
@@ -82,32 +96,6 @@ public class Submission implements Comparable<Submission>
 			else {
 				codeFiles.add( dir.listFiles(new CodeFileFilter())[i] );
 			}
-		}
-	}
-	
-	/**
-	 * Public method to print the names of all files in this submission - 
-	 * This is mostly for testing and debugging
-	 */
-	public void printAllFiles()
-	{
-		System.out.println( "\nList of All Files in " + this.toString() );
-		
-		for( int i = 0 ; i < allFiles.size(); i++ ) {
-			System.out.println( allFiles.get(i).getName() );
-		}
-	}
-	
-	/**
-	 * Public method to print the names of all code files in this submission - 
-	 * This is mostly for testing and debugging
-	 */
-	public void printCodeFiles()
-	{
-		System.out.println( "\nList of All Code Files in " + this.toString() );
-		
-		for( int i = 0 ; i < codeFiles.size(); i++ ) {
-			System.out.println( codeFiles.get(i).getName() );
 		}
 	}
 	
@@ -149,6 +137,11 @@ public class Submission implements Comparable<Submission>
 	 */
 	public boolean tokenize()
 	{
+		// If this submission has been tokenized already, return true.
+		if( tokenized ) {
+			return true;
+		}
+		
 		for( File file : codeFiles ) {
 			// Temporary storage for token sequence
 			TokenSequence tokenSeq = null;
@@ -274,7 +267,6 @@ public class Submission implements Comparable<Submission>
 			try {
 				freader = new FileReader( codeFiles.get(i) );
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -295,7 +287,6 @@ public class Submission implements Comparable<Submission>
 				freader.close();
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -314,10 +305,11 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Compare String directory name
+	 * Compare String directory name, 
 	 * 1. Return value < 0 if this Submission follows obj
 	 * 2. Return 0 if they have the same name
 	 * 3. Return value > 0 if this Submission precedes obj
+	 * @return int comparison value
 	 */
 	@Override
 	public int compareTo( Submission obj )
@@ -326,7 +318,7 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Return the relative path (Folder name) as String 
+	 * Return the submission folder name
 	 * @return String Name of the Submission Directory
 	 */
 	@Override
@@ -342,9 +334,77 @@ public class Submission implements Comparable<Submission>
 	@Override
 	public boolean equals( Object obj )
 	{
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( !(obj instanceof Submission) ) {
+			return false;
+		}
+		
+		if( this == obj ) {
+			return true;
+		}
+		
 		Submission thatObj = (Submission) obj;
 		
-		return this.directory.getAbsolutePath().equals( thatObj.directory.getAbsolutePath() );
+		return this.directory.getAbsolutePath().equals( thatObj.directory.getAbsolutePath() ) &&
+			   this.tokenized == thatObj.tokenized &&
+			   this.allFiles.equals( thatObj.allFiles ) &&
+			   this.codeFiles.equals( thatObj.codeFiles ) &&
+			   this.tSeq.equals( thatObj.tSeq );
+	}
+	
+	/**
+	 * Override clone() method
+	 * @return Submission a clone of this object
+	 */
+	@Override
+	public Object clone()
+	{
+		return new Submission( this );
+	}
+	
+	/**
+	 * Override hashCode() method
+	 * @return int hash code of this object
+	 */
+	@Override
+	public int hashCode()
+	{
+		int result = 11;
+		
+		if( this.directory != null ) {
+			result = 37 * result + directory.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		if( this.allFiles != null ) {
+			result = 37 * result + allFiles.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		if( this.codeFiles != null ) {
+			result = 37 * result + codeFiles.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		if( this.tSeq != null ) {
+			result = 37 * result + tSeq.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		result = 37 * result + ( this.tokenized ? 0 : 1 );
+		
+		return result;
 	}
 }
 

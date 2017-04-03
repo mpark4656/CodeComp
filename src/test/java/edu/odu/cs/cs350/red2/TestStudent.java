@@ -322,7 +322,7 @@ public class TestStudent {
 	
 	@Test
 	public void testClone() {
-		Student clonedMike = new Student( Mike );
+		Student clonedMike = (Student) Mike.clone();
 		assertEquals( clonedMike , Mike);
 		
 		// Make sure that they aren't referring to same object (Ensure that object has been deep-copied)

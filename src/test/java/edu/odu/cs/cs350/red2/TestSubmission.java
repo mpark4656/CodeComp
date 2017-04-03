@@ -62,50 +62,24 @@ public class TestSubmission {
 		
 	} // End of testSubmission()
 
-
+	// Test the copy constructor
 	@Test
-	public void testTokenize() {
-		//fail("Not yet implemented");
+	public void testSubmissionSubmission() {
+		Submission clonedMike = new Submission( MikeSub );
+		
+		assertEquals( clonedMike , MikeSub );
+		assertNotSame( clonedMike , MikeSub );
+		
+		assertEquals( clonedMike.isTokenized() , MikeSub.isTokenized() );
+		assertEquals( clonedMike.getNumCodeFiles() , MikeSub.getNumCodeFiles() );
+		assertEquals( clonedMike.getNumCodeLines() , MikeSub.getNumCodeLines() );
+		assertEquals( clonedMike.getAllFiles() , MikeSub.getAllFiles() );
+		assertEquals( clonedMike.getCodeFiles() , MikeSub.getCodeFiles() );
+		assertEquals( clonedMike.getTokenSequenceLength() , MikeSub.getTokenSequenceLength() );
+		assertEquals( clonedMike.getTokenSequences() , MikeSub.getTokenSequences() );
+		assertEquals( clonedMike.toString() , MikeSub.toString() );
+		assertEquals( clonedMike.hashCode() , MikeSub.hashCode() );
 	}
-
-
-	@Test
-	public void testIsTokenized() {
-		
-		assertFalse( AsaSub.isTokenized() );
-		assertFalse ( JenSub.isTokenized() );
-		assertFalse ( MikeSub.isTokenized() );
-		assertFalse ( NathanSub.isTokenized() );
-		
-	} // End of testIsTokenized()
-
-
-	@Test
-	public void testGetTokenSequenceLength() {
-		//fail("Not yet implemented");
-	}
-
-
-	@Test
-	public void testGetNumCodeLines() {
-		
-		assertEquals( 13 , AsaSub.getNumCodeLines() );
-		assertEquals( 4 , JenSub.getNumCodeLines() );
-		assertEquals( 1400 , MikeSub.getNumCodeLines() );
-		assertEquals( 43 , NathanSub.getNumCodeLines() );
-		
-	} // End of testGetNumCodeLines()
-
-
-	@Test
-	public void testGetNumCodeFiles() {
-		
-		assertEquals( 1 , AsaSub.getNumCodeFiles() );
-		assertEquals( 1 , JenSub.getNumCodeFiles() );
-		assertEquals( 3 , MikeSub.getNumCodeFiles() );
-		assertEquals( 5 , NathanSub.getNumCodeFiles() );
-		
-	} // End of testGetNumCodeFiles()
 
 	@Test
 	public void testSearchAllFiles() {
@@ -154,6 +128,143 @@ public class TestSubmission {
 	} // End of testSearchAllCodeFiles()
 	
 	@Test
+	public void testGetAllFiles() {
+		assertEquals( 1 , AsaSub.getAllFiles().size() );
+		assertEquals( 1 , JenSub.getAllFiles().size() );
+		assertEquals( 3 , MikeSub.getAllFiles().size() );
+		assertEquals( 6 , NathanSub.getAllFiles().size() );
+	}
+	
+	@Test
+	public void testGetCodeFiles() {
+		assertEquals( 1 , AsaSub.getCodeFiles().size() );
+		assertEquals( 1 , JenSub.getCodeFiles().size() );
+		assertEquals( 3 , MikeSub.getCodeFiles().size() );
+		assertEquals( 5 , NathanSub.getCodeFiles().size() );
+	}
+	
+	// getExtension() is a private method invoked by tokenize()
+	@Test
+	public void testGetExtension() {
+		
+		Submission clonedMike = new Submission( MikeSub );
+		
+		clonedMike.tokenize();
+		assertTrue( clonedMike.isTokenized() ); 
+		assertEquals( 3 , clonedMike.getTokenSequences().size() );
+		assertEquals( 4364 , clonedMike.getTokenSequenceLength() );
+	}
+	
+	// Actual contents of token sequence will be tested in another unit test
+	@Test
+	public void testTokenize() {
+		assertFalse( AsaSub.isTokenized() );
+		assertFalse( JenSub.isTokenized() );
+		assertFalse( MikeSub.isTokenized() );
+		assertFalse( NathanSub.isTokenized() );
+		
+		Submission clonedAsa = new Submission( AsaSub );
+		Submission clonedJen = new Submission( JenSub );
+		Submission clonedMike = new Submission( MikeSub );
+		Submission clonedNathan = new Submission( NathanSub );
+		
+		clonedAsa.tokenize();
+		clonedJen.tokenize();
+		clonedMike.tokenize();
+		clonedNathan.tokenize();
+		
+		assertTrue( clonedAsa.isTokenized() );
+		assertTrue( clonedJen.isTokenized() );
+		assertTrue( clonedMike.isTokenized() );
+		assertTrue( clonedNathan.isTokenized() );
+	}
+
+	@Test
+	public void testIsTokenized() {
+		
+		assertFalse( AsaSub.isTokenized() );
+		assertFalse( JenSub.isTokenized() );
+		assertFalse( MikeSub.isTokenized() );
+		assertFalse( NathanSub.isTokenized() );
+		
+		Submission clonedAsa = new Submission( AsaSub );
+		Submission clonedJen = new Submission( JenSub );
+		Submission clonedMike = new Submission( MikeSub );
+		Submission clonedNathan = new Submission( NathanSub );
+		
+		clonedAsa.tokenize();
+		clonedJen.tokenize();
+		clonedMike.tokenize();
+		clonedNathan.tokenize();
+		
+		assertTrue( clonedAsa.isTokenized() );
+		assertTrue( clonedJen.isTokenized() );
+		assertTrue( clonedMike.isTokenized() );
+		assertTrue( clonedNathan.isTokenized() );
+		
+	} // End of testIsTokenized()
+
+
+	@Test
+	public void testGetTokenSequenceLength() {
+		Submission clonedAsa = new Submission( AsaSub );
+		clonedAsa.tokenize();
+		
+		Submission clonedJen = new Submission( JenSub );
+		clonedJen.tokenize();
+		
+		Submission clonedMike = new Submission( MikeSub );
+		clonedMike.tokenize();
+		
+		Submission clonedNathan = new Submission( NathanSub );
+		clonedNathan.tokenize();
+		
+		assertEquals( 24 , clonedAsa.getTokenSequenceLength() );
+		assertEquals( 3 , clonedJen.getTokenSequenceLength() );
+		assertEquals( 4364 , clonedMike.getTokenSequenceLength() );
+		assertEquals( 152 , clonedNathan.getTokenSequenceLength() );
+	}
+
+	@Test
+	public void testGetTokenSequences() {
+		Submission clonedAsa = new Submission( AsaSub );
+		clonedAsa.tokenize();
+		
+		Submission clonedJen = new Submission( JenSub );
+		clonedJen.tokenize();
+		
+		Submission clonedMike = new Submission( MikeSub );
+		clonedMike.tokenize();
+		
+		Submission clonedNathan = new Submission( NathanSub );
+		clonedNathan.tokenize();
+		
+		assertEquals( 1 , clonedAsa.getTokenSequences().size() );
+		assertEquals( 1 , clonedJen.getTokenSequences().size() );
+		assertEquals( 3 , clonedMike.getTokenSequences().size() );
+		assertEquals( 5 , clonedNathan.getTokenSequences().size() );
+	}
+	
+	@Test
+	public void testGetNumCodeLines() {
+		assertEquals( 13 , AsaSub.getNumCodeLines() );
+		assertEquals( 4 , JenSub.getNumCodeLines() );
+		assertEquals( 1400 , MikeSub.getNumCodeLines() );
+		assertEquals( 43 , NathanSub.getNumCodeLines() );
+		
+	} // End of testGetNumCodeLines()
+
+
+	@Test
+	public void testGetNumCodeFiles() {
+		assertEquals( 1 , AsaSub.getNumCodeFiles() );
+		assertEquals( 1 , JenSub.getNumCodeFiles() );
+		assertEquals( 3 , MikeSub.getNumCodeFiles() );
+		assertEquals( 5 , NathanSub.getNumCodeFiles() );
+		
+	} // End of testGetNumCodeFiles()
+
+	@Test
 	public void testCompareTo() {
 		// Will mainly compare Mike, Mike.1, Mike.2
 		//
@@ -190,5 +301,60 @@ public class TestSubmission {
 		assertEquals( "Nathan.2" , NathanSub.toString() );
 		
 	} // End of testCompareTo()
+	
+	@Test
+	public void testEquals() {
+		// Unit Tests for Asa
+		assertTrue( AsaSub.equals(AsaSub) );
+		assertFalse( AsaSub.equals(JenSub) );
+		assertFalse( AsaSub.equals(NathanSub) );
+		assertFalse( AsaSub.equals(MikeSub) );
+		
+		// Unit Tests for Jen
+		assertTrue( JenSub.equals(JenSub) );
+		assertFalse( JenSub.equals(AsaSub) );
+		assertFalse( JenSub.equals(NathanSub) );
+		assertFalse( JenSub.equals(MikeSub) );
+		
+		// Unit Tests for Mike
+		assertTrue( MikeSub.equals(MikeSub) );
+		assertFalse( MikeSub.equals(AsaSub) );
+		assertFalse( MikeSub.equals(JenSub) );
+		assertFalse( MikeSub.equals(NathanSub) );
+		
+		// Unit Tests for Nathan
+		assertTrue( NathanSub.equals(NathanSub) );
+		assertFalse( NathanSub.equals(AsaSub) );
+		assertFalse( NathanSub.equals(JenSub) );
+		assertFalse( NathanSub.equals(MikeSub) );
+	}
+	
+	@Test
+	public void testClone() {
+		Submission clonedNathan = (Submission) NathanSub.clone();
+		
+		assertEquals( clonedNathan , NathanSub);
+		assertNotSame( clonedNathan , NathanSub );
+		
+		assertEquals( clonedNathan.isTokenized() , NathanSub.isTokenized() );
+		assertEquals( clonedNathan.getNumCodeFiles() , NathanSub.getNumCodeFiles() );
+		assertEquals( clonedNathan.getNumCodeLines() , NathanSub.getNumCodeLines() );
+		assertEquals( clonedNathan.getAllFiles() , NathanSub.getAllFiles() );
+		assertEquals( clonedNathan.getCodeFiles() , NathanSub.getCodeFiles() );
+		assertEquals( clonedNathan.getTokenSequenceLength() , NathanSub.getTokenSequenceLength() );
+		assertEquals( clonedNathan.getTokenSequences() , NathanSub.getTokenSequences() );
+		assertEquals( clonedNathan.toString() , NathanSub.toString() );
+		assertEquals( clonedNathan.hashCode() , NathanSub.hashCode() );
+	}
+	
+	@Test
+	public void testHashCode() {
+	    assertFalse( AsaSub.equals(JenSub) || JenSub.equals(AsaSub) );
+	    assertFalse( AsaSub.hashCode() == JenSub.hashCode() );
+	    
+	    Submission clonedJen = new Submission( JenSub );
+	    assertTrue( clonedJen.equals(JenSub) && JenSub.equals(clonedJen) );
+	    assertTrue( clonedJen.hashCode() == JenSub.hashCode() );
+	}
 
 }

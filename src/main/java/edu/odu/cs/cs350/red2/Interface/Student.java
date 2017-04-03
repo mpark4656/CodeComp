@@ -1,8 +1,6 @@
 package edu.odu.cs.cs350.red2.Interface;
 
 import java.util.ArrayList;
-import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
-import edu.odu.cs.cs350.red2.LexicalTools.Token;
 import java.io.File;
 
 
@@ -35,6 +33,7 @@ public class Student implements Comparable<Student> , Cloneable
 	 * Copy Constructor
 	 * @param Student object to copy
 	 */
+	@SuppressWarnings("unchecked")
 	public Student( Student obj )
 	{
 		this.identifier = new String(obj.identifier);
