@@ -12,7 +12,7 @@ import java.io.File;
  * @author mpark
  * @author nruf
  */
-public class Student implements Comparable<Student>
+public class Student implements Comparable<Student> , Cloneable
 {
 	// This unique identifier is the Submission directory name minus the version ID
 	private String identifier;
@@ -32,6 +32,16 @@ public class Student implements Comparable<Student>
 	}
 	
 	/**
+	 * Copy Constructor
+	 * @param Student object to copy
+	 */
+	public Student( Student obj )
+	{
+		this.identifier = new String(obj.identifier);
+		this.submissions = (ArrayList<Submission>) obj.submissions.clone();
+	}
+	
+	/**
 	 * Add a submission to ArrayList<Submission> submissions
 	 * @param submissionDirectory File the submission directory
 	 * @pre submissionDirectory.isDirectory() == true
@@ -39,16 +49,6 @@ public class Student implements Comparable<Student>
 	public void addSubmission( File submissionDirectory )
 	{
 		submissions.add( new Submission(submissionDirectory) );
-	}
-	
-	/**
-	 * The accessor method to return the total number of submissions
-	 * this student made.
-	 * @return int Number of Submissions for this student
-	 */
-	public int getSubmissionCount()
-	{
-		return submissions.size();
 	}
 	
 	/**
@@ -67,6 +67,16 @@ public class Student implements Comparable<Student>
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * The accessor method to return the total number of submissions
+	 * this student made.
+	 * @return int Number of Submissions for this student
+	 */
+	public int getSubmissionCount()
+	{
+		return submissions.size();
 	}
 	
 	/**
@@ -97,15 +107,6 @@ public class Student implements Comparable<Student>
 	}// End of getPrioritySubmission()
 	
 	/**
-	 * Return the token sequences of the priority submission
-	 * @return ArrayList<TokenSequence> Token Sequences from the Priority Submission
-	 */
-	public ArrayList<StringBuilder> getTokenSequences()
-	{
-		return getPrioritySubmission().getTokenSequences();
-	}
-	
-	/**
 	 * Return the total number of code file count in the priority submission.
 	 * @return int Total number of Code Files this student submitted
 	 */
@@ -121,6 +122,15 @@ public class Student implements Comparable<Student>
 	public int getTotalCodeLineCount()
 	{
 		return getPrioritySubmission().getNumCodeLines();
+	}
+	
+	/**
+	 * Return the token sequences of the priority submission
+	 * @return ArrayList<TokenSequence> Token Sequences from the Priority Submission
+	 */
+	public ArrayList<StringBuilder> getTokenSequences()
+	{
+		return getPrioritySubmission().getTokenSequences();
 	}
 	
 	/**
@@ -148,7 +158,8 @@ public class Student implements Comparable<Student>
 	}
 	
 	/**
-	 * Compare this contact to another.
+	 * Compare this Student object to another.
+	 * @param Student a non-null Student object to compare with
 	 * @return int value > 0 if this object precedes the other,
 	 * == 0 if the two are equal, and < 0 if this contact
 	 * follows the other.  
@@ -171,13 +182,40 @@ public class Student implements Comparable<Student>
 	
 	/**
 	 * Override hashCode() method
-	 * @return int hash code of String identifier
+	 * @return int hash code of this object
 	 */
 	@Override
 	public int hashCode()
 	{
-		return identifier.hashCode();
+		int result = 11;
+		
+		if( this.identifier != null ) {
+			result = 37 * result + identifier.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		if( this.submissions != null ) {
+			result = 37 * result + submissions.hashCode();
+		}
+		else {
+			result = 37 * result + 0;
+		}
+		
+		return result;
 	}
+	
+	/**
+	 * Override clone() method
+	 * @return Object a clone of this object
+	 */
+	@Override
+	public Object clone()
+	{
+		return new Student( this );
+	}
+	
 	
 } // End of Student
 

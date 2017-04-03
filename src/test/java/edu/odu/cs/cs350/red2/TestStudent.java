@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import edu.odu.cs.cs350.red2.Interface.*;
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class TestStudent {
 
@@ -78,6 +79,74 @@ public class TestStudent {
 		assertEquals( 43 , Nathan.getTotalCodeLineCount() );
 	}
 	
+	// Test Copy Constructor
+	@Test
+	public void testStudentStudent() {
+		Student clonedAsa = new Student( Asa );
+		assertEquals( clonedAsa , Asa);
+		
+		// Make sure that they aren't referring to same object (Ensure that object has been deep-copied)
+		assertNotSame( clonedAsa, Asa );
+		
+		// Verify that two objects have the same state
+		assertEquals( clonedAsa.toString() , Asa.toString() );
+		assertEquals( clonedAsa.getSubmissionCount() , Asa.getSubmissionCount() );
+		assertEquals( clonedAsa.getPrioritySubmission() , Asa.getPrioritySubmission() );
+		assertEquals( clonedAsa.getTotalCodeFileCount() , Asa.getTotalCodeFileCount() );
+		assertEquals( clonedAsa.getTotalCodeLineCount() , Asa.getTotalCodeLineCount() );
+		assertTrue( clonedAsa.equals(Asa) );
+		assertTrue( clonedAsa.hashCode() == Asa.hashCode() );
+	}
+	
+	// addSubmission() was already invoked by Instructor acceptStudentSubmissions()
+	@Test
+	public void testAddSubmission() {
+		
+		// Unit Tests for Asa
+		assertEquals( "Asa" , Asa.toString() );
+		assertTrue( Asa.equals(Asa) );
+		assertFalse( Asa.equals(Jen) );
+		assertFalse( Asa.equals(Nathan) );
+		assertFalse( Asa.equals(Mike) );
+		assertEquals( 1 , Asa.getSubmissionCount() );
+		assertEquals( "Asa.1" , Asa.getPrioritySubmission().toString() );
+		assertEquals( 1 , Asa.getTotalCodeFileCount() );
+		assertEquals( 13 , Asa.getTotalCodeLineCount() );
+		
+		// Unit Tests for Jen
+		assertEquals( "Jen" , Jen.toString() );
+		assertTrue( Jen.equals(Jen) );
+		assertFalse( Jen.equals(Asa) );
+		assertFalse( Jen.equals(Nathan) );
+		assertFalse( Jen.equals(Mike) );
+		assertEquals( 2 , Jen.getSubmissionCount() );
+		assertEquals( "Jen" , Jen.getPrioritySubmission().toString() );
+		assertEquals( 1 , Jen.getTotalCodeFileCount() );
+		assertEquals( 4 , Jen.getTotalCodeLineCount() );
+		
+		// Unit Tests for Mike
+		assertEquals( "Mike" , Mike.toString() );
+		assertTrue( Mike.equals(Mike) );
+		assertFalse( Mike.equals(Asa) );
+		assertFalse( Mike.equals(Jen) );
+		assertFalse( Mike.equals(Nathan) );
+		assertEquals( 3 , Mike.getSubmissionCount() );
+		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
+		assertEquals( 3 , Mike.getTotalCodeFileCount() );
+		assertEquals( 1400 , Mike.getTotalCodeLineCount() );
+		
+		// Unit Tests for Nathan
+		assertEquals( "Nathan" , Nathan.toString() );
+		assertTrue( Nathan.equals(Nathan) );
+		assertFalse( Nathan.equals(Asa) );
+		assertFalse( Nathan.equals(Jen) );
+		assertFalse( Nathan.equals(Mike) );
+		assertEquals( 2 , Nathan.getSubmissionCount() );
+		assertEquals( "Nathan.2" , Nathan.getPrioritySubmission().toString() );
+		assertEquals( 5 , Nathan.getTotalCodeFileCount() );
+		assertEquals( 43 , Nathan.getTotalCodeLineCount() );
+	}
+	
 	@Test
 	public void testGetSubmission() {
 		
@@ -92,6 +161,15 @@ public class TestStudent {
 		assertEquals( Nathan.getPrioritySubmission() , Nathan.getSubmission("Nathan.2") );
 		
 	} // End of testGetSubmission
+	
+	@Test
+	public void testGetSubmissionCount() {
+		assertEquals( 1 , Asa.getSubmissionCount() );
+		assertEquals( 2 , Jen.getSubmissionCount() );
+		assertEquals( 3 , Mike.getSubmissionCount() );
+		assertEquals( 2 , Nathan.getSubmissionCount() );
+		
+	} // End of testGetSubmissionCount()
 	
 	@Test
 	public void testGetPrioritySubmission() {
@@ -137,7 +215,24 @@ public class TestStudent {
 		
 	} // End of testGetTotalCodeLineCount()
 
-
+	@Test
+	public void testGetTokenSequences() {
+		// Parse the codes
+		instructor.process();
+		
+		ArrayList<StringBuilder> asaSeq = Asa.getTokenSequences();
+		ArrayList<StringBuilder> jenSeq = Jen.getTokenSequences();
+		ArrayList<StringBuilder> mikeSeq = Mike.getTokenSequences();
+		ArrayList<StringBuilder> nathanSeq = Nathan.getTokenSequences();
+		
+		// Here, we are just confirming that the number of token sequences match the number
+		// of code files. The actual contents of token sequences will be tested in other unit tests
+		assertEquals( 1 , asaSeq.size() );
+		assertEquals( 1 , jenSeq.size() );
+		assertEquals( 3 , mikeSeq.size() );
+		assertEquals( 5 , nathanSeq.size() );
+	}
+	
 	@Test
 	public void testEqualsObject() {
 		
@@ -214,6 +309,34 @@ public class TestStudent {
 		assertEquals( "Nathan" , Nathan.toString() );
 		
 	} // End of TestToString()
+	
+	@Test
+	public void testHashCode() {
+	    assertFalse( Asa.equals(Jen) || Jen.equals(Asa) );
+	    assertFalse( Asa.hashCode() == Jen.hashCode() );
+	    
+	    Student clonedJen = new Student( Jen );
+	    assertTrue( clonedJen.equals(Jen) && Jen.equals(clonedJen) );
+	    assertTrue( clonedJen.hashCode() == Jen.hashCode() );
+	}
+	
+	@Test
+	public void testClone() {
+		Student clonedMike = new Student( Mike );
+		assertEquals( clonedMike , Mike);
+		
+		// Make sure that they aren't referring to same object (Ensure that object has been deep-copied)
+		assertNotSame( clonedMike , Mike );
+		
+		// Verify that two objects have the same state
+		assertEquals( clonedMike.toString() , Mike.toString() );
+		assertEquals( clonedMike.getSubmissionCount() , Mike.getSubmissionCount() );
+		assertEquals( clonedMike.getPrioritySubmission() , Mike.getPrioritySubmission() );
+		assertEquals( clonedMike.getTotalCodeFileCount() , Mike.getTotalCodeFileCount() );
+		assertEquals( clonedMike.getTotalCodeLineCount() , Mike.getTotalCodeLineCount() );
+		assertTrue( clonedMike.equals(Mike) );
+		assertTrue( clonedMike.hashCode() == Mike.hashCode() );
+	}
 
 } // End of TestStudent class
 

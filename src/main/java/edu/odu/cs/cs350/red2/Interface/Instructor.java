@@ -349,11 +349,24 @@ public class Instructor
 		// Not yet implemented
 	}
 	
-	
+	/**
+	 * Private method that writes results to Excel spreadsheet
+	 */
 	private void writeToFile()
 	{
 		
 	}
+	
+	/**
+	 * Override toString() method, return the output directory name
+	 * @return String output directory name
+	 */
+	@Override
+	public String toString()
+	{
+		return outputDirectory.getName();
+	}
+	
 	
 } // End of Instructor Class
 

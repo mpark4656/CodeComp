@@ -38,6 +38,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testInstructor()
@@ -60,6 +61,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testIsTemplateSpecified()
@@ -83,6 +85,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testIsSheetNameSpecified()
@@ -106,6 +109,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testGetTemplate()
@@ -129,6 +133,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testGetSheetName()
@@ -152,6 +157,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testSetTemplate()
@@ -175,6 +181,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testSetSheetName()
@@ -197,6 +204,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 		
@@ -217,13 +225,26 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 4 , instructor.getTotalStudentCount() );
 		assertEquals( 6 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testIsSubmissionReceived()
 
 	@Test
 	public void testIsSubmissionParsed() {
-		//fail("Not yet implemented");
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		instructor.process();
+		
+		assertFalse( instructor.isTemplateSpecified() );
+		assertFalse( instructor.isSheetNameSpecified() );
+		assertEquals( "" , instructor.getTemplate() );
+		assertEquals( "" , instructor.getSheetName() );
+		assertTrue( instructor.isSubmissionReceived() );
+		assertTrue( instructor.isSubmissionParsed() );
+		assertFalse( instructor.isTokenSequenceAnalyzed() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
 		
 	} // End of testIsSubmissionParsed()
 
@@ -349,6 +370,7 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 0 , instructor.getTotalStudentCount() );
 		assertEquals( 0 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 		
@@ -369,13 +391,27 @@ public class TestInstructor {
 		assertFalse( instructor.isTokenSequenceAnalyzed() );
 		assertEquals( 4 , instructor.getTotalStudentCount() );
 		assertEquals( 6 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 		/***************************************************************/
 		
 	} // End of testAcceptStudentSubmission()
 	
 	@Test
 	public void testProcess() {
-		//fail("Not yet implemented");
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		instructor.process();
+		
+		assertFalse( instructor.isTemplateSpecified() );
+		assertFalse( instructor.isSheetNameSpecified() );
+		assertEquals( "" , instructor.getTemplate() );
+		assertEquals( "" , instructor.getSheetName() );
+		assertTrue( instructor.isSubmissionReceived() );
+		assertTrue( instructor.isSubmissionParsed() );
+		assertFalse( instructor.isTokenSequenceAnalyzed() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 	}
 
 
@@ -391,6 +427,19 @@ public class TestInstructor {
 	public void testDisplayResult() {
 		//fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testWriteToFile() {
+		//fail("Not yet implemented");
+	}
 
+	@Test
+	public void testToString() {
+		instructor = new Instructor( "output" );
+		assertEquals( "output" , instructor.toString() );
+		
+		instructor = new Instructor( "testOutput" );
+		assertEquals( "testOutput" , instructor.toString() );
+	}
 	
 } // End of TestInstructor
