@@ -13,3 +13,20 @@ Although useful, these existing tools have three significant drawbacks.
 Perhaps most significantly, these existing tools cannot distinguish between code written by students and code provided to all students by the instructor or copied from a textbook or lecture notes.
 
 This project seeks to develop a code comparison tool that can determine when a pair of programs share distinctive phrases of a length unlikely to occur by simple chance.
+
+## Usage
+### java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]" );
+
+* The [assignmentDirectory] is a path to the root directory of the assignment containing a number of submission directories.
+
+* The [outputSpreadsheet] is a path to where the output (an Excel spreadsheet) should be stored.
+
+## Options
+### -template templateSpreadSheet
+* Replaces the default spreadsheet template with one specified by the user.
+### -raw sheetname
+* Replaces the sheet name used to identify where to place the raw scores (default is "RawScores").
+
+## Additional Command
+java -jar CodeComp.jar -help"
+* Prints a summary of the command line parameters.
