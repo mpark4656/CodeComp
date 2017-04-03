@@ -63,8 +63,8 @@ public class TestStudent {
 		assertFalse( Mike.equals(Nathan) );
 		assertEquals( 3 , Mike.getSubmissionCount() );
 		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
-		assertEquals( 2 , Mike.getTotalCodeFileCount() );
-		assertEquals( 171 , Mike.getTotalCodeLineCount() );
+		assertEquals( 3 , Mike.getTotalCodeFileCount() );
+		assertEquals( 1400 , Mike.getTotalCodeLineCount() );
 		
 		// Unit Tests for Nathan
 		assertEquals( "Nathan" , Nathan.toString() );
@@ -120,7 +120,7 @@ public class TestStudent {
 		assertEquals( 1 , Jen.getTotalCodeFileCount() );
 		
 		// Mike's priority submission has 1 code file.
-		assertEquals( 2 , Mike.getTotalCodeFileCount() );
+		assertEquals( 3 , Mike.getTotalCodeFileCount() );
 		
 		// Nathan's priority submission has 3 code files.
 		assertEquals( 5 , Nathan.getTotalCodeFileCount() );
@@ -132,7 +132,7 @@ public class TestStudent {
 		
 		assertEquals( 13 , Asa.getTotalCodeLineCount() );
 		assertEquals( 4 , Jen.getTotalCodeLineCount());
-		assertEquals( 171 , Mike.getTotalCodeLineCount());
+		assertEquals( 1400 , Mike.getTotalCodeLineCount());
 		assertEquals( 43 , Nathan.getTotalCodeLineCount());
 		
 	} // End of testGetTotalCodeLineCount()
