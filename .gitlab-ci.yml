@@ -16,6 +16,7 @@ build-job:
     - ls -l
     - cd /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2
     - ./gradlew build  #change directory to root then build file
+    - debug
 
   only:
     - master
