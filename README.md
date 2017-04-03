@@ -15,7 +15,7 @@ Perhaps most significantly, these existing tools cannot distinguish between code
 This project seeks to develop a code comparison tool that can determine when a pair of programs share distinctive phrases of a length unlikely to occur by simple chance.
 
 ## Usage
-#### java -jar CodeComp.jar [Options] [assignmentDirectory] [outputSpreadsheet]
+#### java -jar CodeComp.jar (Options) (assignmentDirectory) (outputSpreadsheet)
 * [Options] is explained in the next section.
 * The [assignmentDirectory] is a path to the root directory of the assignment containing a number of submission directories.
 * The [outputSpreadsheet] is a path to where the output (an Excel spreadsheet) should be stored.
