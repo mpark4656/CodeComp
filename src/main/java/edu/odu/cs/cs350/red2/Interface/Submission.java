@@ -150,48 +150,64 @@ public class Submission implements Comparable<Submission>
 	public boolean tokenize()
 	{
 		for( File file : codeFiles ) {
+			// Temporary storage for token sequence
+			TokenSequence tokenSeq = null;
+
+			BufferedReader bReader = null;
+			
+			try {
+				bReader = new BufferedReader( new FileReader(file) );
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+			StringBuilder strBuilder = new StringBuilder();
+			String ls = System.getProperty( "line.separator" );
+			String line = null;
+			
 			if( getExtension(file).equals("java") ) {
-				
-				StringBuilder strBuilder = new StringBuilder();
-				
 				try {
-					BufferedReader bReader = new BufferedReader( new FileReader(file) );
-					
-					String ls = System.getProperty( "line.separator" );
-					String line = null;
-					
-					try {
-						while( (line = bReader.readLine()) != null ) {
-							strBuilder.append( line );
-							strBuilder.append( ls );
-						}
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					while( (line = bReader.readLine()) != null ) {
+						strBuilder.append( line );
+						strBuilder.append( ls );
 					}
-						
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+
 				Reader readerInput = new StringReader( strBuilder.toString() );
-				TokenSequence tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
+				tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
 				
 				// Debugging Output Lines - Must be removed later
-				// System.out.println();
-				// System.out.println( "\nTokens found in " + file.getName() );
-				// System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				// System.out.print( tokenSeq.getSequence() );
-				// System.out.println();
-				
-				tSeq.add( tokenSeq );
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				System.out.print( tokenSeq.getSequence() );
+				System.out.println();
 			}
 			// The code file is C++ if it is not java
 			else {
-				// TODO To be implemented
+				try {
+					while( (line = bReader.readLine()) != null ) {
+						strBuilder.append( line );
+						strBuilder.append( ls );
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				Reader readerInput = new StringReader( strBuilder.toString() );
+				tokenSeq = new TokenSequence( readerInput , LanguageTypes.CPLUSPLUS );
+				
+				// Debugging Output Lines - Must be removed later
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				System.out.print( tokenSeq.getSequence() );
+				System.out.println();
 			}
+			
+			tSeq.add( tokenSeq );
 		}
 		
 		tokenized = true;

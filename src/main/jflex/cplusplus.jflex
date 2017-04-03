@@ -6,25 +6,13 @@
  * Modified by mpark                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/* Java 1.2 language lexer specification */
-
-/* Use together with unicode.flex for Unicode preprocesssing */
-/* and java12.cup for a Java 1.2 parser                      */
-
-/* Note that this lexer specification is not tuned for speed.
-   It is in fact quite slow on integer and floating point literals, 
-   because the input is read twice and the methods used to parse
-   the numbers are not very fast. 
-   For a production quality application (e.g. a Java compiler) 
-   this could be optimized */
-
 
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 %%
 
 %public
-%class JavaScanner
+%class CppScanner
 
 %line
 %column
@@ -77,6 +65,9 @@ TraditionalComment = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/*" "*"+ [^/*] ~"*/"
 
+/* Preprocessor Directive */
+Preprocessor = "#" {InputCharacter}* {LineTerminator}?
+
 /* identifiers */
 Identifier = [:jletter:][:jletterdigit:]*
 
@@ -112,55 +103,96 @@ SingleCharacter = [^\r\n\'\\]
 <YYINITIAL> {
 
   /* keywords */
-  "abstract"                     { return symbol(TokenTypes.ABSTRACT); }
-  "boolean"                      { return symbol(TokenTypes.BOOLEAN); }
+  "alignas"						 { return symbol(TokenTypes.ALIGNAS); }
+  "alignof"						 { return symbol(TokenTypes.ALIGNOF); }
+  "and"							 { return symbol(TokenTypes.ANDAND); }
+  "and_eq"						 { return symbol(TokenTypes.ANDEQ); }
+  "asm"							 { return symbol(TokenTypes.ASM); }
+  "atomic_cancel"				 { return symbol(TokenTypes.ATOMIC_CANCEL); }
+  "atomic_commit"				 { return symbol(TokenTypes.ATOMIC_COMMIT); }
+  "atomic_noexcept"				 { return symbol(TokenTypes.ATOMIC_NOEXCEPT); }
+  "auto"						 { return symbol(TokenTypes.AUTO); }
+  "bitand"						 { return symbol(TokenTypes.AND); }
+  "bitor"						 { return symbol(TokenTypes.OR); }
+  "bool"                         { return symbol(TokenTypes.BOOLEAN); }
   "break"                        { return symbol(TokenTypes.BREAK); }
-  "byte"                         { return symbol(TokenTypes.BYTE); }
   "case"                         { return symbol(TokenTypes.CASE); }
   "catch"                        { return symbol(TokenTypes.CATCH); }
   "char"                         { return symbol(TokenTypes.CHAR); }
+  "char16_t"					 { return symbol(TokenTypes.CHAR16T); }
+  "char32_t"					 { return symbol(TokenTypes.CHAR32T); }
   "class"                        { return symbol(TokenTypes.CLASS); }
+  "compl"						 { return symbol(TokenTypes.COMPL); }
+  "concept"						 { return symbol(TokenTypes.CONCEPT); }
   "const"                        { return symbol(TokenTypes.CONST); }
+  "constexpr"					 { return symbol(TokenTypes.CONSTEXPR); }
+  "const_cast"					 { return symbol(TokenTypes.CONSTCAST); }
   "continue"                     { return symbol(TokenTypes.CONTINUE); }
+  "decltype"					 { return symbol(TokenTypes.DECLTYPE); }
+  "default"                      { return symbol(TokenTypes.DEFAULT); }
+  "delete"						 { return symbol(TokenTypes.DELETE); }
   "do"                           { return symbol(TokenTypes.DO); }
   "double"                       { return symbol(TokenTypes.DOUBLE); }
+  "dynamic_cast"				 { return symbol(TokenTypes.DYNAMIC_CAST); }
   "else"                         { return symbol(TokenTypes.ELSE); }
   "enum"						 { return symbol(TokenTypes.ENUM); }
-  "extends"                      { return symbol(TokenTypes.EXTENDS); }
-  "final"                        { return symbol(TokenTypes.FINAL); }
-  "finally"                      { return symbol(TokenTypes.FINALLY); }
+  "explicit"					 { return symbol(TokenTypes.EXPLICIT); }
+  "export"						 { return symbol(TokenTypes.EXPORT); }
+  "extern"					 	 { return symbol(TokenTypes.EXTERN); }
   "float"                        { return symbol(TokenTypes.FLOAT); }
   "for"                          { return symbol(TokenTypes.FOR); }
-  "default"                      { return symbol(TokenTypes.DEFAULT); }
-  "implements"                   { return symbol(TokenTypes.IMPLEMENTS); }
-  "import"                       { return symbol(TokenTypes.IMPORT); }
-  "instanceof"                   { return symbol(TokenTypes.INSTANCEOF); }
-  "int"                          { return symbol(TokenTypes.INT); }
-  "interface"                    { return symbol(TokenTypes.INTERFACE); }
-  "long"                         { return symbol(TokenTypes.LONG); }
-  "native"                       { return symbol(TokenTypes.NATIVE); }
-  "new"                          { return symbol(TokenTypes.NEW); }
+  "friend"						 { return symbol(TokenTypes.FRIEND); }
   "goto"                         { return symbol(TokenTypes.GOTO); }
   "if"                           { return symbol(TokenTypes.IF); }
-  "public"                       { return symbol(TokenTypes.PUBLIC); }
-  "short"                        { return symbol(TokenTypes.SHORT); }
-  "super"                        { return symbol(TokenTypes.SUPER); }
-  "switch"                       { return symbol(TokenTypes.SWITCH); }
-  "synchronized"                 { return symbol(TokenTypes.SYNCHRONIZED); }
-  "package"                      { return symbol(TokenTypes.PACKAGE); }
+  "import"						 { return symbol(TokenTypes.IMPORT); }
+  "inline"						 { return symbol(TokenTypes.INLINE); }
+  "int"                          { return symbol(TokenTypes.INT); }
+  "long"                         { return symbol(TokenTypes.LONG); }
+  "module"						 { return symbol(TokenTypes.MODULE); }
+  "mutable"						 { return symbol(TokenTypes.MUTABLE); }
+  "namespace"					 { return symbol(TokenTypes.NAMESPACE); }
+  "new"                          { return symbol(TokenTypes.NEW); }
+  "noexcept"					 { return symbol(TokenTypes.NOEXCEPT); }
+  "not"							 { return symbol(TokenTypes.NOT); }
+  "not_eq"						 { return symbol(TokenTypes.NOTEQ); }
+  "nullptr"						 { return symbol(TokenTypes.NULL_LITERAL); }
+  "operator"					 { return symbol(TokenTypes.OPERATOR); }
+  "or"							 { return symbol(TokenTypes.OROR); }
+  "or_eq"						 { return symbol(TokenTypes.OREQ); }
   "private"                      { return symbol(TokenTypes.PRIVATE); }
   "protected"                    { return symbol(TokenTypes.PROTECTED); }
-  "transient"                    { return symbol(TokenTypes.TRANSIENT); }
+  "public"                       { return symbol(TokenTypes.PUBLIC); }
+  "register"					 { return symbol(TokenTypes.REGISTER); }
+  "reinterpret_cast"		 	 { return symbol(TokenTypes.REINTERPRET_CAST); }
+  "requires"					 { return symbol(TokenTypes.REQUIRES); }
   "return"                       { return symbol(TokenTypes.RETURN); }
-  "void"                         { return symbol(TokenTypes.VOID); }
+  "short"                        { return symbol(TokenTypes.SHORT); }
+  "signed"						 { return symbol(TokenTypes.SIGNED); }
+  "sizeof"						 { return symbol(TokenTypes.SIZEOF); }
   "static"                       { return symbol(TokenTypes.STATIC); }
-  "while"                        { return symbol(TokenTypes.WHILE); }
+  "static_assert"				 { return symbol(TokenTypes.STATIC_ASSERT); }
+  "static_cast"					 { return symbol(TokenTypes.STATIC_CAST); }
+  "struct"						 { return symbol(TokenTypes.STRUCT); }
+  "switch"                       { return symbol(TokenTypes.SWITCH); }
+  "synchronized"                 { return symbol(TokenTypes.SYNCHRONIZED); }
+  "template"					 { return symbol(TokenTypes.TEMPLATE); }
   "this"                         { return symbol(TokenTypes.THIS); }
+  "thread_local"				 { return symbol(TokenTypes.THREAD_LOCAL); }
   "throw"                        { return symbol(TokenTypes.THROW); }
-  "throws"                       { return symbol(TokenTypes.THROWS); }
   "try"                          { return symbol(TokenTypes.TRY); }
+  "typedef"						 { return symbol(TokenTypes.TYPEDEF); }
+  "typeid"						 { return symbol(TokenTypes.TYPEID); }
+  "typename"					 { return symbol(TokenTypes.TYPENAME); }
+  "union"						 { return symbol(TokenTypes.UNION); }
+  "unsigned"					 { return symbol(TokenTypes.UNSIGNED); }
+  "using"						 { return symbol(TokenTypes.USING); }
+  "virtual"						 { return symbol(TokenTypes.VIRTUAL); }
+  "void"                         { return symbol(TokenTypes.VOID); }
   "volatile"                     { return symbol(TokenTypes.VOLATILE); }
-  "strictfp"                     { return symbol(TokenTypes.STRICTFP); }
+  "wchar_t"						 { return symbol(TokenTypes.WCHART); }
+  "while"                        { return symbol(TokenTypes.WHILE); }
+  "xor"							 { return symbol(TokenTypes.XOR); }
+  "xor_eq"						 { return symbol(TokenTypes.XOREQ); }
   
   /* boolean literals */
   "true"                         { return symbol(TokenTypes.BOOLEAN_LITERAL, true); }
@@ -219,6 +251,7 @@ SingleCharacter = [^\r\n\'\\]
   "<<="                          { return symbol(TokenTypes.LSHIFTEQ); }
   ">>="                          { return symbol(TokenTypes.RSHIFTEQ); }
   ">>>="                         { return symbol(TokenTypes.URSHIFTEQ); }
+  "->"							 { return symbol(TokenTypes.MEMBERACCESS); }
   
   /* string literal */
   \"                             { yybegin(STRING); string.setLength(0); }
@@ -255,6 +288,9 @@ SingleCharacter = [^\r\n\'\\]
   {Identifier}                   { return symbol(TokenTypes.IDENTIFIER, yytext()); }  
 }
 
+  /* Preprocessor Directive */
+  {Preprocessor}				 { return symbol(TokenTypes.PREPROCESSOR); }
+  
 <STRING> {
   \"                             { yybegin(YYINITIAL); return symbol(TokenTypes.STRING_LITERAL, string.toString()); }
   
