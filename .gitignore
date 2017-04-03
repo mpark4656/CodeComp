@@ -4,6 +4,8 @@
 /build
 /.gradle
 /.settings
-./.classpath
-./.project
+.classpath
+.project
 .idea/
+/src/main/java/edu/odu/cs/cs350/red2/LexicalTools/JavaScanner.java
+/src/main/java/edu/odu/cs/cs350/red2/LexicalTools/CppScanner.java
