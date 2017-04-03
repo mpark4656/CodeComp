@@ -84,7 +84,7 @@ public class TokenSequence implements Iterable<Token>
 		StringBuilder result = new StringBuilder();
 		
 		for( Token t : tokens ) {
-			result.append( t.getTokenType().toString() );
+			result.append( t.getTokenType().ordinal() );
 		}
 		
 		return result;

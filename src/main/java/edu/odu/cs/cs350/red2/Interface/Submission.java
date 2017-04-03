@@ -180,14 +180,11 @@ public class Submission implements Comparable<Submission>
 				TokenSequence tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
 				
 				// Debugging Output Lines - Must be removed later
-				System.out.println();
-				System.out.println( "\nTokens found in " + file.getName() );
-				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				System.out.print( tokenSeq.getSequence() );
-				System.out.println();
-				for( Token token : tokenSeq ) {
-					System.out.print( token.getTokenType().ordinal() + " " );
-				}
+				// System.out.println();
+				// System.out.println( "\nTokens found in " + file.getName() );
+				// System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				// System.out.print( tokenSeq.getSequence() );
+				// System.out.println();
 				
 				tSeq.add( tokenSeq );
 			}
