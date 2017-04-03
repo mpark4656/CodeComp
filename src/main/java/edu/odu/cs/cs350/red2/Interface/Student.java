@@ -1,7 +1,10 @@
 package edu.odu.cs.cs350.red2.Interface;
 
 import java.util.ArrayList;
+import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
+import edu.odu.cs.cs350.red2.LexicalTools.Token;
 import java.io.File;
+
 
 /**
  * Student Class -
@@ -92,7 +95,16 @@ public class Student implements Comparable<Student>
 		return submissions.get(submissions.size() - 1);
 			
 	}// End of getPrioritySubmission()
-		
+	
+	/**
+	 * Return the token sequences of the priority submission
+	 * @return ArrayList<TokenSequence> Token Sequences from the Priority Submission
+	 */
+	public ArrayList<StringBuilder> getTokenSequences()
+	{
+		return getPrioritySubmission().getTokenSequences();
+	}
+	
 	/**
 	 * Return the total number of code file count in the priority submission.
 	 * @return int Total number of Code Files this student submitted
@@ -116,14 +128,28 @@ public class Student implements Comparable<Student>
 	 * @return boolean True if toCompare equals this Student object
 	 */
 	@Override
-	public boolean equals( Object theStudent )
+	public boolean equals( Object obj )
 	{
-		return this.toString().equals(theStudent.toString());
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( !(obj instanceof Student) ) {
+			return false;
+		}
+		
+		if( this == obj ) {
+			return true;
+		}
+		
+		Student otherObj = (Student) obj;
+		
+		return this.toString().equals(otherObj.toString());
 	}
 	
 	/**
 	 * Compare this contact to another.
-	 * @return int value > 0 if this contact precedes the other,
+	 * @return int value > 0 if this object precedes the other,
 	 * == 0 if the two are equal, and < 0 if this contact
 	 * follows the other.  
 	 */
@@ -141,6 +167,16 @@ public class Student implements Comparable<Student>
 	public String toString()
 	{
 		return identifier;
+	}
+	
+	/**
+	 * Override hashCode() method
+	 * @return int hash code of String identifier
+	 */
+	@Override
+	public int hashCode()
+	{
+		return identifier.hashCode();
 	}
 	
 } // End of Student

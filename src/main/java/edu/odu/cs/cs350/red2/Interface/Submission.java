@@ -1,11 +1,14 @@
 package edu.odu.cs.cs350.red2.Interface;
 
+import edu.odu.cs.cs350.red2.LexicalTools.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
 import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
 import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
@@ -26,7 +29,7 @@ public class Submission implements Comparable<Submission>
 	private ArrayList<File> allFiles;
 	private ArrayList<File> codeFiles;
 	
-	// Collection of Token Sequences for each function block in the code files
+	// Collection of Token Sequences for each code file
 	private ArrayList<TokenSequence> tSeq;
 	
 	// A flag to indicate if this submission has been tokenized (Parsed)
@@ -135,10 +138,8 @@ public class Submission implements Comparable<Submission>
 	 */
 	private String getExtension( File filePath )
 	{
-		// Get the file name from filePath
 		String filename = filePath.getName();
 		
-		// Return the extension
 		return filename.substring( filename.lastIndexOf('.') + 1 );
 	}
 	
@@ -148,7 +149,49 @@ public class Submission implements Comparable<Submission>
 	 */
 	public boolean tokenize()
 	{
-		// Not yet implemented
+		for( File file : codeFiles ) {
+			if( getExtension(file).equals("java") ) {
+				
+				StringBuilder strBuilder = new StringBuilder();
+				
+				try {
+					BufferedReader bReader = new BufferedReader( new FileReader(file) );
+					
+					String ls = System.getProperty( "line.separator" );
+					String line = null;
+					
+					try {
+						while( (line = bReader.readLine()) != null ) {
+							strBuilder.append( line );
+							strBuilder.append( ls );
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Reader readerInput = new StringReader( strBuilder.toString() );
+				TokenSequence tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
+				
+				// Debugging Output Lines - Must be removed later
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				System.out.print( tokenSeq.getSequence() );
+				
+				tSeq.add( tokenSeq );
+			}
+			// The code file is C++ if it is not java
+			else {
+				// TODO To be implemented
+			}
+		}
 		
 		tokenized = true;
 		return tokenized;
@@ -170,8 +213,28 @@ public class Submission implements Comparable<Submission>
 	 */
 	public int getTokenSequenceLength()
 	{
-		// Not yet implemented
-		return 0;
+		int total = 0;
+		
+		for( TokenSequence seq : this.tSeq ) {
+			total += seq.getTokenCount();
+		}
+		
+		return total;
+	}
+	
+	/**
+	 * Return the token sequences of this submission as StringBuilder
+	 * @return ArrayList<StringBuilder> Token Sequences as StringBuilder
+	 */
+	public ArrayList<StringBuilder> getTokenSequences()
+	{
+		ArrayList<StringBuilder> result = new ArrayList<> ();
+		
+		for( TokenSequence seq : tSeq ) {
+			result.add( seq.getSequence() );
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -246,7 +309,7 @@ public class Submission implements Comparable<Submission>
 	}
 	
 	/**
-	 * Return the relative path (Folder name) as String
+	 * Return the relative path (Folder name) as String 
 	 * @return String Name of the Submission Directory
 	 */
 	@Override
@@ -254,4 +317,19 @@ public class Submission implements Comparable<Submission>
 	{
 		return directory.getName();
 	}
+	
+	/**
+	 * Overrides equals() method, 
+	 * Two submissions are equal if they both point to the same submission directory
+	 */
+	@Override
+	public boolean equals( Object obj )
+	{
+		Submission thatObj = (Submission) obj;
+		
+		return this.directory.getAbsolutePath().equals( thatObj.directory.getAbsolutePath() );
+	}
 }
+
+
+

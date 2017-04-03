@@ -2,7 +2,10 @@ package edu.odu.cs.cs350.red2.LexicalTools;
 
 /**
  * Token Class, stores the token type, the actual string, 
- * and the location (line number and column)
+ * and the location (line number and column), 
+ * The design of this interface was borrowed from 
+ * Dr. Steven Zeil, 
+ * http://forge350.cs.odu.edu:8090/zeil/jflexdemo
  * @author mpark
  */
 public class Token implements Cloneable
@@ -15,7 +18,7 @@ public class Token implements Cloneable
 	/**
 	 * This represents the actual character string.
 	 */
-	private Object lexeme;
+	private String lexeme;
 	
 	/**
 	 * The line number where this lexeme was found
@@ -26,7 +29,6 @@ public class Token implements Cloneable
 	 * The column number where this lexeme was found
 	 */
 	private int columnNumber;
-	
 	
 	/**
 	 * Constructor that accepts the type, the line number, and the column number.
@@ -54,7 +56,7 @@ public class Token implements Cloneable
 		type = theType;
 		lineNumber = line;
 		columnNumber = column;
-		lexeme = theLex;
+		lexeme = theLex.toString();
 	}
 	
 	/**
@@ -66,8 +68,7 @@ public class Token implements Cloneable
 		this.type = toCopy.type;
 		this.lineNumber = toCopy.lineNumber;
 		this.columnNumber = toCopy.columnNumber;
-		// Need to copy lexeme. Will figure this out later
-		
+		this.lexeme = new String(toCopy.lexeme);
 	}
 	
 	/**
@@ -83,7 +84,7 @@ public class Token implements Cloneable
 	 * Return the lexeme.
 	 * @return Object lexeme
 	 */
-	public Object getLexeme()
+	public String getLexeme()
 	{
 		return lexeme;
 	}
@@ -150,5 +151,13 @@ public class Token implements Cloneable
 		return type.hashCode() + lexeme.hashCode() + lineNumber + columnNumber;
 	}
 	
-	
+	/**
+	 * Override toString() method
+	 * @return String Returns String representation of the lexeme
+	 */
+	@Override
+	public String toString()
+	{
+		return lexeme;
+	}
 }

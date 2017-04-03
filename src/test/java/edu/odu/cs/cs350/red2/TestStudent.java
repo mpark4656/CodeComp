@@ -42,7 +42,7 @@ public class TestStudent {
 		assertEquals( 1 , Asa.getSubmissionCount() );
 		assertEquals( "Asa.1" , Asa.getPrioritySubmission().toString() );
 		assertEquals( 1 , Asa.getTotalCodeFileCount() );
-		assertEquals( 3 , Asa.getTotalCodeLineCount() );
+		assertEquals( 13 , Asa.getTotalCodeLineCount() );
 		
 		// Unit Tests for Jen
 		assertEquals( "Jen" , Jen.toString() );
@@ -130,7 +130,7 @@ public class TestStudent {
 	@Test
 	public void testGetTotalCodeLineCount() {
 		
-		assertEquals( 3 , Asa.getTotalCodeLineCount() );
+		assertEquals( 13 , Asa.getTotalCodeLineCount() );
 		assertEquals( 4 , Jen.getTotalCodeLineCount());
 		assertEquals( 2 , Mike.getTotalCodeLineCount());
 		assertEquals( 8 , Nathan.getTotalCodeLineCount());

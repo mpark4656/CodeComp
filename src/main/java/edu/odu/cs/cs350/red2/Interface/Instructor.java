@@ -252,19 +252,14 @@ public class Instructor
 			// Also, add Student Pair
 			else {
 
-				// Add a new Student object
 				Student newStudent = new Student( id );
 				
-				// Add submissions for this new student
 				newStudent.addSubmission( directoryFiles[i] );
 				
-				// Add a new Student Pair
-				// New Student + Every current Student in the collection
 				for( int index = 0 ; index < students.size() ; index++) {
 					stuPairs.add( new StudentPair(newStudent , students.get(index)) );
 				}
-				
-				// Add the new Student to students collection
+
 				students.add( newStudent );
 			}
 		}
@@ -339,6 +334,7 @@ public class Instructor
 	 */
 	public boolean analyze()
 	{
+		
 		// Not yet implemented
 		analyzedTokenSequences = true;
 		return analyzedTokenSequences;
