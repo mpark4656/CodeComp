@@ -34,7 +34,7 @@ public class TokenSequence implements Iterable<Token>
 		this.langType = langType;
 		
 		// The language is JAVA
-		if( langType == LanguageTypes.JAVA ) {
+		if( this.langType == LanguageTypes.JAVA ) {
 			JavaScanner scanner = new JavaScanner( input );
 			
 			try {
@@ -51,7 +51,19 @@ public class TokenSequence implements Iterable<Token>
 		}
 		// The Language is Cplusplus
 		else {
-			// Not yet implemented
+			CppScanner scanner = new CppScanner( input );
+			
+			try {
+				Token token = scanner.yylex();
+				
+				while( token != null && token.getTokenType() != TokenTypes.EOF ) {
+					tokens.add( token );
+					token = scanner.yylex();
+				}
+			}
+			catch( IOException e ) {
+				// Not necessarily a problem - Let it continue to run. 
+			}
 		}
 		
 	} // End of TokenSequence()
