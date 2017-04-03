@@ -74,8 +74,8 @@ public class TestStudent {
 		assertFalse( Nathan.equals(Mike) );
 		assertEquals( 2 , Nathan.getSubmissionCount() );
 		assertEquals( "Nathan.2" , Nathan.getPrioritySubmission().toString() );
-		assertEquals( 3 , Nathan.getTotalCodeFileCount() );
-		assertEquals( 8 , Nathan.getTotalCodeLineCount() );
+		assertEquals( 5 , Nathan.getTotalCodeFileCount() );
+		assertEquals( 43 , Nathan.getTotalCodeLineCount() );
 	}
 	
 	@Test
@@ -123,7 +123,7 @@ public class TestStudent {
 		assertEquals( 1 , Mike.getTotalCodeFileCount() );
 		
 		// Nathan's priority submission has 3 code files.
-		assertEquals( 3 , Nathan.getTotalCodeFileCount() );
+		assertEquals( 5 , Nathan.getTotalCodeFileCount() );
 		
 	} // End of testGetTotalCodeFileCount()
 
@@ -133,7 +133,7 @@ public class TestStudent {
 		assertEquals( 13 , Asa.getTotalCodeLineCount() );
 		assertEquals( 4 , Jen.getTotalCodeLineCount());
 		assertEquals( 2 , Mike.getTotalCodeLineCount());
-		assertEquals( 8 , Nathan.getTotalCodeLineCount());
+		assertEquals( 43 , Nathan.getTotalCodeLineCount());
 		
 	} // End of testGetTotalCodeLineCount()
 

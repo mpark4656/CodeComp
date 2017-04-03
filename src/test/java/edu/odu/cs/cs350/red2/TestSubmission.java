@@ -56,8 +56,8 @@ public class TestSubmission {
 		
 		// Nathan's unit tests
 		assertFalse ( NathanSub.isTokenized() );
-		assertEquals( 3 , NathanSub.getNumCodeFiles() );
-		assertEquals( 8 , NathanSub.getNumCodeLines() );
+		assertEquals( 5 , NathanSub.getNumCodeFiles() );
+		assertEquals( 43 , NathanSub.getNumCodeLines() );
 		assertEquals( "Nathan.2" , NathanSub.toString() );
 		
 	} // End of testSubmission()
@@ -92,7 +92,7 @@ public class TestSubmission {
 		assertEquals( 13 , AsaSub.getNumCodeLines() );
 		assertEquals( 4 , JenSub.getNumCodeLines() );
 		assertEquals( 2 , MikeSub.getNumCodeLines() );
-		assertEquals( 8 , NathanSub.getNumCodeLines() );
+		assertEquals( 43 , NathanSub.getNumCodeLines() );
 		
 	} // End of testGetNumCodeLines()
 
@@ -103,7 +103,7 @@ public class TestSubmission {
 		assertEquals( 1 , AsaSub.getNumCodeFiles() );
 		assertEquals( 1 , JenSub.getNumCodeFiles() );
 		assertEquals( 1 , MikeSub.getNumCodeFiles() );
-		assertEquals( 3 , NathanSub.getNumCodeFiles() );
+		assertEquals( 5 , NathanSub.getNumCodeFiles() );
 		
 	} // End of testGetNumCodeFiles()
 
@@ -118,13 +118,17 @@ public class TestSubmission {
 		File file1 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/code4.cpp" );
 		File file2 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile.c" );
 		File file3 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/codeFile1.java" );
-		File file4 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/subDir/codeFile3.cpp" );
+		File file4 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/nat15.java" );
+		File file5 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/subDir/codeFile3.cpp" );
+		File file6 = new File( "./src/test/data/testSubmissionDirectory/Nathan.2/subDir/subDir/nat20.java" );
 		
 		assertTrue( allFiles.contains(file1) );
 		assertTrue( allFiles.contains(file2) );
 		assertTrue( allFiles.contains(file3) );
 		assertTrue( allFiles.contains(file4) );
-		assertEquals( 4 , allFiles.size() );
+		assertTrue( allFiles.contains(file5) );
+		assertTrue( allFiles.contains(file6) );
+		assertEquals( 6 , allFiles.size() );
 		
 	} // End of testSearchAllFiles()
 	
@@ -145,7 +149,7 @@ public class TestSubmission {
 		assertFalse( codeFiles.contains(file2) );
 		assertTrue( codeFiles.contains(file3) );
 		assertTrue( codeFiles.contains(file4) );
-		assertEquals( 3 , codeFiles.size() );
+		assertEquals( 5, codeFiles.size() );
 		
 	} // End of testSearchAllCodeFiles()
 	
