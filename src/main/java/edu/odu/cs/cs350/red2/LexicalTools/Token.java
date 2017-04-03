@@ -109,6 +109,7 @@ public class Token implements Cloneable
 	
 	/**
 	 * Override clone() in Object
+	 * @return Object a copy of this object
 	 */
 	@Override
 	public Object clone()
@@ -118,6 +119,8 @@ public class Token implements Cloneable
 	
 	/**
 	 * Override equals() in Object
+	 * @param obj Object object being compared to this object
+	 * @return boolean true if this object is equal to obj
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -144,11 +147,31 @@ public class Token implements Cloneable
 	
 	/**
 	 * Override hashCode method in Object
+	 * @return int hash code of this object
 	 */
 	@Override
 	public int hashCode()
 	{
-		return type.hashCode() + lexeme.hashCode() + lineNumber + columnNumber;
+		int result = 11;
+		
+		if( this.type != null ) {
+			result = 31 * result + type.hashCode();
+		}
+		else {
+			result = 31 * result + 0;
+		}
+		
+		if( this.lexeme != null ) {
+			result = 31 * result + lexeme.hashCode();
+		}
+		else {
+			result = 31 * result + 0;
+		}
+		
+		result = 31 * result + lineNumber;
+		result = 31 * result + columnNumber;
+		
+		return result;
 	}
 	
 	/**
@@ -161,3 +184,5 @@ public class Token implements Cloneable
 		return lexeme;
 	}
 }
+
+

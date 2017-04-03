@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author mpark
  *
  */
-public class TokenSequence implements Iterable<Token>
+public class TokenSequence implements Iterable<Token> , Cloneable
 {
 	
 	// collection of tokens in a linked list
