@@ -88,15 +88,30 @@ public class TokenSequence implements Iterable<Token>
 	}
 	
 	/**
-	 * Public get method that returns the token sequence as StringBuilder
+	 * Public get method that returns the token ordinal sequence as StringBuilder
 	 * @return StringBuilder Sequence of tokens
 	 */
-	public StringBuilder getSequence()
+	public StringBuilder getOrdinalSequence()
 	{
 		StringBuilder result = new StringBuilder();
 		
 		for( Token t : tokens ) {
 			result.append( t.getTokenType().ordinal() );
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Public get method that returns the token String sequence as StringBuilder
+	 * @return StringBuilder Sequence of tokens
+	 */
+	public StringBuilder getStringSequence()
+	{
+		StringBuilder result = new StringBuilder();
+		
+		for( Token t : tokens ) {
+			result.append( t.getTokenType().toString() );
 		}
 		
 		return result;

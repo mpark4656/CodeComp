@@ -182,7 +182,7 @@ public class Submission implements Comparable<Submission>
 				System.out.println();
 				System.out.println( "\nTokens found in " + file.getName() );
 				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				System.out.print( tokenSeq.getSequence() );
+				System.out.print( tokenSeq.getStringSequence() );
 				System.out.println();
 			}
 			// The code file is C++ if it is not java
@@ -203,7 +203,7 @@ public class Submission implements Comparable<Submission>
 				System.out.println();
 				System.out.println( "\nTokens found in " + file.getName() );
 				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				System.out.print( tokenSeq.getSequence() );
+				System.out.print( tokenSeq.getStringSequence() );
 				System.out.println();
 			}
 			
@@ -248,7 +248,7 @@ public class Submission implements Comparable<Submission>
 		ArrayList<StringBuilder> result = new ArrayList<> ();
 		
 		for( TokenSequence seq : tSeq ) {
-			result.add( seq.getSequence() );
+			result.add( seq.getOrdinalSequence() );
 		}
 		
 		return result;
