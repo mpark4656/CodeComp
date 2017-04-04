@@ -45,7 +45,12 @@ dependencies {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'edu.odu.cs.cs350.red2.CodeComp'
+		attributes 'Implementation-Title' : 'CodeComp',
+			'Main-Class': 'edu.odu.cs.cs350.red2.CodeComp' ,
+			'Implementation-Version': '1.0'
+	}
+	from { configurations.compile.collect {
+		it.isDirectory() ? it : zipTree(it) }
 	}
 	
 	baseName = "CodeComp"
