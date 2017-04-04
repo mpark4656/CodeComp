@@ -172,11 +172,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 				tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
 				
 				// Debugging Output Lines - Must be removed later
-				System.out.println();
-				System.out.println( "\nTokens found in " + file.getName() );
-				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				System.out.print( tokenSeq.getStringSequence() );
-				System.out.println();
+				//System.out.println();
+				//System.out.println( "\nTokens found in " + file.getName() );
+				//System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				//System.out.print( tokenSeq.getStringSequence() );
+				//System.out.println();
 			}
 			// The code file is C++ if it is not java
 			else {
@@ -193,11 +193,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 				tokenSeq = new TokenSequence( readerInput , LanguageTypes.CPLUSPLUS );
 				
 				// Debugging Output Lines - Must be removed later
-				System.out.println();
-				System.out.println( "\nTokens found in " + file.getName() );
-				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				System.out.print( tokenSeq.getStringSequence() );
-				System.out.println();
+				//System.out.println();
+				//System.out.println( "\nTokens found in " + file.getName() );
+				//System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				//System.out.print( tokenSeq.getStringSequence() );
+				//System.out.println();
 			}
 			
 			tSeq.add( tokenSeq );
@@ -221,7 +221,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	 * Return the length of all token sequences in this submission
 	 * @return int Length of All Token Sequences
 	 */
-	public int getTokenSequenceLength()
+	public int getTokenCount()
 	{
 		int total = 0;
 		

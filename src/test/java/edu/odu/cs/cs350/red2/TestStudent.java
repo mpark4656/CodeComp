@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import java.io.File;
 import edu.odu.cs.cs350.red2.Interface.*;
 import org.junit.Test;
-import java.util.ArrayList;
 
 public class TestStudent {
 
@@ -53,8 +52,8 @@ public class TestStudent {
 		assertFalse( Jen.equals(Mike) );
 		assertEquals( 2 , Jen.getSubmissionCount() );
 		assertEquals( "Jen" , Jen.getPrioritySubmission().toString() );
-		assertEquals( 1 , Jen.getTotalCodeFileCount() );
-		assertEquals( 4 , Jen.getTotalCodeLineCount() );
+		assertEquals( 2 , Jen.getTotalCodeFileCount() );
+		assertEquals( 56 , Jen.getTotalCodeLineCount() );
 		
 		// Unit Tests for Mike
 		assertEquals( "Mike" , Mike.toString() );
@@ -64,8 +63,8 @@ public class TestStudent {
 		assertFalse( Mike.equals(Nathan) );
 		assertEquals( 3 , Mike.getSubmissionCount() );
 		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
-		assertEquals( 3 , Mike.getTotalCodeFileCount() );
-		assertEquals( 1400 , Mike.getTotalCodeLineCount() );
+		assertEquals( 2 , Mike.getTotalCodeFileCount() );
+		assertEquals( 171 , Mike.getTotalCodeLineCount() );
 		
 		// Unit Tests for Nathan
 		assertEquals( "Nathan" , Nathan.toString() );
@@ -121,8 +120,8 @@ public class TestStudent {
 		assertFalse( Jen.equals(Mike) );
 		assertEquals( 2 , Jen.getSubmissionCount() );
 		assertEquals( "Jen" , Jen.getPrioritySubmission().toString() );
-		assertEquals( 1 , Jen.getTotalCodeFileCount() );
-		assertEquals( 4 , Jen.getTotalCodeLineCount() );
+		assertEquals( 2 , Jen.getTotalCodeFileCount() );
+		assertEquals( 56 , Jen.getTotalCodeLineCount() );
 		
 		// Unit Tests for Mike
 		assertEquals( "Mike" , Mike.toString() );
@@ -132,8 +131,8 @@ public class TestStudent {
 		assertFalse( Mike.equals(Nathan) );
 		assertEquals( 3 , Mike.getSubmissionCount() );
 		assertEquals( "Mike" , Mike.getPrioritySubmission().toString() );
-		assertEquals( 3 , Mike.getTotalCodeFileCount() );
-		assertEquals( 1400 , Mike.getTotalCodeLineCount() );
+		assertEquals( 2 , Mike.getTotalCodeFileCount() );
+		assertEquals( 171 , Mike.getTotalCodeLineCount() );
 		
 		// Unit Tests for Nathan
 		assertEquals( "Nathan" , Nathan.toString() );
@@ -195,10 +194,10 @@ public class TestStudent {
 		assertEquals( 1 , Asa.getTotalCodeFileCount() );
 		
 		// Jen's priority submission has 1 code file.
-		assertEquals( 1 , Jen.getTotalCodeFileCount() );
+		assertEquals( 2 , Jen.getTotalCodeFileCount() );
 		
 		// Mike's priority submission has 1 code file.
-		assertEquals( 3 , Mike.getTotalCodeFileCount() );
+		assertEquals( 2 , Mike.getTotalCodeFileCount() );
 		
 		// Nathan's priority submission has 3 code files.
 		assertEquals( 5 , Nathan.getTotalCodeFileCount() );
@@ -209,28 +208,46 @@ public class TestStudent {
 	public void testGetTotalCodeLineCount() {
 		
 		assertEquals( 13 , Asa.getTotalCodeLineCount() );
-		assertEquals( 4 , Jen.getTotalCodeLineCount());
-		assertEquals( 1400 , Mike.getTotalCodeLineCount());
+		assertEquals( 56 , Jen.getTotalCodeLineCount());
+		assertEquals( 171 , Mike.getTotalCodeLineCount());
 		assertEquals( 43 , Nathan.getTotalCodeLineCount());
 		
 	} // End of testGetTotalCodeLineCount()
 
 	@Test
-	public void testGetTokenSequences() {
+	public void testGetTokenSequence() {
 		// Parse the codes
 		instructor.process();
 		
-		ArrayList<StringBuilder> asaSeq = Asa.getTokenSequences();
-		ArrayList<StringBuilder> jenSeq = Jen.getTokenSequences();
-		ArrayList<StringBuilder> mikeSeq = Mike.getTokenSequences();
-		ArrayList<StringBuilder> nathanSeq = Nathan.getTokenSequences();
+		StringBuilder asaSeq = Asa.getTokenSequence();
+		StringBuilder jenSeq = Jen.getTokenSequence();
+		StringBuilder mikeSeq = Mike.getTokenSequence();
+		StringBuilder nathanSeq = Nathan.getTokenSequence();
 		
 		// Here, we are just confirming that the number of token sequences match the number
 		// of code files. The actual contents of token sequences will be tested in other unit tests
-		assertEquals( 1 , asaSeq.size() );
-		assertEquals( 1 , jenSeq.size() );
-		assertEquals( 3 , mikeSeq.size() );
-		assertEquals( 5 , nathanSeq.size() );
+		assertTrue( 0 < asaSeq.length() );
+		assertTrue( 0 < jenSeq.length() );
+		assertTrue( 0 < mikeSeq.length() );
+		assertTrue( 0 < nathanSeq.length() );
+	}
+	
+	@Test
+	public void testGetTokenSequenceLength() {
+		// Parse the codes
+		instructor.process();
+		
+		StringBuilder asaSeq = Asa.getTokenSequence();
+		StringBuilder jenSeq = Jen.getTokenSequence();
+		StringBuilder mikeSeq = Mike.getTokenSequence();
+		StringBuilder nathanSeq = Nathan.getTokenSequence();
+		
+		// Here, we are just confirming that the number of token sequences match the number
+		// of code files. The actual contents of token sequences will be tested in other unit tests
+		assertTrue( 0 < asaSeq.length() );
+		assertTrue( 0 < jenSeq.length() );
+		assertTrue( 0 < mikeSeq.length() );
+		assertTrue( 0 < nathanSeq.length() );
 	}
 	
 	@Test

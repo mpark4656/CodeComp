@@ -1,8 +1,5 @@
 package edu.odu.cs.cs350.red2.Interface;
 
-import edu.odu.cs.cs350.red2.Interface.*;
-import edu.odu.cs.cs350.red2.LexicalTools.Token;
-
 /**
  * This class represent each pair of students in the instructor's class
  * Once all codes are parsed, token sequences from 2 students are compared.
@@ -63,6 +60,24 @@ public class StudentPair implements Comparable<StudentPair>
 	}
 	
 	/**
+	 * Return the name of the first student
+	 * @return String name of the first student
+	 */
+	public String getFirstStudentName()
+	{
+		return student1.toString();
+	}
+	
+	/**
+	 * Return the name of the second student
+	 * @return String name of the second student
+	 */
+	public String getSecondStudentName()
+	{
+		return student2.toString();
+	}
+	
+	/**
 	 * Public get method that returns true if calculateRawScore() has been invoked
 	 * @return boolean true if the raw score has been calculated for this pair
 	 */
@@ -84,18 +99,34 @@ public class StudentPair implements Comparable<StudentPair>
 	 * Calculate the raw score for these 2 students
 	 * @post rawScoreCalculated == true
 	 */
-	public void calculateRawScore()
+	public void calculateRawScore( double T )
 	{
-		// TODO Implementation
+		if( rawScoreCalculated ) {
+			return;
+		}
+		
+		double combinedLength = student1.getTokenSequenceLength() + student2.getTokenSequenceLength();
+		double numerator = 4 * T;
+		double denominator = Math.pow( combinedLength , 2.0 );
+		
+		rawScore = numerator / denominator;
+		
+		rawScoreCalculated = true;
 	}
 	
 	/**
 	 * Calculate the z-score for these 2 students
 	 * @post zScoreCalculated == true
 	 */
-	public void calculateZScore()
+	public void calculateZScore( double average , double standardDeviation )
 	{
-		// TODO Implementation
+		if( zScoreCalculated ) {
+			return;
+		}
+		
+		zScore = ( rawScore - average ) / standardDeviation;
+		
+		zScoreCalculated = true;
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350.red2.Interface;
 
+import edu.odu.cs.cs350.codeCompCommon.SharedPhrases;
 import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
 import java.util.ArrayList;
 import java.io.File;
@@ -196,12 +197,17 @@ public class Instructor
 	 * Add each student and student pairs and set receivedSubmissions to true.
 	 * Then, process the data and analyze them.
 	 * @param File submissionDirectory
-	 * @pre receivedSubmission == false
+	 * @pre receivedSubmissions == false
 	 * @post receivedSubmissions == true
 	 * @return boolean Return true if the submissions were successfully received.
 	 */
 	public boolean acceptStudentSubmissions( File submissionDirectory )
 	{
+		// If this instructor already received submissions, return true.
+		if( receivedSubmissions ) {
+			return true;
+		}
+		
 		// If this is not a directory/folder, return.
 		if( !submissionDirectory.isDirectory() ) {
 			return false;
@@ -310,6 +316,11 @@ public class Instructor
 	 */
 	public boolean process()
 	{
+		// If the submissions are already parsed, return true
+		if( parsedStudentSubmissions == true ) {
+			return true;
+		}
+		
 		// Iterate through all students
 		for( int i = 0 ; i < students.size(); i++ ) {
 			
@@ -318,6 +329,16 @@ public class Instructor
 				return false;
 			}
 		}
+		
+		// Debugging Output
+		/*
+		System.out.println();
+		for( Student stud : students ) {
+			System.out.println( stud.toString() + "\nToken Length: " + stud.getTokenSequenceLength() );
+			System.out.println( stud.getTokenSequence() );
+			System.out.println();
+		}
+		*/
 		
 		// If the control reaches here, that means all student submissions were successfully
 		// parsed.
@@ -328,12 +349,78 @@ public class Instructor
 	/**
 	 * Analyze similarity and calculate the raw scores and the z-scores.
 	 * @pre parsedStudentSubmissions == true && analyzedTokenSequence == false
-	 * @post analysedTokenSequence == true
+	 * @post analysedTokenSequences == true
 	 * @return boolean Return true if the token sequences were 
 	 * successfully analyzed.
 	 */
 	public boolean analyze()
 	{
+		// If this instructor already analyzed token sequences, return true
+		if( analyzedTokenSequences ) {
+			return true;
+		}
+		
+		stuPairs.sort( null );
+		
+		// Create SharedPhrases object - this will store token sequences of all students
+		SharedPhrases phrases = new SharedPhrases();
+		
+		// Add each student's token sequence to phrases
+		for( Student stud : students ) {
+			phrases.addSentence( stud.getTokenSequence().toString() , stud.toString() );
+		}
+		
+		double rawScoreAverage = 0;
+		
+		// Debugging Output
+		System.out.println();
+		
+		// Iterate through every student pair and calculate the raw score
+		for( StudentPair studPair : stuPairs ) {
+			double T = 0;
+			
+			// Calculate T
+			for( CharSequence phrase : phrases.allPhrases() ) {
+				if( phrases.sourcesOf(phrase.toString()).contains(studPair.getFirstStudentName()) && 
+					phrases.sourcesOf(phrase.toString()).contains(studPair.getSecondStudentName()) ) {
+					
+					int k = phrases.sourcesOf(phrase.toString()).size();
+					
+					int len = phrase.length();
+					double toAdd = len / Math.pow( (k - 1), 2.0 );
+					T = T + toAdd;
+				}
+			}
+			
+			studPair.calculateRawScore( T );
+			rawScoreAverage += studPair.getRawScore();
+			
+			// Debugging Output
+			System.out.println( studPair + " has a raw score of " + studPair.getRawScore() );
+		}
+		
+		rawScoreAverage = rawScoreAverage / stuPairs.size();
+		
+		double standardDeviation = 0;
+		double sigma = 0;
+		
+		// Iterate through every student pair and calculate the standard deviation
+		for( StudentPair studPair : stuPairs ) {
+			sigma += Math.pow( studPair.getRawScore() - rawScoreAverage , 2.0 );
+		}
+		
+		standardDeviation = Math.sqrt( sigma / stuPairs.size() );
+		
+		// Debugging Output
+		System.out.println();
+		
+		// Iterate through every student pair and calculate the z-score
+		for( StudentPair studPair : stuPairs ) {
+			studPair.calculateZScore( rawScoreAverage , standardDeviation );
+			
+			// Debugging Output
+			System.out.println( studPair + " has a z-score of " + studPair.getZScore() );
+		}
 		
 		// Not yet implemented
 		analyzedTokenSequences = true;
