@@ -155,7 +155,6 @@ SingleCharacter = [^\r\n\'\\]
   "noexcept"					 { return symbol(TokenTypes.NOEXCEPT); }
   "not"							 { return symbol(TokenTypes.NOT); }
   "not_eq"						 { return symbol(TokenTypes.NOTEQ); }
-  "nullptr"						 { return symbol(TokenTypes.NULL_LITERAL); }
   "operator"					 { return symbol(TokenTypes.OPERATOR); }
   "or"							 { return symbol(TokenTypes.OROR); }
   "or_eq"						 { return symbol(TokenTypes.OREQ); }
@@ -200,7 +199,8 @@ SingleCharacter = [^\r\n\'\\]
   
   /* null literal */
   "null"                         { return symbol(TokenTypes.NULL_LITERAL); }
-  
+  "NULL"						 { return symbol(TokenTypes.NULL_LITERAL); }
+  "nullptr"						 { return symbol(TokenTypes.NULL_LITERAL); }
   
   /* separators */
   "("                            { return symbol(TokenTypes.LPAREN); }

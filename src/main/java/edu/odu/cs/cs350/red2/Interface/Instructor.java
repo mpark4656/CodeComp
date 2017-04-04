@@ -360,6 +360,10 @@ public class Instructor
 			return true;
 		}
 		
+		if( stuPairs.size() == 0 ) {
+			return false;
+		}
+		
 		// Sort the student pairs
 		stuPairs.sort( null );
 		
