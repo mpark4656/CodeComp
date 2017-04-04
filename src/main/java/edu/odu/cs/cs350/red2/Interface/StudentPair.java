@@ -5,7 +5,7 @@ package edu.odu.cs.cs350.red2.Interface;
  * Once all codes are parsed, token sequences from 2 students are compared.
  * @author mpark
  */
-public class StudentPair implements Comparable<StudentPair>
+public class StudentPair implements Comparable<StudentPair> , Cloneable
 {
 	private Student student1;
 	private Student student2;
@@ -39,6 +39,20 @@ public class StudentPair implements Comparable<StudentPair>
 		zScore = 0;
 		rawScoreCalculated = false;
 		zScoreCalculated = false;
+	}
+	
+	/**
+	 * Copy Constructor
+	 * @param StudentPair object to copy
+	 */
+	public StudentPair( StudentPair obj )
+	{
+		this.student1 = (Student) obj.student1.clone();
+		this.student2 = (Student) obj.student2.clone();
+		this.rawScore = obj.rawScore;
+		this.zScore = obj.zScore;
+		this.rawScoreCalculated = obj.rawScoreCalculated;
+		this.zScoreCalculated = obj.zScoreCalculated;
 	}
 	
 	/**
@@ -114,7 +128,7 @@ public class StudentPair implements Comparable<StudentPair>
 		double denominator = Math.pow( combinedLength , 2.0 );
 		
 		rawScore = numerator / denominator;
-		
+
 		rawScoreCalculated = true;
 	}
 	
@@ -184,6 +198,43 @@ public class StudentPair implements Comparable<StudentPair>
 		}
 		
 		return this.student1.compareTo(obj.student1);
+	}
+	
+	/**
+	 * Override hashCode() method
+	 * @return int hash code of this object
+	 */
+	@Override
+	public int hashCode()
+	{
+		int result = 11;
+		
+		result = 31 * result + student1.hashCode();
+		result = 31 * result + student2.hashCode();
+		
+		long f = Double.doubleToLongBits(rawScore);
+		
+		result = 31 * result + (int) ( f ^ ( f >>> 32));
+		
+		f = Double.doubleToLongBits(zScore);
+				
+		result = 31 * result + (int) ( f ^ ( f >>> 32));
+		
+		result = 31 * result + ( rawScoreCalculated ? 1 : 0 );
+		
+		result = 31 * result + ( zScoreCalculated ? 1 : 0 );
+		
+		return result;
+	}
+	
+	/**
+	 * Override clone() method
+	 * @return Object copy of this StudentPair
+	 */
+	@Override
+	public Object clone()
+	{
+		return new StudentPair( this );
 	}
 	
 } // End of StudentPair.java
