@@ -30,5 +30,5 @@ deploy-job:
   stage: deploy
   script:
     - eval $(ssh-agent -s)  #set up SSH for CI 
-    - ssh-add <(echo "$RSYNC_KEY")
-    - rsync -auvz -e "ssh" build/reports/tests/test/ aholm@atria.cs.odu.edu:/home/aholm/public_html/cs350/sshAsst/GitLab1/
+    - ssh-add <(echo "$RSYNC_K")
+    - rsync -auvz -e "ssh" build/reports/tests/test/ mpark@atria.cs.odu.edu:/home/aholm/public_html/cs350/reports/
