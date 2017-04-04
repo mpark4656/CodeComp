@@ -360,6 +360,7 @@ public class Instructor
 			return true;
 		}
 		
+		// Sort the student pairs
 		stuPairs.sort( null );
 		
 		// Create SharedPhrases object - this will store token sequences of all students
@@ -374,6 +375,8 @@ public class Instructor
 		System.out.println();
 		
 		// Iterate through every student pair and calculate the raw score
+		// Formula for T: len(p) / (k - 1)^2
+		//  , where p is a shared phrase and k is the total number of students sharing the phrase
 		for( StudentPair studPair : stuPairs ) {
 			double T = 0;
 			
@@ -383,9 +386,7 @@ public class Instructor
 					phrases.sourcesOf(phrase.toString()).contains(studPair.getSecondStudentName()) ) {
 					
 					int k = phrases.sourcesOf(phrase.toString()).size();
-					
-					int len = phrase.length();
-					double toAdd = len / Math.pow( (k - 1), 2.0 );
+					double toAdd = phrase.length() / Math.pow( (k - 1), 2.0 );
 					T = T + toAdd;
 				}
 			}
@@ -409,13 +410,13 @@ public class Instructor
 			System.out.println( studPair + " has a z-score of " + studPair.getZScore() );
 		}
 		
-		// Not yet implemented
 		analyzedTokenSequences = true;
 		return analyzedTokenSequences;
 	}
 	
 	/**
 	 * Private method to calculate the average of raw scores
+	 * @pre StudentPair object must have the raw score calculated
 	 * @return double average of raw scores
 	 */
 	private double calculateRawScoreAverage()
@@ -433,7 +434,8 @@ public class Instructor
 	
 	/**
 	 * Private method to calculate the standard deviation, 
-	 * Formula: sqrt( sum( (average - individualScore)^2 ) / TotalCount )
+	 * Formula: sqrt( sum( (average - individualScore)^2 ) / TotalCount ) 
+	 * @pre StudentPair object must have the raw score calculated
 	 * @param averageRawScore double average of the raw scores
 	 * @return double Standard Deviation
 	 */

@@ -97,10 +97,14 @@ public class StudentPair implements Comparable<StudentPair>
 	
 	/**
 	 * Calculate the raw score for these 2 students
+	 * Formula: (4 * T) / ( L1 + L2)^2
+	 *  , where L1 is the sequence length of student 1
+	 *  and L2 is the sequence length of student 2
 	 * @post rawScoreCalculated == true
 	 */
 	public void calculateRawScore( double T )
 	{
+		// If the raw score has been calculated already, just return
 		if( rawScoreCalculated ) {
 			return;
 		}
@@ -116,10 +120,13 @@ public class StudentPair implements Comparable<StudentPair>
 	
 	/**
 	 * Calculate the z-score for these 2 students
+	 * Formula: (x - u) / s
+	 *  , where x is the raw score, u is the average raw score and s is the standard deviation.
 	 * @post zScoreCalculated == true
 	 */
 	public void calculateZScore( double average , double standardDeviation )
 	{
+		// If the z-score has been calculated already, just return
 		if( zScoreCalculated ) {
 			return;
 		}
