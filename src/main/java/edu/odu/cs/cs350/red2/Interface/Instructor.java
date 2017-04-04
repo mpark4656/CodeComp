@@ -370,8 +370,6 @@ public class Instructor
 			phrases.addSentence( stud.getTokenSequence().toString() , stud.toString() );
 		}
 		
-		double rawScoreAverage = 0;
-		
 		// Debugging Output
 		System.out.println();
 		
@@ -393,30 +391,19 @@ public class Instructor
 			}
 			
 			studPair.calculateRawScore( T );
-			rawScoreAverage += studPair.getRawScore();
 			
 			// Debugging Output
 			System.out.println( studPair + " has a raw score of " + studPair.getRawScore() );
 		}
 		
-		rawScoreAverage = rawScoreAverage / stuPairs.size();
-		
-		double standardDeviation = 0;
-		double sigma = 0;
-		
-		// Iterate through every student pair and calculate the standard deviation
-		for( StudentPair studPair : stuPairs ) {
-			sigma += Math.pow( studPair.getRawScore() - rawScoreAverage , 2.0 );
-		}
-		
-		standardDeviation = Math.sqrt( sigma / stuPairs.size() );
+		double rawScoreAverage = calculateRawScoreAverage();
 		
 		// Debugging Output
 		System.out.println();
 		
 		// Iterate through every student pair and calculate the z-score
 		for( StudentPair studPair : stuPairs ) {
-			studPair.calculateZScore( rawScoreAverage , standardDeviation );
+			studPair.calculateZScore( rawScoreAverage , calculateStandardDev( rawScoreAverage ) );
 			
 			// Debugging Output
 			System.out.println( studPair + " has a z-score of " + studPair.getZScore() );
@@ -425,6 +412,44 @@ public class Instructor
 		// Not yet implemented
 		analyzedTokenSequences = true;
 		return analyzedTokenSequences;
+	}
+	
+	/**
+	 * Private method to calculate the average of raw scores
+	 * @return double average of raw scores
+	 */
+	private double calculateRawScoreAverage()
+	{
+		double rawScoreAverage = 0;
+		
+		for( StudentPair studPair : stuPairs ) {
+			rawScoreAverage += studPair.getRawScore();
+		}
+		
+		rawScoreAverage = rawScoreAverage / stuPairs.size();
+		
+		return rawScoreAverage;
+	}
+	
+	/**
+	 * Private method to calculate the standard deviation, 
+	 * Formula: sqrt( sum( (average - individualScore)^2 ) / TotalCount )
+	 * @param averageRawScore double average of the raw scores
+	 * @return double Standard Deviation
+	 */
+	private double calculateStandardDev( double averageRawScore )
+	{
+		double standardDeviation = 0;
+		double sigma = 0;
+		
+		// Iterate through every student pair and calculate the standard deviation
+		for( StudentPair studPair : stuPairs ) {
+			sigma += Math.pow( studPair.getRawScore() - averageRawScore , 2.0 );
+		}
+		
+		standardDeviation = Math.sqrt( sigma / stuPairs.size() );
+		
+		return standardDeviation;
 	}
 	
 	/**
@@ -441,7 +466,7 @@ public class Instructor
 	 */
 	private void writeToFile()
 	{
-		
+		// Not yet implemented
 	}
 	
 	/**
