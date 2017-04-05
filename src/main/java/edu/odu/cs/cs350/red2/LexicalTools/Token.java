@@ -32,9 +32,9 @@ public class Token implements Cloneable
 	
 	/**
 	 * Constructor that accepts the type, the line number, and the column number.
-	 * @param theType
-	 * @param line
-	 * @param column
+	 * @param theType TokenTypes
+	 * @param line int
+	 * @param column int
 	 */
 	public Token( final TokenTypes theType , final int line , final int column )
 	{
@@ -46,10 +46,10 @@ public class Token implements Cloneable
 	
 	/**
 	 * Constructor that accepts the type, the line number, the column number and the lexeme.
-	 * @param theType
-	 * @param line
-	 * @param column
-	 * @param theLex
+	 * @param theType TokenTypes
+	 * @param line int
+	 * @param column int
+	 * @param theLex Object
 	 */
 	public Token( final TokenTypes theType , final int line , final int column , final Object theLex )
 	{
@@ -73,7 +73,7 @@ public class Token implements Cloneable
 	
 	/**
 	 * Return the token type.
-	 * @return
+	 * @return type TokenTypes
 	 */
 	public TokenTypes getTokenType()
 	{

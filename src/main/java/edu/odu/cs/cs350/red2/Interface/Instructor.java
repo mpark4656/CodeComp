@@ -43,9 +43,7 @@ public class Instructor
 	 * The submission directory will be obtained via acceptStudentSubmissions(), 
 	 * so it's not one of the parameters of this constructor.
 	 * 
-	 * @param String template specified by user
-	 * @param String sheetname specified by user
-	 * @param File directory where output files should be written to
+	 * @param outputSpreadsheet String
 	 */
 	public Instructor( String outputSpreadsheet)
 	{
@@ -103,9 +101,7 @@ public class Instructor
 	
 	/**
 	 * Public Mutator method for setting the template
-	 * @param String Template name
-	 * @pre templateSpecified == false
-	 * @post templateSpecified == true
+	 * @param template String Template name
 	 */
 	public void setTemplate( String template )
 	{
@@ -116,7 +112,7 @@ public class Instructor
 	
 	/**
 	 * Public Mutator method for setting the raw sheetname
-	 * @param String Sheet name
+	 * @param sheetName String Sheet name
 	 */
 	public void setSheetName( String sheetName )
 	{
@@ -156,7 +152,7 @@ public class Instructor
 	
 	/**
 	 * Return Student object for the given identifier.
-	 * @param String identifier
+	 * @param identifier String identifier
 	 * @return Student student object that corresponds to the given identifier - 
 	 * If not found, return null;
 	 */
@@ -196,9 +192,7 @@ public class Instructor
 	/**
 	 * Add each student and student pairs and set receivedSubmissions to true.
 	 * Then, process the data and analyze them.
-	 * @param File submissionDirectory
-	 * @pre receivedSubmissions == false
-	 * @post receivedSubmissions == true
+	 * @param submissionDirectory File
 	 * @return boolean Return true if the submissions were successfully received.
 	 */
 	public boolean acceptStudentSubmissions( File submissionDirectory )
@@ -283,7 +277,6 @@ public class Instructor
 	
 	/**
 	 * Public method to print feedback output for user
-	 * @pre receivedSubmissions == true
 	 */
 	public void outputFeedback()
 	{
@@ -310,8 +303,6 @@ public class Instructor
 	
 	/**
 	 * "Tokenize" all codes in each student submission.
-	 * @pre receivedSubmission == true && parsedStudentSubmissions == false
-	 * @post parsedStudentSubmissions == true;
 	 * @return boolean Return true if the submissions were successfully parsed.
 	 */
 	public boolean process()
@@ -348,8 +339,6 @@ public class Instructor
 	
 	/**
 	 * Analyze similarity and calculate the raw scores and the z-scores.
-	 * @pre parsedStudentSubmissions == true && analyzedTokenSequence == false
-	 * @post analysedTokenSequences == true
 	 * @return boolean Return true if the token sequences were 
 	 * successfully analyzed.
 	 */
@@ -420,7 +409,6 @@ public class Instructor
 	
 	/**
 	 * Private method to calculate the average of raw scores
-	 * @pre StudentPair object must have the raw score calculated
 	 * @return double average of raw scores
 	 */
 	private double calculateRawScoreAverage()
@@ -439,7 +427,6 @@ public class Instructor
 	/**
 	 * Private method to calculate the standard deviation, 
 	 * Formula: sqrt( sum( (average - individualScore)^2 ) / TotalCount ) 
-	 * @pre StudentPair object must have the raw score calculated
 	 * @param averageRawScore double average of the raw scores
 	 * @return double Standard Deviation
 	 */
@@ -460,7 +447,6 @@ public class Instructor
 	
 	/**
 	 * Generate and write result tables
-	 * @pre analyzedTokenSequence == true
 	 */
 	public void displayResult()
 	{

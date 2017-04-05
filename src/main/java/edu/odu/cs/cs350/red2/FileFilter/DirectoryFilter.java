@@ -13,6 +13,7 @@ public class DirectoryFilter implements FileFilter
 {
 	/**
 	 * Accept only the file paths that are folders.
+	 * @param filePath File
 	 * @return boolean Return true if the file path is a directory.
 	 */
 	@Override

@@ -13,6 +13,7 @@ public class CodeFileFilter implements FileFilter
 {
 	/**
 	 * Accept only the code files and directories
+	 * @param filePath File
 	 * @return boolean Return true if the file path is a directory.
 	 */
 	@Override

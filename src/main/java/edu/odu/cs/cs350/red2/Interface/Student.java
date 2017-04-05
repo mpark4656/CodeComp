@@ -21,7 +21,7 @@ public class Student implements Comparable<Student> , Cloneable
 	/**
 	 * Constructor 
 	 * Instantiates Student with the given identifier
-	 * @param String identifier
+	 * @param identifier String
 	 */
 	public Student( String identifier )
 	{
@@ -31,7 +31,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param Student object to copy
+	 * @param obj Student object to copy
 	 */
 	@SuppressWarnings("unchecked")
 	public Student( Student obj )
@@ -41,9 +41,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Add a submission to ArrayList<Submission> submissions
+	 * Add a submission to ArrayList of submissions
 	 * @param submissionDirectory File the submission directory
-	 * @pre submissionDirectory.isDirectory() == true
 	 */
 	public void addSubmission( File submissionDirectory )
 	{
@@ -52,7 +51,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Public accessor to return a submission
-	 * @param String subName
+	 * @param subName String
 	 * @return Submission Submission object for the given submission name 
 	 * Return null if not found
 	 */
@@ -81,7 +80,6 @@ public class Student implements Comparable<Student> , Cloneable
 	/**
 	 * Return the object of the Submission that "counts" and will
 	 * be graded.
-	 * @pre submissions.size() != 0
 	 * @return Submission Priority submission object
 	 */
 	public Submission getPrioritySubmission()
@@ -140,7 +138,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Return the length of the aggregate token sequence
-	 * @return
+	 * @return int length
 	 */
 	public int getTokenSequenceLength()
 	{
@@ -149,6 +147,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Override the equals method from java.lang.Object
+	 * @param obj Object
 	 * @return boolean True if toCompare equals this Student object
 	 */
 	@Override
@@ -173,10 +172,8 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Compare this Student object to another.
-	 * @param Student a non-null Student object to compare with
-	 * @return int value > 0 if this object precedes the other,
-	 * == 0 if the two are equal, and < 0 if this contact
-	 * follows the other.  
+	 * @param theStudent Student a non-null Student object
+	 * @return value int
 	 */
 	@Override
 	public int compareTo( Student theStudent )
@@ -186,7 +183,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Return the unique identifier as String
-	 * @return String identifier
+	 * @return identifier String 
 	 */
 	@Override
 	public String toString()
@@ -196,7 +193,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Override hashCode() method
-	 * @return int hash code of this object
+	 * @return hashCode int
 	 */
 	@Override
 	public int hashCode()

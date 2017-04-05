@@ -18,8 +18,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Constructor that accepts 2 Student objects
-	 * @param Student student1
-	 * @param Student student2
+	 * @param student1 Student
+	 * @param student2 Student
 	 */
 	public StudentPair( Student student1 , Student student2 )
 	{
@@ -43,7 +43,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param StudentPair object to copy
+	 * @param obj StudentPair object to copy
 	 */
 	public StudentPair( StudentPair obj )
 	{
@@ -114,7 +114,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	 * Formula: (4 * T) / ( L1 + L2)^2
 	 *  , where L1 is the sequence length of student 1
 	 *  and L2 is the sequence length of student 2
-	 * @post rawScoreCalculated == true
+	 * @param T double
 	 */
 	public void calculateRawScore( double T )
 	{
@@ -136,7 +136,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	 * Calculate the z-score for these 2 students
 	 * Formula: (x - u) / s
 	 *  , where x is the raw score, u is the average raw score and s is the standard deviation.
-	 * @post zScoreCalculated == true
+	 * @param average double
+	 * @param standardDeviation double
 	 */
 	public void calculateZScore( double average , double standardDeviation )
 	{
@@ -152,7 +153,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override toString() method
-	 * @return String Student Pair
+	 * @return String StudentPair
 	 */
 	@Override
 	public String toString()
@@ -162,6 +163,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override equals() method
+	 * @param obj Object
 	 * @return boolean True if the objects are equal
 	 */
 	@Override
@@ -186,9 +188,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override compareTo from Comparable to allow sorting of Student Pair objects
-	 * @return int value > 0 if this object precedes the other,
-	 * == 0 if the two are equal, and < 0 if this contact
-	 * follows the other. 
+	 * @param obj StudentPair
+	 * @return int value
 	 */
 	@Override
 	public int compareTo( StudentPair obj )

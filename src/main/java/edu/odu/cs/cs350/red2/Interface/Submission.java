@@ -38,7 +38,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	/**
 	 * Calls private method, searchAllFiles to recursively search all
 	 * files in the given directory and add each file to the collection.
-	 * @param File directory
+	 * @param directory File
 	 */
 	public Submission( File directory )
 	{
@@ -68,6 +68,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	/**
 	 * Recursively search all files in directory and add each file
 	 * to allFiles.
+	 * @param dir File
 	 */
 	private void searchAllFiles( File dir )
 	{
@@ -85,6 +86,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	/**
 	 * Recursively search all code files in directory and add each file
 	 * to codeFiles.
+	 * @param dir File
 	 */
 	private void searchAllCodeFiles( File dir )
 	{
@@ -101,7 +103,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Public accessor that returns all files in ArrayList
-	 * @return ArrayList<File> All files in this submission
+	 * @return ArrayList of File All files in this submission
 	 */
 	public ArrayList<File> getAllFiles()
 	{
@@ -110,7 +112,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Public accessor that returns all code files in ArrayList
-	 * @return ArrayList<File> All code files in this submission
+	 * @return ArrayList of File All code files in this submission
 	 */
 	public ArrayList<File> getCodeFiles()
 	{
@@ -121,7 +123,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	 * Private method to return the file extension for the given
 	 * file path.
 	 * For example, test.java would return "java"
-	 * @param File filePath
+	 * @param filePath File
 	 * @return String File extension
 	 */
 	private String getExtension( File filePath )
@@ -234,7 +236,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Return the token sequences of this submission as StringBuilder
-	 * @return ArrayList<StringBuilder> Token Sequences as StringBuilder
+	 * @return ArrayList of StringBuilder Token Sequences as StringBuilder
 	 */
 	public ArrayList<StringBuilder> getTokenSequences()
 	{
@@ -305,10 +307,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Compare String directory name, 
-	 * 1. Return value < 0 if this Submission follows obj
-	 * 2. Return 0 if they have the same name
-	 * 3. Return value > 0 if this Submission precedes obj
+	 * Compare String directory name 
+	 * @param obj Submission
 	 * @return int comparison value
 	 */
 	@Override
@@ -330,6 +330,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	/**
 	 * Overrides equals() method, 
 	 * Two submissions are equal if they both point to the same submission directory
+	 * @param obj Object
+	 * @return boolean true if the two objects are equal
 	 */
 	@Override
 	public boolean equals( Object obj )

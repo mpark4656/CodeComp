@@ -70,7 +70,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Override iterator()
-	 * @return Iterator<Token>
+	 * @return Iterator of Token
 	 */
 	@Override
 	public final Iterator<Token> iterator()
