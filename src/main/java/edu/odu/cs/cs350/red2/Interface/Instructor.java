@@ -6,11 +6,17 @@ import java.util.ArrayList;
 import java.io.File;
 
 /**
- * Instructor Class - 
- * This class will be responsible for invoking the methods of other interfaces 
- * and passing information from one interface to another.
- * @author mpark
- * @author nruf
+ * <pre>
+ * <b>Instructor Class</b>
+ * 
+ * This class serves as the main interface for CodeComp.
+ * The operations of this class attempt to mirror the actions of 
+ * a real-life instructor who is reading through student codes to
+ * see if any of them cheated by copying another student's codes.
+ * 
+ * This class will invoke various methods from the sub-interfaces:
+ * Student, StudentPair, Submission
+ * </pre>
  */
 public class Instructor
 {
@@ -39,11 +45,12 @@ public class Instructor
 	private File outputDirectory;
 	
 	/**
-	 * Constructor - 
+	 * <pre>
+	 * Constructor
 	 * The submission directory will be obtained via acceptStudentSubmissions(), 
-	 * so it's not one of the parameters of this constructor.
-	 * 
-	 * @param outputSpreadsheet String
+	 * so the submission directory path is not one of the parameters of this constructor.
+	 * </pre>
+	 * @param outputSpreadsheet <b>String</b>
 	 */
 	public Instructor( String outputSpreadsheet)
 	{
@@ -64,8 +71,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns true if a specific template is set.
-	 * @return boolean Return true if user specified template.
+	 * Public method that returns true if the instructor specified a template
+	 * @return <b>boolean</b> -  Return true if this instructor specified a template.
 	 */
 	public boolean isTemplateSpecified()
 	{
@@ -73,8 +80,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns true if a specific sheetname is set.
-	 * @return boolean Return true if user specified sheet name.
+	 * Public method that returns true if this instructor specified a sheet name
+	 * @return <b>boolean</b> - Return true if this instructor specified a sheet name.
 	 */
 	public boolean isSheetNameSpecified()
 	{
@@ -82,8 +89,11 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns template name as String
-	 * @return String Name of user-specified template
+	 * <pre>
+	 * Public method that returns the name of the template as String.
+	 * If a template has not been specified, it will return an empty string.
+	 * </pre>
+	 * @return <b>String</b> - The template name
 	 */
 	public String getTemplate()
 	{
@@ -91,8 +101,11 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns sheet name as String
-	 * @return String Name of user-specified sheet name
+	 * <pre>
+	 * Public method that returns the name of the sheet name as String.
+	 * If a sheet name has not been specified, it will return an empty string.
+	 * </pre>
+	 * @return <b>String</b> - The sheet name
 	 */
 	public String getSheetName()
 	{
@@ -100,8 +113,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Mutator method for setting the template
-	 * @param template String Template name
+	 * Public method that sets the template name
+	 * @param template <b>String</b>
 	 */
 	public void setTemplate( String template )
 	{
@@ -111,8 +124,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Mutator method for setting the raw sheetname
-	 * @param sheetName String Sheet name
+	 * Public method that sets the sheet name
+	 * @param sheetName <b>String</b>
 	 */
 	public void setSheetName( String sheetName )
 	{
@@ -122,9 +135,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor Method that returns true if this instructor received student
-	 * submissions
-	 * @return boolean Return true if this instructor accepted student submissions
+	 * Public method that returns true if this instructor received student submissions
+	 * @return <b>boolean</b> - Return true if this instructor accepted student submissions
 	 */
 	public boolean isSubmissionReceived()
 	{
@@ -132,8 +144,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns true if student codes have been parsed
-	 * @return boolean Return true if submissions were parsed.
+	 * Public method that returns true if student codes have been parsed
+	 * @return <b>boolean</b> - Return true if this instructor parsed students' codes.
 	 */
 	public boolean isSubmissionParsed()
 	{
@@ -141,9 +153,11 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accessor method that returns true if Token Sequences have been analyzed
-	 * @return boolean Return true if raw scores and z-scores 
-	 * have been calculated
+	 * <pre>
+	 * Public method that returns true if token sequences have been analyzed.
+	 * The products of token sequence analysis are raw scores and z-scores.
+	 * </pre>
+	 * @return <b>boolean</b> - Return true if raw scores and z-scores have been calculated
 	 */
 	public boolean isTokenSequenceAnalyzed()
 	{
@@ -151,10 +165,12 @@ public class Instructor
 	}
 	
 	/**
-	 * Return Student object for the given identifier.
-	 * @param identifier String identifier
-	 * @return Student student object that corresponds to the given identifier - 
-	 * If not found, return null;
+	 * <pre>
+	 * Return the Student object for the given identifier.
+	 * If not found, it will return null.
+	 * </pre>
+	 * @param identifier <b>String</b> identifier
+	 * @return <b>Student</b> The student object that corresponds to the identifier
 	 */
 	public Student getStudent( String identifier )
 	{
@@ -172,8 +188,9 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accssor method to return the total number of students
-	 * @return int Total Number of Students
+	 * Public method that returns the total number of students from whom
+	 * this instructor received submissions
+	 * @return <b>int</b> - Total Number of Students that submissted their codes
 	 */
 	public int getTotalStudentCount()
 	{
@@ -181,8 +198,24 @@ public class Instructor
 	}
 	
 	/**
-	 * Public Accssor method to return the total number of student pairs
-	 * @return int Total Number of Student Pairs
+	 * <pre>
+	 * Public method that returns the total number of student pairs.
+	 * 
+	 * Example:
+	 * Given 5 students, { 1 , 2 , 3 , 4 , 5 }
+	 * Ten student pairs are created.
+	 * { 1 , 2 }
+	 * { 1 , 3 }
+	 * { 1 , 4 }
+	 * { 1 , 5 }
+	 * { 2 , 3 }
+	 * { 2 , 4 }
+	 * { 2 , 5 }
+	 * { 3 , 4 }
+	 * { 3 , 5 }
+	 * { 4 , 5 }
+	 * </pre>
+	 * @return <b>int</b> - Total number of student pairs
 	 */
 	public int getTotalStudentPairCount()
 	{
@@ -190,10 +223,13 @@ public class Instructor
 	}
 	
 	/**
-	 * Add each student and student pairs and set receivedSubmissions to true.
-	 * Then, process the data and analyze them.
-	 * @param submissionDirectory File
-	 * @return boolean Return true if the submissions were successfully received.
+	 * <pre>
+	 * Public method that accepts student submissions
+	 * Precondition: receivedSubmissions == false
+	 * Postcondition: receivedSubmissions == true
+	 * </pre>
+	 * @param submissionDirectory <b>File</b>
+	 * @return <b>boolean</b> - Return true if this operation was successfully completed
 	 */
 	public boolean acceptStudentSubmissions( File submissionDirectory )
 	{
@@ -276,11 +312,18 @@ public class Instructor
 	}
 	
 	/**
-	 * Public method to print feedback output for user
+	 * <pre>
+	 * Public method that prints feedback output.
+	 * The feedback output consists of student identifier, total number of code files,
+	 * estimated number of LOC.
+	 * 
+	 * If this method is invoked when submissions have not been received, it will do nothing.
+	 * Precondition: receivedSubmissions == true
+	 * </pre>
 	 */
 	public void outputFeedback()
 	{
-		// Uh-Oh
+		// Can't produce output if submissions have not been received.
 		if( !receivedSubmissions ) {
 			return;
 		}
@@ -302,14 +345,25 @@ public class Instructor
 	}
 	
 	/**
-	 * "Tokenize" all codes in each student submission.
-	 * @return boolean Return true if the submissions were successfully parsed.
+	 * <pre>
+	 * Public method that parses student submissions.
+	 * The product of this operation is sequences of tokens.
+	 * 
+	 * Precondition: receivedSubmissions == true && parsedStudentSubmissions == false
+	 * Postcondition: parsedStudentSubmissions == true
+	 * </pre>
+	 * @return <b>boolean</b> - Return true if the submissions were successfully parsed.
 	 */
-	public boolean process()
+	public boolean parseSubmissions()
 	{
 		// If the submissions are already parsed, return true
 		if( parsedStudentSubmissions == true ) {
 			return true;
+		}
+		
+		// If submissions have not been received, return false
+		if( receivedSubmissions == false ) {
+			return false;
 		}
 		
 		// Iterate through all students
@@ -338,9 +392,13 @@ public class Instructor
 	}
 	
 	/**
-	 * Analyze similarity and calculate the raw scores and the z-scores.
-	 * @return boolean Return true if the token sequences were 
-	 * successfully analyzed.
+	 * <pre>
+	 * Analyze similarity and calculate the raw score and the z-score for every student pair.
+	 * 
+	 * Precondition: parsedStudentSubmissions == true && analyzedTokenSequences == false
+	 * Postcondition: analyzedTokenSequences == true
+	 * </pre>
+	 * @return <b>boolean</b> - Return true if the token sequences were successfully analyzed.
 	 */
 	public boolean analyze()
 	{
@@ -349,8 +407,14 @@ public class Instructor
 			return true;
 		}
 		
-		if( stuPairs.size() == 0 ) {
+		// If the submissions have not been parsed, they need to be parsed first.
+		if( parsedStudentSubmissions == false ) {
 			return false;
+		}
+		
+		// If there is no student pairs, there is nothing to analyze, return true
+		if( stuPairs.size() == 0 ) {
+			return true;
 		}
 		
 		// Sort the student pairs
@@ -408,8 +472,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Private method to calculate the average of raw scores
-	 * @return double average of raw scores
+	 * Private method that calculates the average raw score
+	 * @return <b>double</b> The average raw score
 	 */
 	private double calculateRawScoreAverage()
 	{
@@ -425,10 +489,13 @@ public class Instructor
 	}
 	
 	/**
-	 * Private method to calculate the standard deviation, 
+	 * <pre>
+	 * Private method that calculates the standard deviation.
+	 * 
 	 * Formula: sqrt( sum( (average - individualScore)^2 ) / TotalCount ) 
-	 * @param averageRawScore double average of the raw scores
-	 * @return double Standard Deviation
+	 * </pre>
+	 * @param averageRawScore <b>double</b> Average raw score
+	 * @return <b>double</b> - The standard deviation
 	 */
 	private double calculateStandardDev( double averageRawScore )
 	{
@@ -446,7 +513,7 @@ public class Instructor
 	}
 	
 	/**
-	 * Generate and write result tables
+	 * Generate and write result tables to Excel spreadsheet
 	 */
 	public void displayResult()
 	{
@@ -454,7 +521,7 @@ public class Instructor
 	}
 	
 	/**
-	 * Private method that writes results to Excel spreadsheet
+	 * Private method that writes a table to Excel spreadsheet
 	 */
 	private void writeToFile()
 	{
@@ -462,8 +529,8 @@ public class Instructor
 	}
 	
 	/**
-	 * Override toString() method, return the output directory name
-	 * @return String output directory name
+	 * Override toString() method to return the output directory name as String
+	 * @return <b>String</b> - Output directory name
 	 */
 	@Override
 	public String toString()

@@ -217,7 +217,7 @@ public class TestStudent {
 	@Test
 	public void testGetTokenSequence() {
 		// Parse the codes
-		instructor.process();
+		instructor.parseSubmissions();
 		
 		StringBuilder asaSeq = Asa.getTokenSequence();
 		StringBuilder jenSeq = Jen.getTokenSequence();
@@ -235,7 +235,7 @@ public class TestStudent {
 	@Test
 	public void testGetTokenSequenceLength() {
 		// Parse the codes
-		instructor.process();
+		instructor.parseSubmissions();
 		
 		StringBuilder asaSeq = Asa.getTokenSequence();
 		StringBuilder jenSeq = Jen.getTokenSequence();

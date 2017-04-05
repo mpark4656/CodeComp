@@ -234,7 +234,7 @@ public class TestInstructor {
 	public void testIsSubmissionParsed() {
 		instructor = new Instructor( "output" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
-		instructor.process();
+		instructor.parseSubmissions();
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );
@@ -400,7 +400,7 @@ public class TestInstructor {
 	public void testProcess() {
 		instructor = new Instructor( "output" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
-		instructor.process();
+		instructor.parseSubmissions();
 		
 		assertFalse( instructor.isTemplateSpecified() );
 		assertFalse( instructor.isSheetNameSpecified() );

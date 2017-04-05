@@ -4,17 +4,24 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * This is a helper class that filters out any files that is not a code file.
- * This will only accept Code Files and Directories.
+ * <pre>
+ * A helper class that filters out any paths that do not have the extension of
+ * a code file. This filter will be used during a recursive search for code files
+ * in a parent directory. For this reason, directory paths will not be filtered out.
  * 
- * @author mpark
+ * The accepted file extensions are
+ * 1. .cpp
+ * 2. hpp
+ * 3. java
+ * 4. h
+ * </pre>
  */
 public class CodeFileFilter implements FileFilter
 {
 	/**
 	 * Accept only the code files and directories
 	 * @param filePath File
-	 * @return boolean Return true if the file path is a directory.
+	 * @return <b>boolean</b> - Return true if the file path is a directory or a code file.
 	 */
 	@Override
 	public boolean accept( File filePath )

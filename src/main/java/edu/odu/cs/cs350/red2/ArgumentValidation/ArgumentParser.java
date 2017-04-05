@@ -3,11 +3,11 @@ package edu.odu.cs.cs350.red2.ArgumentValidation;
 import java.io.File;
 
 /**
- * This helper class is responsible for checking the command-line
- * parameter provided by user and ensure that it's proper - All of 
- * these methods could have resided in CodeComp.java as static methods, 
- * but I don't want CodeComp.java to be cluttered.
- * @author mpark
+ * <pre>
+ * This helper class is responsible for verifying the command-line
+ * parameters provided by the user and ensure that they are proper.
+ * It is also responsible for returning argument values as String.
+ * </pre>
  */
 public class ArgumentParser
 {
@@ -15,7 +15,7 @@ public class ArgumentParser
 	
 	/**
 	 * Constructor that accepts an array of String
-	 * @param args String[] command-line parameter
+	 * @param args <b>String[]</b> Command-line parameter
 	 */
 	public ArgumentParser( String[] args )
 	{
@@ -23,9 +23,13 @@ public class ArgumentParser
 	}
 	
 	/**
-	 * Checks the command-line parameter and see if the usage is proper - 
-	 * This also checks that the given directory paths are valid.
-	 * @return boolean Return true if the arguments are proper.
+	 * <pre>
+	 * Checks the command-line parameters and see if they are proper.
+	 * This also checks that the provided directory paths are valid.
+	 * For example, if the submission directory does not exist, it returns false.
+	 * If the output directory does not exist and can't be created, it returns false.
+	 * </pre>
+	 * @return <b>boolean</b> - Return true if the arguments are proper.
 	 */
 	public boolean isProperArgs()
 	{
@@ -133,8 +137,8 @@ public class ArgumentParser
 	
 	/**
 	 * Checks the command-line parameter and see if user asked for help
-	 * by including the -help option.
-	 * @return boolean Return true if user used the -help option
+	 * by including the -help option
+	 * @return <b>boolean</b> - Return true if user used the -help option
 	 */
 	public boolean argsContainHelp()
 	{
@@ -148,8 +152,8 @@ public class ArgumentParser
 	} // End of argsContainHelp()
 	
 	/**
-	 * Checks the command-line parameter and see if user specified -raw.
-	 * @return boolean Return true if user used the -raw option
+	 * Checks the command-line parameters for the -raw option
+	 * @return <b>boolean</b> - Return true if user used the -raw option
 	 */
 	public boolean argsContainSheetName()
 	{
@@ -169,8 +173,8 @@ public class ArgumentParser
 	} // End of argsContainSheetName()
 	
 	/**
-	 * Checks the command-line parameter and see if user specified -template.
-	 * @return boolean Return true if user used the -template option
+	 * Checks the command-line parameters for the -template option.
+	 * @return <b>boolean</b> - Return true if user used the -template option
 	 */
 	public boolean argsContainTemplate()
 	{
@@ -190,8 +194,8 @@ public class ArgumentParser
 	} // End of argsContainTemplate()
 	
 	/**
-	 * Return -template arg as String
-	 * @return String The actual argument after -template flag
+	 * Return -template <i>arg</i> as String
+	 * @return <b>String</b> - The actual value after the -template flag
 	 */
 	public String getTemplateArg()
 	{
@@ -220,8 +224,8 @@ public class ArgumentParser
 	} // End of getTemplateArg()
 	
 	/**
-	 * Return -raw arg as String
-	 * @return String The actual argument after -raw flag
+	 * Return -raw <i>arg</i> as String
+	 * @return <b>String</b> - The actual value after the -raw flag
 	 */
 	public String getSheetNameArg()
 	{

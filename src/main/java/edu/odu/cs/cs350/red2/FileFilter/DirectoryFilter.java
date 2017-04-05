@@ -3,18 +3,18 @@ package edu.odu.cs.cs350.red2.FileFilter;
 import java.io.*;
 
 /**
- * This is a helper class that filters out any files that is not a 
- * directory.
- * This is helpful because when the program searches the submissionDirectory,
- * it's expected that it will only scan folders only.
- * @author mpark
+ * <pre>
+ * A helper class that filters out any paths that are not referencing
+ * a directory. It will only scan folders in a parent directory and any files
+ * will be ignored.
+ * </pre>
  */
 public class DirectoryFilter implements FileFilter
 {
 	/**
 	 * Accept only the file paths that are folders.
 	 * @param filePath File
-	 * @return boolean Return true if the file path is a directory.
+	 * @return <b>boolean</b> - Return true if the file path is a directory.
 	 */
 	@Override
 	public boolean accept( File filePath )

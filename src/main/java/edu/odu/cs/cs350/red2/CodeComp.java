@@ -11,26 +11,30 @@ import edu.odu.cs.cs350.red2.ArgumentValidation.*;
 import java.io.File;
 
 /**
- * The Main Driver - 
- * Instantiates Instructor class
+ * <pre>
+ * Main Driver
  * 
- * @author mpark
- * @author nruf
+ * This driver instantiates the Instructor class.
+ * It will invoke appropriate methods of the Instructor, which, in turn,
+ * will invoke the methods of sub-interfaces that perform lexical analysis and
+ * produce results.
+ * 
+ * </pre>
  */
 public class CodeComp
 {
 	/**
-	 * The main function will instantiate Instructor. It will also check that
-	 * user provided correct arguments - 
-	 * Make sure to check both absolute and relative path.
-	 * For example, 
+	 * <pre> 
+	 * The main function will instantiate Instructor.
+	 * It will also check that user provided correct arguments.
+	 * It needs to check both the absolute and the relative path.
+	 * 
+	 * For example:
 	 * Absolute Path: C:\Users\mpark\Documents\test.txt 
 	 * Relative Path: .\test.txt 
+	 * </pre>
 	 * 
-	 * The example of relative path above assumes that program is stored in 
-	 * C:\Users\mpark\Documents\ 
-	 * 
-	 * @param args String[] command-line arguments
+	 * @param args <b>String[]</b> command-line arguments
 	 */
 	public static void main( String[] args )
 	{
@@ -91,7 +95,7 @@ public class CodeComp
 		// instructor.getStudent("Nathan").getPrioritySubmission().printCodeFiles();
 		
 		// Process submissions and parse the codes
-		if( !instructor.process() ) {
+		if( !instructor.parseSubmissions() ) {
 			System.out.println( "\nA problem occurred during lexical analysis." );
 			System.exit(3);
 		}
@@ -113,7 +117,7 @@ public class CodeComp
 	} // End of main
 	
 	/**
-	 * Help user by printing the summary of command-line usage and options.
+	 * Print a summary of the command-line usage and options.
 	 */
 	public static void helpUser()
 	{
