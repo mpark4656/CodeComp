@@ -16,6 +16,8 @@ build-job:
     - ls -l
     - cd /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2
     - ./gradlew build  #change directory to root then build file
+    - ./gradlew javadoc
+    
   only:
     - master
   artifacts:
@@ -32,5 +34,6 @@ deploy-job:
     - eval $(ssh-agent -s)  #set up SSH for CI 
     - ssh-add <(echo "$RSYNC_T")
     - rsync -auvz -e "ssh" build/reports/tests/test/ mpark@atria.cs.odu.edu:/home/mpark/public_html/cs350/reports
+    - rsync -auvz -e "ssh" build/docs/javadoc/ mpark@atria.cs.odu.edu:/home/mpark/public_html/cs350/javadoc
     
 

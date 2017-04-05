@@ -1,6 +1,9 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 import java.util.LinkedList;
+
+import edu.odu.cs.cs350.red2.Interface.Student;
+
 import java.io.Reader;
 import java.util.Iterator;
 import java.io.IOException;
@@ -25,8 +28,8 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Constructor
-	 * @param input Reader object obtained from input file path
-	 * @param langType LanguageTypes which programming language is it?
+	 * @param input Reader
+	 * @param langType LanguageTypes
 	 */
 	public TokenSequence( final Reader input , LanguageTypes langType )
 	{
@@ -40,7 +43,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 			try {
 				Token token = scanner.yylex();
 				
-				while( token != null && token.getTokenType() != TokenTypes.EOF ) {
+				while( token != null && token.getTokenType() != JTokenTypes.EOF ) {
 					tokens.add( token );
 					token = scanner.yylex();
 				}
@@ -56,7 +59,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 			try {
 				Token token = scanner.yylex();
 				
-				while( token != null && token.getTokenType() != TokenTypes.EOF ) {
+				while( token != null && token.getTokenType() != CTokenTypes.EOF ) {
 					tokens.add( token );
 					token = scanner.yylex();
 				}
@@ -69,8 +72,19 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	} // End of TokenSequence()
 	
 	/**
+	 * Copy Constructor
+	 * @param obj TokenSequence
+	 */
+	@SuppressWarnings("unchecked")
+	public TokenSequence( TokenSequence obj )
+	{
+		this.tokens = (LinkedList<Token>) obj.tokens.clone();
+		this.langType = obj.langType;
+	}
+	
+	/**
 	 * Override iterator()
-	 * @return Iterator of Token
+	 * @return Iterator for Token ArrayList
 	 */
 	@Override
 	public final Iterator<Token> iterator()
@@ -88,25 +102,10 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	}
 	
 	/**
-	 * Public get method that returns the token ordinal sequence as StringBuilder
-	 * @return StringBuilder Sequence of tokens
-	 */
-	public StringBuilder getOrdinalSequence()
-	{
-		StringBuilder result = new StringBuilder();
-		
-		for( Token t : tokens ) {
-			result.append( t.getTokenType().ordinal() );
-		}
-		
-		return result;
-	}
-	
-	/**
 	 * Public get method that returns the token String sequence as StringBuilder
 	 * @return StringBuilder Sequence of tokens
 	 */
-	public StringBuilder getStringSequence()
+	public StringBuilder getTokenSequence()
 	{
 		StringBuilder result = new StringBuilder();
 		
@@ -116,4 +115,67 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 		
 		return result;
 	}
+	
+	/**
+	 * Override hashCode()
+	 * @return int hash code of this object
+	 */
+	@Override
+	public int hashCode()
+	{
+		int result = 11;
+		
+		result = 31 * result + tokens.hashCode();
+		result = 31 * result + langType.ordinal();
+		
+		return result;
+	}
+	
+	/**
+	 * Override equals() method
+	 * @param obj Object
+	 * @return boolean true if the two objects are equal
+	 */
+	@Override
+	public boolean equals( Object obj )
+	{
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( !(obj instanceof TokenSequence) ) {
+			return false;
+		}
+		
+		if( this == obj ) {
+			return true;
+		}
+		
+		TokenSequence otherObj = (TokenSequence) obj;
+		
+		return this.tokens.equals( otherObj.tokens ) && this.langType.equals( otherObj.langType );
+	}
+	
+	/**
+	 * Return the token sequence as String, 
+	 * Override toString()
+	 * @return String token sequence
+	 */
+	@Override
+	public String toString()
+	{
+		return getTokenSequence().toString();
+	}
+	
+	/**
+	 * Override clone()
+	 * @return Object a deep copy of this object
+	 */
+	@Override
+	public Object clone()
+	{
+		return new TokenSequence( this );
+	}
 }
+
+

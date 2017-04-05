@@ -174,11 +174,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 				tokenSeq = new TokenSequence( readerInput , LanguageTypes.JAVA );
 				
 				// Debugging Output Lines - Must be removed later
-				//System.out.println();
-				//System.out.println( "\nTokens found in " + file.getName() );
-				//System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				//System.out.print( tokenSeq.getStringSequence() );
-				//System.out.println();
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				System.out.print( tokenSeq.getTokenSequence() );
+				System.out.println();
 			}
 			// The code file is C++ if it is not java
 			else {
@@ -195,11 +195,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 				tokenSeq = new TokenSequence( readerInput , LanguageTypes.CPLUSPLUS );
 				
 				// Debugging Output Lines - Must be removed later
-				//System.out.println();
-				//System.out.println( "\nTokens found in " + file.getName() );
-				//System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
-				//System.out.print( tokenSeq.getStringSequence() );
-				//System.out.println();
+				System.out.println();
+				System.out.println( "\nTokens found in " + file.getName() );
+				System.out.println( "A total of " + tokenSeq.getTokenCount() + " tokens found in this file." );
+				System.out.print( tokenSeq.getTokenSequence() );
+				System.out.println();
 			}
 			
 			tSeq.add( tokenSeq );
@@ -235,15 +235,16 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Return the token sequences of this submission as StringBuilder
+	 * Return the token sequences of this submission as StringBuilder, 
+	 * this method combines token sequences from all code files.
 	 * @return ArrayList of StringBuilder Token Sequences as StringBuilder
 	 */
-	public ArrayList<StringBuilder> getTokenSequences()
+	public StringBuilder getTokenSequence()
 	{
-		ArrayList<StringBuilder> result = new ArrayList<> ();
+		StringBuilder result = new StringBuilder();
 		
 		for( TokenSequence seq : tSeq ) {
-			result.add( seq.getOrdinalSequence() );
+			result.append( seq.getTokenSequence() );
 		}
 		
 		return result;

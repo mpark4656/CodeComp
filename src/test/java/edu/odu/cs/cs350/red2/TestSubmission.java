@@ -76,7 +76,7 @@ public class TestSubmission {
 		assertEquals( clonedMike.getAllFiles() , MikeSub.getAllFiles() );
 		assertEquals( clonedMike.getCodeFiles() , MikeSub.getCodeFiles() );
 		assertEquals( clonedMike.getTokenCount() , MikeSub.getTokenCount() );
-		assertEquals( clonedMike.getTokenSequences() , MikeSub.getTokenSequences() );
+		//assertEquals( clonedMike.getTokenSequence() , MikeSub.getTokenSequence() );
 		assertEquals( clonedMike.toString() , MikeSub.toString() );
 		assertEquals( clonedMike.hashCode() , MikeSub.hashCode() );
 	}
@@ -151,7 +151,7 @@ public class TestSubmission {
 		
 		clonedMike.tokenize();
 		assertTrue( clonedMike.isTokenized() ); 
-		assertEquals( 2 , clonedMike.getTokenSequences().size() );
+		assertEquals( 611 , clonedMike.getTokenSequence().length() );
 		assertEquals( 611 , clonedMike.getTokenCount() );
 	}
 	
@@ -239,10 +239,10 @@ public class TestSubmission {
 		Submission clonedNathan = new Submission( NathanSub );
 		clonedNathan.tokenize();
 		
-		assertEquals( 1 , clonedAsa.getTokenSequences().size() );
-		assertEquals( 2 , clonedJen.getTokenSequences().size() );
-		assertEquals( 2 , clonedMike.getTokenSequences().size() );
-		assertEquals( 5 , clonedNathan.getTokenSequences().size() );
+		assertEquals( 21 , clonedAsa.getTokenSequence().length() );
+		assertEquals( 269 , clonedJen.getTokenSequence().length() );
+		assertEquals( 611 , clonedMike.getTokenSequence().length() );
+		assertEquals( 144 , clonedNathan.getTokenSequence().length() );
 	}
 	
 	@Test
@@ -342,7 +342,7 @@ public class TestSubmission {
 		assertEquals( clonedNathan.getAllFiles() , NathanSub.getAllFiles() );
 		assertEquals( clonedNathan.getCodeFiles() , NathanSub.getCodeFiles() );
 		assertEquals( clonedNathan.getTokenCount() , NathanSub.getTokenCount() );
-		assertEquals( clonedNathan.getTokenSequences() , NathanSub.getTokenSequences() );
+		//assertEquals( clonedNathan.getTokenSequence() , NathanSub.getTokenSequence() );
 		assertEquals( clonedNathan.toString() , NathanSub.toString() );
 		assertEquals( clonedNathan.hashCode() , NathanSub.hashCode() );
 	}

@@ -122,18 +122,12 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the aggregate token sequence of the priority submission
+	 * Return the token sequence of the priority submission
 	 * @return StringBuilder Token Sequence from the Priority Submission
 	 */
 	public StringBuilder getTokenSequence()
 	{
-		StringBuilder result = new StringBuilder();
-		
-		for( StringBuilder str : getPrioritySubmission().getTokenSequences() ) {
-			result.append( str );
-		}
-			
-		return result;
+		return getPrioritySubmission().getTokenSequence();
 	}
 	
 	/**

@@ -36,11 +36,11 @@ package edu.odu.cs.cs350.red2.LexicalTools;
 %{
   StringBuilder string = new StringBuilder();
   
-  private Token symbol(TokenTypes type) {
+  private Token symbol(JTokenTypes type) {
     return new Token(type, yyline+1, yycolumn+1);
   }
 
-  private Token symbol(TokenTypes type, Object value) {
+  private Token symbol(JTokenTypes type, Object value) {
     return new Token(type, yyline+1, yycolumn+1, value);
   }
 
@@ -114,113 +114,113 @@ SingleCharacter = [^\r\n\'\\]
 <YYINITIAL> {
 
   /* keywords */
-  "abstract"                     { return symbol(TokenTypes.ABSTRACT); }
-  "boolean"                      { return symbol(TokenTypes.BOOLEAN); }
-  "break"                        { return symbol(TokenTypes.BREAK); }
-  "byte"                         { return symbol(TokenTypes.BYTE); }
-  "case"                         { return symbol(TokenTypes.CASE); }
-  "catch"                        { return symbol(TokenTypes.CATCH); }
-  "char"                         { return symbol(TokenTypes.CHAR); }
-  "class"                        { return symbol(TokenTypes.CLASS); }
-  "const"                        { return symbol(TokenTypes.CONST); }
-  "continue"                     { return symbol(TokenTypes.CONTINUE); }
-  "do"                           { return symbol(TokenTypes.DO); }
-  "double"                       { return symbol(TokenTypes.DOUBLE); }
-  "else"                         { return symbol(TokenTypes.ELSE); }
-  "enum"						 { return symbol(TokenTypes.ENUM); }
-  "extends"                      { return symbol(TokenTypes.EXTENDS); }
-  "final"                        { return symbol(TokenTypes.FINAL); }
-  "finally"                      { return symbol(TokenTypes.FINALLY); }
-  "float"                        { return symbol(TokenTypes.FLOAT); }
-  "for"                          { return symbol(TokenTypes.FOR); }
-  "default"                      { return symbol(TokenTypes.DEFAULT); }
-  "implements"                   { return symbol(TokenTypes.IMPLEMENTS); }
-  "import"                       { return symbol(TokenTypes.IMPORT); }
-  "instanceof"                   { return symbol(TokenTypes.INSTANCEOF); }
-  "int"                          { return symbol(TokenTypes.INT); }
-  "interface"                    { return symbol(TokenTypes.INTERFACE); }
-  "long"                         { return symbol(TokenTypes.LONG); }
-  "native"                       { return symbol(TokenTypes.NATIVE); }
-  "new"                          { return symbol(TokenTypes.NEW); }
-  "goto"                         { return symbol(TokenTypes.GOTO); }
-  "if"                           { return symbol(TokenTypes.IF); }
-  "public"                       { return symbol(TokenTypes.PUBLIC); }
-  "short"                        { return symbol(TokenTypes.SHORT); }
-  "super"                        { return symbol(TokenTypes.SUPER); }
-  "switch"                       { return symbol(TokenTypes.SWITCH); }
-  "synchronized"                 { return symbol(TokenTypes.SYNCHRONIZED); }
-  "package"                      { return symbol(TokenTypes.PACKAGE); }
-  "private"                      { return symbol(TokenTypes.PRIVATE); }
-  "protected"                    { return symbol(TokenTypes.PROTECTED); }
-  "transient"                    { return symbol(TokenTypes.TRANSIENT); }
-  "return"                       { return symbol(TokenTypes.RETURN); }
-  "void"                         { return symbol(TokenTypes.VOID); }
-  "static"                       { return symbol(TokenTypes.STATIC); }
-  "while"                        { return symbol(TokenTypes.WHILE); }
-  "this"                         { return symbol(TokenTypes.THIS); }
-  "throw"                        { return symbol(TokenTypes.THROW); }
-  "throws"                       { return symbol(TokenTypes.THROWS); }
-  "try"                          { return symbol(TokenTypes.TRY); }
-  "volatile"                     { return symbol(TokenTypes.VOLATILE); }
-  "strictfp"                     { return symbol(TokenTypes.STRICTFP); }
+  "abstract"                     { return symbol(JTokenTypes.ABSTRACT); }
+  "boolean"                      { return symbol(JTokenTypes.BOOLEAN); }
+  "break"                        { return symbol(JTokenTypes.BREAK); }
+  "byte"                         { return symbol(JTokenTypes.BYTE); }
+  "case"                         { return symbol(JTokenTypes.CASE); }
+  "catch"                        { return symbol(JTokenTypes.CATCH); }
+  "char"                         { return symbol(JTokenTypes.CHAR); }
+  "class"                        { return symbol(JTokenTypes.CLASS); }
+  "const"                        { return symbol(JTokenTypes.CONST); }
+  "continue"                     { return symbol(JTokenTypes.CONTINUE); }
+  "do"                           { return symbol(JTokenTypes.DO); }
+  "double"                       { return symbol(JTokenTypes.DOUBLE); }
+  "else"                         { return symbol(JTokenTypes.ELSE); }
+  "enum"						 { return symbol(JTokenTypes.ENUM); }
+  "extends"                      { return symbol(JTokenTypes.EXTENDS); }
+  "final"                        { return symbol(JTokenTypes.FINAL); }
+  "finally"                      { return symbol(JTokenTypes.FINALLY); }
+  "float"                        { return symbol(JTokenTypes.FLOAT); }
+  "for"                          { return symbol(JTokenTypes.FOR); }
+  "default"                      { return symbol(JTokenTypes.DEFAULT); }
+  "implements"                   { return symbol(JTokenTypes.IMPLEMENTS); }
+  "import"                       { return symbol(JTokenTypes.IMPORT); }
+  "instanceof"                   { return symbol(JTokenTypes.INSTANCEOF); }
+  "int"                          { return symbol(JTokenTypes.INT); }
+  "interface"                    { return symbol(JTokenTypes.INTERFACE); }
+  "long"                         { return symbol(JTokenTypes.LONG); }
+  "native"                       { return symbol(JTokenTypes.NATIVE); }
+  "new"                          { return symbol(JTokenTypes.NEW); }
+  "goto"                         { return symbol(JTokenTypes.GOTO); }
+  "if"                           { return symbol(JTokenTypes.IF); }
+  "public"                       { return symbol(JTokenTypes.PUBLIC); }
+  "short"                        { return symbol(JTokenTypes.SHORT); }
+  "super"                        { return symbol(JTokenTypes.SUPER); }
+  "switch"                       { return symbol(JTokenTypes.SWITCH); }
+  "synchronized"                 { return symbol(JTokenTypes.SYNCHRONIZED); }
+  "package"                      { return symbol(JTokenTypes.PACKAGE); }
+  "private"                      { return symbol(JTokenTypes.PRIVATE); }
+  "protected"                    { return symbol(JTokenTypes.PROTECTED); }
+  "transient"                    { return symbol(JTokenTypes.TRANSIENT); }
+  "return"                       { return symbol(JTokenTypes.RETURN); }
+  "void"                         { return symbol(JTokenTypes.VOID); }
+  "static"                       { return symbol(JTokenTypes.STATIC); }
+  "while"                        { return symbol(JTokenTypes.WHILE); }
+  "this"                         { return symbol(JTokenTypes.THIS); }
+  "throw"                        { return symbol(JTokenTypes.THROW); }
+  "throws"                       { return symbol(JTokenTypes.THROWS); }
+  "try"                          { return symbol(JTokenTypes.TRY); }
+  "volatile"                     { return symbol(JTokenTypes.VOLATILE); }
+  "strictfp"                     { return symbol(JTokenTypes.STRICTFP); }
   
   /* boolean literals */
-  "true"                         { return symbol(TokenTypes.BOOLEAN_LITERAL, true); }
-  "false"                        { return symbol(TokenTypes.BOOLEAN_LITERAL, false); }
+  "true"                         { return symbol(JTokenTypes.BOOLEAN_LITERAL, true); }
+  "false"                        { return symbol(JTokenTypes.BOOLEAN_LITERAL, false); }
   
   /* null literal */
-  "null"                         { return symbol(TokenTypes.NULL_LITERAL); }
+  "null"                         { return symbol(JTokenTypes.NULL_LITERAL); }
   
   
   /* separators */
-  "("                            { return symbol(TokenTypes.LPAREN); }
-  ")"                            { return symbol(TokenTypes.RPAREN); }
-  "{"                            { return symbol(TokenTypes.LBRACE); }
-  "}"                            { return symbol(TokenTypes.RBRACE); }
-  "["                            { return symbol(TokenTypes.LBRACK); }
-  "]"                            { return symbol(TokenTypes.RBRACK); }
-  ";"                            { return symbol(TokenTypes.SEMICOLON); }
-  ","                            { return symbol(TokenTypes.COMMA); }
-  "."                            { return symbol(TokenTypes.DOT); }
+  "("                            { return symbol(JTokenTypes.LPAREN); }
+  ")"                            { return symbol(JTokenTypes.RPAREN); }
+  "{"                            { return symbol(JTokenTypes.LBRACE); }
+  "}"                            { return symbol(JTokenTypes.RBRACE); }
+  "["                            { return symbol(JTokenTypes.LBRACK); }
+  "]"                            { return symbol(JTokenTypes.RBRACK); }
+  ";"                            { return symbol(JTokenTypes.SEMICOLON); }
+  ","                            { return symbol(JTokenTypes.COMMA); }
+  "."                            { return symbol(JTokenTypes.DOT); }
   
   /* operators */
-  "="                            { return symbol(TokenTypes.EQ); }
-  ">"                            { return symbol(TokenTypes.GT); }
-  "<"                            { return symbol(TokenTypes.LT); }
-  "!"                            { return symbol(TokenTypes.NOT); }
-  "~"                            { return symbol(TokenTypes.COMP); }
-  "?"                            { return symbol(TokenTypes.QUESTION); }
-  ":"                            { return symbol(TokenTypes.COLON); }
-  "=="                           { return symbol(TokenTypes.EQEQ); }
-  "<="                           { return symbol(TokenTypes.LTEQ); }
-  ">="                           { return symbol(TokenTypes.GTEQ); }
-  "!="                           { return symbol(TokenTypes.NOTEQ); }
-  "&&"                           { return symbol(TokenTypes.ANDAND); }
-  "||"                           { return symbol(TokenTypes.OROR); }
-  "++"                           { return symbol(TokenTypes.PLUSPLUS); }
-  "--"                           { return symbol(TokenTypes.MINUSMINUS); }
-  "+"                            { return symbol(TokenTypes.PLUS); }
-  "-"                            { return symbol(TokenTypes.MINUS); }
-  "*"                            { return symbol(TokenTypes.MULT); }
-  "/"                            { return symbol(TokenTypes.DIV); }
-  "&"                            { return symbol(TokenTypes.AND); }
-  "|"                            { return symbol(TokenTypes.OR); }
-  "^"                            { return symbol(TokenTypes.XOR); }
-  "%"                            { return symbol(TokenTypes.MOD); }
-  "<<"                           { return symbol(TokenTypes.LSHIFT); }
-  ">>"                           { return symbol(TokenTypes.RSHIFT); }
-  ">>>"                          { return symbol(TokenTypes.URSHIFT); }
-  "+="                           { return symbol(TokenTypes.PLUSEQ); }
-  "-="                           { return symbol(TokenTypes.MINUSEQ); }
-  "*="                           { return symbol(TokenTypes.MULTEQ); }
-  "/="                           { return symbol(TokenTypes.DIVEQ); }
-  "&="                           { return symbol(TokenTypes.ANDEQ); }
-  "|="                           { return symbol(TokenTypes.OREQ); }
-  "^="                           { return symbol(TokenTypes.XOREQ); }
-  "%="                           { return symbol(TokenTypes.MODEQ); }
-  "<<="                          { return symbol(TokenTypes.LSHIFTEQ); }
-  ">>="                          { return symbol(TokenTypes.RSHIFTEQ); }
-  ">>>="                         { return symbol(TokenTypes.URSHIFTEQ); }
+  "="                            { return symbol(JTokenTypes.EQ); }
+  ">"                            { return symbol(JTokenTypes.GT); }
+  "<"                            { return symbol(JTokenTypes.LT); }
+  "!"                            { return symbol(JTokenTypes.NOT); }
+  "~"                            { return symbol(JTokenTypes.COMP); }
+  "?"                            { return symbol(JTokenTypes.QUESTION); }
+  ":"                            { return symbol(JTokenTypes.COLON); }
+  "=="                           { return symbol(JTokenTypes.EQEQ); }
+  "<="                           { return symbol(JTokenTypes.LTEQ); }
+  ">="                           { return symbol(JTokenTypes.GTEQ); }
+  "!="                           { return symbol(JTokenTypes.NOTEQ); }
+  "&&"                           { return symbol(JTokenTypes.ANDAND); }
+  "||"                           { return symbol(JTokenTypes.OROR); }
+  "++"                           { return symbol(JTokenTypes.PLUSPLUS); }
+  "--"                           { return symbol(JTokenTypes.MINUSMINUS); }
+  "+"                            { return symbol(JTokenTypes.PLUS); }
+  "-"                            { return symbol(JTokenTypes.MINUS); }
+  "*"                            { return symbol(JTokenTypes.MULT); }
+  "/"                            { return symbol(JTokenTypes.DIV); }
+  "&"                            { return symbol(JTokenTypes.AND); }
+  "|"                            { return symbol(JTokenTypes.OR); }
+  "^"                            { return symbol(JTokenTypes.XOR); }
+  "%"                            { return symbol(JTokenTypes.MOD); }
+  "<<"                           { return symbol(JTokenTypes.LSHIFT); }
+  ">>"                           { return symbol(JTokenTypes.RSHIFT); }
+  ">>>"                          { return symbol(JTokenTypes.URSHIFT); }
+  "+="                           { return symbol(JTokenTypes.PLUSEQ); }
+  "-="                           { return symbol(JTokenTypes.MINUSEQ); }
+  "*="                           { return symbol(JTokenTypes.MULTEQ); }
+  "/="                           { return symbol(JTokenTypes.DIVEQ); }
+  "&="                           { return symbol(JTokenTypes.ANDEQ); }
+  "|="                           { return symbol(JTokenTypes.OREQ); }
+  "^="                           { return symbol(JTokenTypes.XOREQ); }
+  "%="                           { return symbol(JTokenTypes.MODEQ); }
+  "<<="                          { return symbol(JTokenTypes.LSHIFTEQ); }
+  ">>="                          { return symbol(JTokenTypes.RSHIFTEQ); }
+  ">>>="                         { return symbol(JTokenTypes.URSHIFTEQ); }
   
   /* string literal */
   \"                             { yybegin(STRING); string.setLength(0); }
@@ -232,20 +232,20 @@ SingleCharacter = [^\r\n\'\\]
 
   /* This is matched together with the minus, because the number is too big to 
      be represented by a positive integer. */
-  "-2147483648"                  { return symbol(TokenTypes.INTEGER_LITERAL, new Integer(Integer.MIN_VALUE)); }
+  "-2147483648"                  { return symbol(JTokenTypes.INTEGER_LITERAL, new Integer(Integer.MIN_VALUE)); }
   
-  {DecIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer(yytext())); }
-  {DecLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(yytext().substring(0,yylength()-1))); }
+  {DecIntegerLiteral}            { return symbol(JTokenTypes.INTEGER_LITERAL, new Integer(yytext())); }
+  {DecLongLiteral}               { return symbol(JTokenTypes.INTEGER_LITERAL, new Long(yytext().substring(0,yylength()-1))); }
   
-  {HexIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(2, yylength(), 16))); }
-  {HexLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(parseLong(2, yylength()-1, 16))); }
+  {HexIntegerLiteral}            { return symbol(JTokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(2, yylength(), 16))); }
+  {HexLongLiteral}               { return symbol(JTokenTypes.INTEGER_LITERAL, new Long(parseLong(2, yylength()-1, 16))); }
  
-  {OctIntegerLiteral}            { return symbol(TokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(0, yylength(), 8))); }  
-  {OctLongLiteral}               { return symbol(TokenTypes.INTEGER_LITERAL, new Long(parseLong(0, yylength()-1, 8))); }
+  {OctIntegerLiteral}            { return symbol(JTokenTypes.INTEGER_LITERAL, new Integer((int) parseLong(0, yylength(), 8))); }  
+  {OctLongLiteral}               { return symbol(JTokenTypes.INTEGER_LITERAL, new Long(parseLong(0, yylength()-1, 8))); }
   
-  {FloatLiteral}                 { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Float(yytext().substring(0,yylength()-1))); }
-  {DoubleLiteral}                { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext())); }
-  {DoubleLiteral}[dD]            { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
+  {FloatLiteral}                 { return symbol(JTokenTypes.FLOATING_POINT_LITERAL, new Float(yytext().substring(0,yylength()-1))); }
+  {DoubleLiteral}                { return symbol(JTokenTypes.FLOATING_POINT_LITERAL, new Double(yytext())); }
+  {DoubleLiteral}[dD]            { return symbol(JTokenTypes.FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
   
   /* comments */
   {Comment}                      { /* ignore */ }
@@ -254,13 +254,13 @@ SingleCharacter = [^\r\n\'\\]
   {WhiteSpace}                   { /* ignore */ }
 
   /* identifiers */ 
-  {Identifier}                   { return symbol(TokenTypes.IDENTIFIER, yytext()); } 
+  {Identifier}                   { return symbol(JTokenTypes.IDENTIFIER, yytext()); } 
   
   {Annotation}					 { /* ignore */ } 
 }
 
 <STRING> {
-  \"                             { yybegin(YYINITIAL); return symbol(TokenTypes.STRING_LITERAL, string.toString()); }
+  \"                             { yybegin(YYINITIAL); return symbol(JTokenTypes.STRING_LITERAL, string.toString()); }
   
   {StringCharacter}+             { string.append( yytext() ); }
   
@@ -282,20 +282,20 @@ SingleCharacter = [^\r\n\'\\]
 }
 
 <CHARLITERAL> {
-  {SingleCharacter}\'            { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, yytext().charAt(0)); }
+  {SingleCharacter}\'            { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, yytext().charAt(0)); }
   
   /* escape sequences */
-  "\\b"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\b');}
-  "\\t"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\t');}
-  "\\n"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\n');}
-  "\\f"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\f');}
-  "\\r"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\r');}
-  "\\\""\'                       { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\"');}
-  "\\'"\'                        { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\'');}
-  "\\\\"\'                       { yybegin(YYINITIAL); return symbol(TokenTypes.CHARACTER_LITERAL, '\\'); }
+  "\\b"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\b');}
+  "\\t"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\t');}
+  "\\n"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\n');}
+  "\\f"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\f');}
+  "\\r"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\r');}
+  "\\\""\'                       { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\"');}
+  "\\'"\'                        { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\'');}
+  "\\\\"\'                       { yybegin(YYINITIAL); return symbol(JTokenTypes.CHARACTER_LITERAL, '\\'); }
   \\[0-3]?{OctDigit}?{OctDigit}\' { yybegin(YYINITIAL); 
 			                              int val = Integer.parseInt(yytext().substring(1,yylength()-1),8);
-			                            return symbol(TokenTypes.CHARACTER_LITERAL, (char)val); }
+			                            return symbol(JTokenTypes.CHARACTER_LITERAL, (char)val); }
   
   /* error cases */
   \\.                            { /* throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); */ }
@@ -306,4 +306,4 @@ SingleCharacter = [^\r\n\'\\]
 .|\n                             { /* throw new RuntimeException("Illegal character \""+yytext()+
                                                               "\" at line "+yyline+", column "+yycolumn); */ }
 
-<<EOF>>                          { return symbol(TokenTypes.EOF); }
+<<EOF>>                          { return symbol(JTokenTypes.EOF); }
