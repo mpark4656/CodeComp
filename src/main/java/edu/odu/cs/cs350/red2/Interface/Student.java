@@ -86,7 +86,7 @@ public class Student implements Comparable<Student> , Cloneable
 	 * 
 	 * See the Requirements Definition for rules that determine the priority submission.
 	 * </pre>
-	 * @see https://www.cs.odu.edu/~tkennedy/cs350/s17-tkennedy/Protected/codecompProject/index.html
+	 * @see The Requirements Definition on CS350 Blackboard
 	 * @return <b>Submission</b> The priority submission
 	 */
 	public Submission getPrioritySubmission()
