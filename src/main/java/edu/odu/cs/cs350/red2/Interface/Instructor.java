@@ -349,7 +349,7 @@ public class Instructor
 	 * Public method that parses student submissions.
 	 * The product of this operation is sequences of tokens.
 	 * 
-	 * Precondition: receivedSubmissions == true && parsedStudentSubmissions == false
+	 * Precondition: receivedSubmissions == true and parsedStudentSubmissions == false
 	 * Postcondition: parsedStudentSubmissions == true
 	 * </pre>
 	 * @return <b>boolean</b> - Return true if the submissions were successfully parsed.
@@ -395,7 +395,7 @@ public class Instructor
 	 * <pre>
 	 * Analyze similarity and calculate the raw score and the z-score for every student pair.
 	 * 
-	 * Precondition: parsedStudentSubmissions == true && analyzedTokenSequences == false
+	 * Precondition: parsedStudentSubmissions == true and analyzedTokenSequences == false
 	 * Postcondition: analyzedTokenSequences == true
 	 * </pre>
 	 * @return <b>boolean</b> - Return true if the token sequences were successfully analyzed.
