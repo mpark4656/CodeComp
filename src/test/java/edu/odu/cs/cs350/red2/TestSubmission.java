@@ -152,7 +152,7 @@ public class TestSubmission {
 		clonedMike.tokenize();
 		assertTrue( clonedMike.isTokenized() ); 
 		assertEquals( 2 , clonedMike.getTokenSequences().size() );
-		assertEquals( 630 , clonedMike.getTokenCount() );
+		assertEquals( 611 , clonedMike.getTokenCount() );
 	}
 	
 	// Actual contents of token sequence will be tested in another unit test
@@ -219,10 +219,10 @@ public class TestSubmission {
 		Submission clonedNathan = new Submission( NathanSub );
 		clonedNathan.tokenize();
 		
-		assertEquals( 24 , clonedAsa.getTokenCount() );
-		assertEquals( 277 , clonedJen.getTokenCount() );
-		assertEquals( 630 , clonedMike.getTokenCount() );
-		assertEquals( 152 , clonedNathan.getTokenCount() );
+		assertEquals( 21 , clonedAsa.getTokenCount() );
+		assertEquals( 269 , clonedJen.getTokenCount() );
+		assertEquals( 611 , clonedMike.getTokenCount() );
+		assertEquals( 144 , clonedNathan.getTokenCount() );
 	}
 
 	@Test

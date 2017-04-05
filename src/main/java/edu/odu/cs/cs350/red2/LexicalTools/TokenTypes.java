@@ -172,15 +172,6 @@ public enum TokenTypes
 	STRING_LITERAL ( "string_literal" ),
 	CHARACTER_LITERAL ( "character_literal" ),
 	
-	// Comment
-	COMMENT ( "comment" ),
-	
-	// Java Annotation
-	ANNOTATION ( "annotation" ),
-	
-	// Preprocessor Directive
-	PREPROCESSOR( "Preprocessor" ),
-	
 	// End of File
 	EOF ( "eof" );
 	

@@ -279,7 +279,7 @@ SingleCharacter = [^\r\n\'\\]
   {DoubleLiteral}[dD]            { return symbol(TokenTypes.FLOATING_POINT_LITERAL, new Double(yytext().substring(0,yylength()-1))); }
   
   /* comments */
-  {Comment}                      { return symbol(TokenTypes.COMMENT); }
+  {Comment}                      { /* ignore */ }
 
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }
@@ -288,7 +288,7 @@ SingleCharacter = [^\r\n\'\\]
   {Identifier}                   { return symbol(TokenTypes.IDENTIFIER, yytext()); }  
   
   /* Preprocessor Directive */
-  {Preprocessor}				 { return symbol(TokenTypes.PREPROCESSOR); }
+  {Preprocessor}				 { /* ignore */ }
 }
 
 
