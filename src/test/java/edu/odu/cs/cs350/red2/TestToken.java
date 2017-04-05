@@ -3,7 +3,6 @@ package edu.odu.cs.cs350.red2;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import edu.odu.cs.cs350.red2.LexicalTools.Token;
-import edu.odu.cs.cs350.red2.LexicalTools.TokenTypes;
 import edu.odu.cs.cs350.red2.LexicalTools.JTokenTypes;
 import edu.odu.cs.cs350.red2.LexicalTools.CTokenTypes;
 

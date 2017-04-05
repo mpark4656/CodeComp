@@ -1,9 +1,6 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 import java.util.LinkedList;
-
-import edu.odu.cs.cs350.red2.Interface.Student;
-
 import java.io.Reader;
 import java.util.Iterator;
 import java.io.IOException;

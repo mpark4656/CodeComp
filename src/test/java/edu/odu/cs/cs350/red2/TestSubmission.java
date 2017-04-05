@@ -76,7 +76,7 @@ public class TestSubmission {
 		assertEquals( clonedMike.getAllFiles() , MikeSub.getAllFiles() );
 		assertEquals( clonedMike.getCodeFiles() , MikeSub.getCodeFiles() );
 		assertEquals( clonedMike.getTokenCount() , MikeSub.getTokenCount() );
-		//assertEquals( clonedMike.getTokenSequence() , MikeSub.getTokenSequence() );
+		assertEquals( clonedMike.getTokenSequence().toString() , MikeSub.getTokenSequence().toString() );
 		assertEquals( clonedMike.toString() , MikeSub.toString() );
 		assertEquals( clonedMike.hashCode() , MikeSub.hashCode() );
 	}
@@ -342,7 +342,7 @@ public class TestSubmission {
 		assertEquals( clonedNathan.getAllFiles() , NathanSub.getAllFiles() );
 		assertEquals( clonedNathan.getCodeFiles() , NathanSub.getCodeFiles() );
 		assertEquals( clonedNathan.getTokenCount() , NathanSub.getTokenCount() );
-		//assertEquals( clonedNathan.getTokenSequence() , NathanSub.getTokenSequence() );
+		assertEquals( clonedNathan.getTokenSequence().toString() , NathanSub.getTokenSequence().toString() );
 		assertEquals( clonedNathan.toString() , NathanSub.toString() );
 		assertEquals( clonedNathan.hashCode() , NathanSub.hashCode() );
 	}
