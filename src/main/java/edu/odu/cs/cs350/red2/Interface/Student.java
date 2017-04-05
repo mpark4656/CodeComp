@@ -5,10 +5,12 @@ import java.io.File;
 
 
 /**
- * Student Class -
- * Contains code submissions that belong to this student and unique identifier.
- * @author mpark
- * @author nruf
+ * <pre>
+ * <b>Student Class</b>
+ * This is serves as a sub-interface that encapsulates attributes of
+ * a real-life students. A student has a unique identifier (name) and
+ * his or her own code submissions.
+ * </pre>
  */
 public class Student implements Comparable<Student> , Cloneable
 {
@@ -19,9 +21,8 @@ public class Student implements Comparable<Student> , Cloneable
 	private ArrayList<Submission> submissions;
 	
 	/**
-	 * Constructor 
-	 * Instantiates Student with the given identifier
-	 * @param identifier String
+	 * Instantiate a student with an identifier
+	 * @param identifier <b>String</b>
 	 */
 	public Student( String identifier )
 	{
@@ -31,7 +32,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param obj Student object to copy
+	 * @param obj <b>Student</b> Student object to copy
 	 */
 	@SuppressWarnings("unchecked")
 	public Student( Student obj )
@@ -41,8 +42,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Add a submission to ArrayList of submissions
-	 * @param submissionDirectory File the submission directory
+	 * Public method that adds a submission to ArrayList submissions
+	 * @param submissionDirectory <b>File</b> The submission directory
 	 */
 	public void addSubmission( File submissionDirectory )
 	{
@@ -50,10 +51,12 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Public accessor to return a submission
-	 * @param subName String
-	 * @return Submission Submission object for the given submission name 
-	 * Return null if not found
+	 * <pre>
+	 * Public method that returns a Submission object.
+	 * Returns null if not found.
+	 * </pre>
+	 * @param subName <b>String</b>
+	 * @return <b>Submission</b> Submission object
 	 */
 	public Submission getSubmission( String subName )
 	{
@@ -68,9 +71,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * The accessor method to return the total number of submissions
-	 * this student made.
-	 * @return int Number of Submissions for this student
+	 * Public method that returns the total number of submissions for this student
+	 * @return <b>int</b> Total number of submissions
 	 */
 	public int getSubmissionCount()
 	{
@@ -78,9 +80,14 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the object of the Submission that "counts" and will
-	 * be graded.
-	 * @return Submission Priority submission object
+	 * <pre>
+	 * Public method that returns the submission that "counts" and 
+	 * will be graded.
+	 * 
+	 * See the Requirements Definition for rules that determine the priority submission.
+	 * </pre>
+	 * @see https://www.cs.odu.edu/~tkennedy/cs350/s17-tkennedy/Protected/codecompProject/index.html
+	 * @return <b>Submission</b> The priority submission
 	 */
 	public Submission getPrioritySubmission()
 	{
@@ -104,8 +111,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}// End of getPrioritySubmission()
 	
 	/**
-	 * Return the total number of code file count in the priority submission.
-	 * @return int Total number of Code Files this student submitted
+	 * Public method that returns the total number of code files in the priority submission.
+	 * @return <b>int</b> - Total number of code files
 	 */
 	public int getTotalCodeFileCount()
 	{
@@ -113,8 +120,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the total number of lines of code in the priority submission
-	 * @return int Total number of lines of code
+	 * Public method that returns the total number of LOC in the priority submission
+	 * @return <b>int</b> - Total number of lines of code
 	 */
 	public int getTotalCodeLineCount()
 	{
@@ -122,8 +129,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the token sequence of the priority submission
-	 * @return StringBuilder Token Sequence from the Priority Submission
+	 * Public method that returns the token sequence from the priority submission
+	 * @return <b>StringBuilder</b> - Token Sequence
 	 */
 	public StringBuilder getTokenSequence()
 	{
@@ -131,8 +138,9 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the length of the aggregate token sequence
-	 * @return int length
+	 * Public method that returns the length of the token sequence from the
+	 * priority submission
+	 * @return <b>int</b> length
 	 */
 	public int getTokenSequenceLength()
 	{
@@ -140,9 +148,9 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Override the equals method from java.lang.Object
-	 * @param obj Object
-	 * @return boolean True if toCompare equals this Student object
+	 * Override equals() method
+	 * @param obj <b>Object</b>
+	 * @return <b>boolean</b> - Return true if the two objects are equal
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -165,9 +173,17 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Compare this Student object to another.
-	 * @param theStudent Student a non-null Student object
-	 * @return value int
+	 * <pre>
+	 * Compare this student to another student.
+	 * This method will be used by default for sorting a collection
+	 * of Student objects.
+	 * 
+	 * If this object precedes the other, return a value less than 0.
+	 * If this object is equal to the other, return 0.
+	 * If this object follows the other, re turn a value larger than 0.
+	 * </pre>
+	 * @param theStudent <b>Student</b> A non-null Student object
+	 * @return <b>int</b> - value
 	 */
 	@Override
 	public int compareTo( Student theStudent )
@@ -176,8 +192,8 @@ public class Student implements Comparable<Student> , Cloneable
 	}
 	
 	/**
-	 * Return the unique identifier as String
-	 * @return identifier String 
+	 * Override toString() to return the unique identifier as String
+	 * @return <b>String</b> identifier
 	 */
 	@Override
 	public String toString()
@@ -187,7 +203,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Override hashCode() method
-	 * @return hashCode int
+	 * @return <b>int</b> - The hash code
 	 */
 	@Override
 	public int hashCode()
@@ -213,7 +229,7 @@ public class Student implements Comparable<Student> , Cloneable
 	
 	/**
 	 * Override clone() method
-	 * @return Object a clone of this object
+	 * @return <b>Object</b> - A deep copy of this object
 	 */
 	@Override
 	public Object clone()
