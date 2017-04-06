@@ -4,8 +4,8 @@ package edu.odu.cs.cs350.red2.Interface;
  * <pre>
  * <b>StudentPair Class</b>
  * This sub-interface represents every possible pair of students in the instructor's class
- * A pair must include 2 different students. A duplicate pair cannot exist. A raw core
- * and a z-score is calulated for each pair of students.
+ * A pair must include 2 different students. A duplicate pair cannot exist. This interface
+ * is responsible for calculating the raw score and the z-score.
  * </pre>
  */
 public class StudentPair implements Comparable<StudentPair> , Cloneable
