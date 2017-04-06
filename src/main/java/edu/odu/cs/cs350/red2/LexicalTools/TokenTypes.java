@@ -1,17 +1,13 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 /**
- * Provides interface for Java and Cpp Token Types
- * @author mpark
- *
+ * Interface for TokenTypes Enum
  */
 public interface TokenTypes
 {
 	/**
-	 * Override toString() method
-	 * @return String Returns the type of token as a String of length 1
+	 * Public method that returns a single character token as String
+	 * @return <b>String</b> - Return the type of token as a single character string
 	 */
-	@Override
 	public String toString();
-	
 }

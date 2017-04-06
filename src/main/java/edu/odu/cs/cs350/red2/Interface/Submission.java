@@ -14,11 +14,13 @@ import edu.odu.cs.cs350.red2.FileFilter.CodeFileFilter;
 import edu.odu.cs.cs350.red2.LexicalTools.TokenSequence;
 
 /**
- * Submission Class - 
- * Represents individual submission by students - 
- * Stores token sequence.
- * @author mpark
- * @author nruf
+ * <pre>
+ * Submission Class 
+ * This sub-interface encapsulates the attributes of a real-life
+ * code submission by students learning a programming language.
+ * This sub-interface is responsible for converting codes into a sequence
+ * of tokens.
+ * </pre>
  */
 public class Submission implements Comparable<Submission> , Cloneable
 {
@@ -36,9 +38,9 @@ public class Submission implements Comparable<Submission> , Cloneable
 	private boolean tokenized;
 	
 	/**
-	 * Calls private method, searchAllFiles to recursively search all
-	 * files in the given directory and add each file to the collection.
-	 * @param directory File
+	 * A constructor that accepts a directory path and recursively search
+	 * for all files in subdirectories.
+	 * @param directory <b>File</b>
 	 */
 	public Submission( File directory )
 	{
@@ -53,7 +55,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param obj Submission object to copy
+	 * @param obj <b>Submission</b> object to copy
 	 */
 	@SuppressWarnings("unchecked")
 	public Submission( Submission obj )
@@ -66,9 +68,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Recursively search all files in directory and add each file
-	 * to allFiles.
-	 * @param dir File
+	 * Recursively search all files in directory and add each file to this submission
+	 * @param dir <b>File</b>
 	 */
 	private void searchAllFiles( File dir )
 	{
@@ -84,9 +85,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Recursively search all code files in directory and add each file
-	 * to codeFiles.
-	 * @param dir File
+	 * Recursively search for all code files in directory
+	 * @param dir <b>File</b>
 	 */
 	private void searchAllCodeFiles( File dir )
 	{
@@ -102,8 +102,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Public accessor that returns all files in ArrayList
-	 * @return ArrayList of File All files in this submission
+	 * Public method that returns all files as ArrayList&lt;File&gt;
+	 * @return <b>ArrayList&lt;File&gt;</b> - All files in this submission
 	 */
 	public ArrayList<File> getAllFiles()
 	{
@@ -111,8 +111,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Public accessor that returns all code files in ArrayList
-	 * @return ArrayList of File All code files in this submission
+	 * Public method that returns all code files as ArrayList&lt;File&gt;
+	 * @return <b>ArrayList&lt;File&gt;</b> - All code files in this submission
 	 */
 	public ArrayList<File> getCodeFiles()
 	{
