@@ -5,14 +5,18 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.io.IOException;
 
+
+
 /**
- * TokenSequenbce Class, 
- * Stores tokens from one code file, 
- * The design of this interface was borrowed from 
- * Dr. Steven Zeil, 
- * http://forge350.cs.odu.edu:8090/zeil/jflexdemo
- * @author mpark
- *
+ * <pre>
+ * TokenSequence Class
+ * This stores a sequence of tokens.
+ *  
+ * The design of this interface is from 
+ * Dr. Steven Zeil's jflexdemo repository
+ * 
+ * It has been modified for this project.
+ * </pre>
  */
 public class TokenSequence implements Iterable<Token> , Cloneable
 {

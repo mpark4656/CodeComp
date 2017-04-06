@@ -1,40 +1,40 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 /**
- * Token Class, stores the token type, the actual string, 
- * and the location (line number and column), 
- * The design of this interface was borrowed from 
- * Dr. Steven Zeil, 
- * http://forge350.cs.odu.edu:8090/zeil/jflexdemo
- * @author mpark
+ * <pre>
+ * Token Class
+ * This stores the token type, the actual string, 
+ * and the location (line number and column) where
+ * the lexeme was found.
+ *  
+ * The design of this interface is from 
+ * Dr. Steven Zeil's jflexdemo repository
+ * 
+ * It has been modified for this project.
+ * </pre>
  */
 public class Token implements Cloneable
 {
-	/**
-	 * The type of token, see TokenTypes.java for more details.
-	 */
+	
+	// The type of token, see TokenTypes.java for more details.
 	private TokenTypes type;
 	
-	/**
-	 * This represents the actual character string.
-	 */
+	
+	// This represents the actual character string.
 	private String lexeme;
 	
-	/**
-	 * The line number where this lexeme was found
-	 */
+	// The line number where this lexeme was found
 	private int lineNumber;
 	
-	/**
-	 * The column number where this lexeme was found
-	 */
+	
+	// The column number where this lexeme was found
 	private int columnNumber;
 	
 	/**
-	 * Constructor that accepts the type, the line number, and the column number.
-	 * @param theType TokenTypes
-	 * @param line int
-	 * @param column int
+	 * Constructor that accepts the type, the line number, and the column number
+	 * @param theType <b>TokenTypes</b>
+	 * @param line <b>int</b>
+	 * @param column <b>int</b>
 	 */
 	public Token( final TokenTypes theType , final int line , final int column )
 	{
@@ -45,11 +45,11 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Constructor that accepts the type, the line number, the column number and the lexeme.
-	 * @param theType TokenTypes
-	 * @param line int
-	 * @param column int
-	 * @param theLex Object
+	 * Constructor that accepts the type, the line number, the column number and the lexeme
+	 * @param theType <b>TokenTypes</b>
+	 * @param line <b>int</b>
+	 * @param column <b>int</b>
+	 * @param theLex <b>Object</b>
 	 */
 	public Token( final TokenTypes theType , final int line , final int column , final Object theLex )
 	{
@@ -61,7 +61,7 @@ public class Token implements Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param toCopy Token Object to copy
+	 * @param toCopy <b>Token</b>
 	 */
 	public Token( Token toCopy )
 	{
@@ -72,8 +72,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Return the token type.
-	 * @return type TokenTypes
+	 * Return the token type
+	 * @return <b>TokenTypes</b> - Token type
 	 */
 	public TokenTypes getTokenType()
 	{
@@ -81,8 +81,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Return the lexeme.
-	 * @return Object lexeme
+	 * Return the lexeme
+	 * @return <b>String</b> - lexeme
 	 */
 	public String getLexeme()
 	{
@@ -90,8 +90,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Return the line number of this token.
-	 * @return int Line Number
+	 * Return the line number of this token
+	 * @return <b>int</b> - Line number
 	 */
 	public int getLineNumber()
 	{
@@ -99,8 +99,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Return the column number of this token.
-	 * @return int Column Number
+	 * Return the column number of this token
+	 * @return <b>int</b> - Column number
 	 */
 	public int getColumnNumber()
 	{
@@ -108,8 +108,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Override clone() in Object
-	 * @return Object a copy of this object
+	 * Override clone() method
+	 * @return <b>Object</b> - A deep copy of this object
 	 */
 	@Override
 	public Object clone()
@@ -118,9 +118,9 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Override equals() in Object
-	 * @param obj Object object being compared to this object
-	 * @return boolean true if this object is equal to obj
+	 * Override equals() method
+	 * @param obj <b>Object</b> object being compared
+	 * @return <b>boolean</b> - Return true if this object is equal to obj
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -146,8 +146,8 @@ public class Token implements Cloneable
 	}
 	
 	/**
-	 * Override hashCode method in Object
-	 * @return int hash code of this object
+	 * Override hashCode() method
+	 * @return <b>int</b> - The hash code of this object
 	 */
 	@Override
 	public int hashCode()
@@ -176,7 +176,7 @@ public class Token implements Cloneable
 	
 	/**
 	 * Override toString() method
-	 * @return String Returns String representation of the lexeme
+	 * @return <b>String</b> - Return lexeme
 	 */
 	@Override
 	public String toString()
