@@ -331,9 +331,8 @@ public class Instructor
 		// Sort student objects, so the identifiers appear in ascending order.
 		students.sort( null );
 		
-		// Print a newline
-		System.out.println();
-		
+		System.out.println( "\nFound " + students.size() + " student submissions:\n");
+
 		// Iterate through every student in this instructor's class
 		for (int i = 0; i < students.size(); i++)
 		{
@@ -341,7 +340,19 @@ public class Instructor
 			// getTotalCodeFileCount() and getTotalCodeLineCount() on each student object.
 			System.out.print( students.get(i) + "\t\tFiles: " + students.get(i).getTotalCodeFileCount() );
 			System.out.println( "\t\t" + "LOC: " + students.get(i).getTotalCodeLineCount() );															
-		}				
+		}
+		
+		if( students.size() == 0 ) {
+			System.out.println( "\nFinished" );
+		}
+		else if( stuPairs.size() == 0 ) {
+			System.out.println( "\nRequires at least 2 student submissions for analysis" );
+		}
+		else {
+			System.out.println( "\nAnalyzing codes ...");
+			System.out.println( "This may take a while.");
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -428,13 +439,15 @@ public class Instructor
 			phrases.addSentence( stud.getTokenSequence().toString() , stud.toString() );
 		}
 		
-		// Debugging Output
-		System.out.println();
+		int start = 1;
+		int end = stuPairs.size();
 		
 		// Iterate through every student pair and calculate the raw score
 		// Formula for T: len(p) / (k - 1)^2
 		//  , where p is a shared phrase and k is the total number of students sharing the phrase
 		for( StudentPair studPair : stuPairs ) {
+			System.out.print( start + " of " + end );
+			
 			double T = 0;
 			
 			// Calculate T
@@ -450,21 +463,25 @@ public class Instructor
 			
 			studPair.calculateRawScore( T );
 			
-			// Debugging Output
-			System.out.println( studPair + " has a raw score of " + studPair.getRawScore() );
+			System.out.println( " COMPLETED");
+			start ++;
 		}
 		
 		double rawScoreAverage = calculateRawScoreAverage();
 		
-		// Debugging Output
 		System.out.println();
+		System.out.println( "\n\nRESULTS:\n" );
+		int index = 1;
 		
 		// Iterate through every student pair and calculate the z-score
 		for( StudentPair studPair : stuPairs ) {
 			studPair.calculateZScore( rawScoreAverage , calculateStandardDev( rawScoreAverage ) );
 			
-			// Debugging Output
-			System.out.println( studPair + " has a z-score of " + studPair.getZScore() );
+			System.out.println( index + ". Scores for " + studPair );
+			System.out.println( "Raw Score: " + String.format("%.2f", studPair.getRawScore()) + 
+								"\nZ-Score: " + String.format("%.2f", studPair.getZScore()) );
+			System.out.println();
+			index ++;
 		}
 		
 		analyzedTokenSequences = true;
