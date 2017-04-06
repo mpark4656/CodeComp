@@ -414,14 +414,24 @@ public class TestInstructor {
 		assertEquals( "output" , instructor.toString() );
 	}
 
-
-
 	@Test
 	public void testAnalyze() {
-		//fail("Not yet implemented");
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		instructor.parseSubmissions();
+		instructor.analyze();
+		
+		assertFalse( instructor.isTemplateSpecified() );
+		assertFalse( instructor.isSheetNameSpecified() );
+		assertEquals( "" , instructor.getTemplate() );
+		assertEquals( "" , instructor.getSheetName() );
+		assertTrue( instructor.isSubmissionReceived() );
+		assertTrue( instructor.isSubmissionParsed() );
+		assertTrue( instructor.isTokenSequenceAnalyzed() );
+		assertEquals( 4 , instructor.getTotalStudentCount() );
+		assertEquals( 6 , instructor.getTotalStudentPairCount() );
+		assertEquals( "output" , instructor.toString() );
 	}
-
-	
 
 	@Test
 	public void testDisplayResult() {

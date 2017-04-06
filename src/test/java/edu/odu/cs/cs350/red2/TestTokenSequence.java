@@ -20,17 +20,15 @@ public class TestTokenSequence {
 		TokenSequence TS = new TokenSequence(j, LanguageTypes.JAVA);
 		
 		//checking iterator to make sure it has two elements.
-		for (Token T : TS)
+		for (@SuppressWarnings("unused") Token T : TS)
 		{
 			count++;
 		}
+		
 		assertEquals(count, 2);
 		assertEquals(TS.getTokenCount(), 2);
-		assertEquals(TS.toString(),"2g");
-		assertEquals(TS.getTokenSequence().toString(), "2g");
-		
-		
-		
+		assertEquals(TS.toString(),"j6");
+		assertEquals(TS.getTokenSequence().toString(), "j6");
 	}
 
 	@Test
@@ -48,9 +46,6 @@ public class TestTokenSequence {
 		assertEquals(copyTS.toString(),TS.toString());
 		
 		assertEquals(copyTS.getTokenSequence().toString(),TS.getTokenSequence().toString());
-		
-		
-		
 	}
 
 
@@ -61,7 +56,6 @@ public class TestTokenSequence {
 		TokenSequence TS= new TokenSequence(j,LanguageTypes.JAVA);
 		
 		assertEquals(TS.getTokenCount(), 5);
-		
 	}
 	
 
@@ -71,8 +65,7 @@ public class TestTokenSequence {
 		Reader j = new StringReader("public class int");
 		TokenSequence TS = new TokenSequence(j, LanguageTypes.JAVA);
 		
-		assertEquals(TS.getTokenSequence().toString(), "2gv");
-		
+		assertEquals(TS.getTokenSequence().toString(), "j6f");
 	}
 
 	@Test
@@ -89,7 +82,6 @@ public class TestTokenSequence {
 	
 		assertTrue(TS1.equals(TS));
 		assertFalse(TS1.equals(TS2));
-		
 	}
 
 	@Test
@@ -99,7 +91,7 @@ public class TestTokenSequence {
 		
 		TokenSequence TS = new TokenSequence(j,LanguageTypes.JAVA);
 		
-		assertEquals(TS.getTokenSequence().toString(), "2gv");
+		assertEquals(TS.getTokenSequence().toString(), "j6f");
 	}
 	
 	@Test
@@ -116,9 +108,6 @@ public class TestTokenSequence {
 		
 		assertEquals(TS.hashCode(),TS1.hashCode());
 		assertNotEquals(TS.hashCode(),TS2.hashCode());
-		
-		
-		
 	}
 
 	@Test
@@ -136,8 +125,6 @@ public class TestTokenSequence {
 		assertEquals(copyTS.toString(),TS.toString());
 		
 		assertEquals(copyTS.getTokenSequence().toString(),TS.getTokenSequence().toString());
-		
-		
 	}
 
 }
