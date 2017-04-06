@@ -79,30 +79,68 @@ public class TestTokenSequence {
 	@Test
 	public void testEqualsObject() 
 	{
+		
 		Reader j = new StringReader("public class nathanIsAmazing{}");
+		
 		TokenSequence TS 	= new TokenSequence(j,LanguageTypes.JAVA);
+		j = new StringReader("public class nathanIsAmazing{}");
+		
 		TokenSequence TS1	= new TokenSequence(j,LanguageTypes.JAVA);
 		
 		TokenSequence TS2	= new TokenSequence(j,LanguageTypes.CPLUSPLUS);
 	
-		//assertTrue(TS1.equals(TS));
+		assertTrue(TS1.equals(TS));
 		assertFalse(TS1.equals(TS2));
 		
 	}
 
 	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+	public void testToString() 
+	{
+		Reader j = new StringReader("public class int");
+		
+		TokenSequence TS = new TokenSequence(j,LanguageTypes.JAVA);
+		
+		assertEquals(TS.getTokenSequence().toString(), "2gv");
 	}
 	
 	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
+	public void testHashCode() 
+	{
+		Reader j = new StringReader("public class nathanIsAmazing{}");
+		
+		TokenSequence TS 	= new TokenSequence(j,LanguageTypes.JAVA);
+		
+		j = new StringReader("public class nathanIsAmazing{}");
+		
+		TokenSequence TS1	= new TokenSequence(j,LanguageTypes.JAVA);
+		
+		TokenSequence TS2	= new TokenSequence(j,LanguageTypes.CPLUSPLUS);
+		
+		assertEquals(TS.hashCode(),TS1.hashCode());
+		assertNotEquals(TS.hashCode(),TS2.hashCode());
+		
+		
+		
 	}
 
 	@Test
-	public void testClone() {
-		fail("Not yet implemented");
+	public void testClone() 
+	{
+		Reader j = new StringReader("public class");
+		TokenSequence TS = new TokenSequence(j,LanguageTypes.JAVA);
+		
+		TokenSequence copyTS = (TokenSequence)TS.clone();
+		
+		assertEquals(copyTS, TS);
+		assertNotSame(copyTS,TS);
+		
+		assertEquals(copyTS.getTokenCount(),TS.getTokenCount());
+		assertEquals(copyTS.toString(),TS.toString());
+		
+		assertEquals(copyTS.getTokenSequence().toString(),TS.getTokenSequence().toString());
+		
+		
 	}
 
 }
