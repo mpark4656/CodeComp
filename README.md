@@ -14,6 +14,9 @@ Perhaps most significantly, these existing tools cannot distinguish between code
 
 This project seeks to develop a code comparison tool that can determine when a pair of programs share distinctive phrases of a length unlikely to occur by simple chance.
 
+## Test Data
+An example of a parent submission directory is src/test/data/submissionDirectory. This directory contains 9 submissions for a total of 8 students. Test6 has the same codes as Abdul14 and Test7 has the same codes as Jen. CodeComp is expected to catch the simulated copying of codes by showing higher than normal raw score and z-score for these two pairs when it's run on src/test/data/submissionDirectory. You're more than welcome to try it out to see the result and gauge its performance.
+
 ## Usage
 #### java -jar CodeComp.jar (Options) (assignmentDirectory) (outputSpreadsheet)
 * [Options] is explained in the next section.
