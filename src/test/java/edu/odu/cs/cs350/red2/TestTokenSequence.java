@@ -27,7 +27,6 @@ public class TestTokenSequence {
 		assertEquals(count, 2);
 		assertEquals(TS.getTokenCount(), 2);
 		assertEquals(TS.toString(),"2g");
-		
 		assertEquals(TS.getTokenSequence().toString(), "2g");
 		
 		
@@ -86,7 +85,6 @@ public class TestTokenSequence {
 		j = new StringReader("public class nathanIsAmazing{}");
 		
 		TokenSequence TS1	= new TokenSequence(j,LanguageTypes.JAVA);
-		
 		TokenSequence TS2	= new TokenSequence(j,LanguageTypes.CPLUSPLUS);
 	
 		assertTrue(TS1.equals(TS));
@@ -114,7 +112,6 @@ public class TestTokenSequence {
 		j = new StringReader("public class nathanIsAmazing{}");
 		
 		TokenSequence TS1	= new TokenSequence(j,LanguageTypes.JAVA);
-		
 		TokenSequence TS2	= new TokenSequence(j,LanguageTypes.CPLUSPLUS);
 		
 		assertEquals(TS.hashCode(),TS1.hashCode());
