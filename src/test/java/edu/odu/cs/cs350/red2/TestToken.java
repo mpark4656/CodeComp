@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import edu.odu.cs.cs350.red2.LexicalTools.Token;
 import edu.odu.cs.cs350.red2.LexicalTools.TokenTypes;
-public class TestToken {
 
+public class TestToken {
+	
 	
 
 	@Test
@@ -15,10 +16,10 @@ public class TestToken {
 		
 		Token testToken = new Token (TokenTypes.ABSTRACT, 1 , 1 );
 		assertEquals(TokenTypes.ABSTRACT, testToken.getTokenType());
-		assertEquals(null , testToken.getLexeme());
+		assertEquals("" , testToken.getLexeme());
 		assertEquals(1, testToken.getLineNumber());
 		assertEquals(1, testToken.getColumnNumber());
-		assertEquals(null , testToken.toString());
+		assertEquals("" , testToken.toString());
 		
 	}
 
@@ -69,7 +70,7 @@ public class TestToken {
 		assertEquals("var", testToken.getLexeme());
 		
 		Token testToken1 = new Token(TokenTypes.PRIVATE,1,1);
-		assertEquals(null, testToken1.getLexeme());
+		assertEquals("", testToken1.getLexeme());
 	}
 
 	@Test
@@ -94,9 +95,14 @@ public class TestToken {
 
 	@Test
 	public void testEqualsObject() {
+		Object obj = null;
 		Token testToken = new Token(TokenTypes.PRIVATE,2,2);
+		Token testToken1 = new Token(TokenTypes.PRIVATE,2,2);
 		
-		//assertFalse(null, testToken.equals());
+		int x = 5;
+		assertFalse(testToken.equals(obj));
+		assertFalse(testToken.equals(x));
+		assertTrue(testToken.equals(testToken1));
 	}
 
 	@Test
