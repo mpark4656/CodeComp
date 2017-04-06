@@ -106,6 +106,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	 * Public get method that returns the token String sequence as StringBuilder
 	 * @return <b>StringBuilder</b> - Sequence of tokens
 	 */
+	
 	public StringBuilder getTokenSequence()
 	{
 		StringBuilder result = new StringBuilder();
