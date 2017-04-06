@@ -29,8 +29,8 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Constructor
-	 * @param input Reader
-	 * @param langType LanguageTypes
+	 * @param input <b>Reader</b>
+	 * @param langType <b>LanguageTypes</b>
 	 */
 	public TokenSequence( final Reader input , LanguageTypes langType )
 	{
@@ -74,7 +74,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param obj TokenSequence
+	 * @param obj <b>TokenSequence</b>
 	 */
 	@SuppressWarnings("unchecked")
 	public TokenSequence( TokenSequence obj )
@@ -85,7 +85,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Override iterator()
-	 * @return Iterator for Token ArrayList
+	 * @return <b>Iterator</b> for Token ArrayList
 	 */
 	@Override
 	public final Iterator<Token> iterator()
@@ -95,7 +95,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Public get method that returns the number of tokens in this sequence
-	 * @return int Total count of tokens in this sequence
+	 * @return <b>int</b> - Total count of tokens in this sequence
 	 */
 	public int getTokenCount()
 	{
@@ -104,7 +104,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Public get method that returns the token String sequence as StringBuilder
-	 * @return StringBuilder Sequence of tokens
+	 * @return <b>StringBuilder</b> - Sequence of tokens
 	 */
 	public StringBuilder getTokenSequence()
 	{
@@ -118,8 +118,8 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	}
 	
 	/**
-	 * Override hashCode()
-	 * @return int hash code of this object
+	 * Override hashCode() method
+	 * @return <b>int</b> - The hash code of this object
 	 */
 	@Override
 	public int hashCode()
@@ -134,8 +134,8 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	
 	/**
 	 * Override equals() method
-	 * @param obj Object
-	 * @return boolean true if the two objects are equal
+	 * @param obj <b>Object</b>
+	 * @return <b>boolean</b> - Return true if the two objects are equal
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -158,9 +158,11 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	}
 	
 	/**
-	 * Return the token sequence as String, 
-	 * Override toString()
-	 * @return String token sequence
+	 * <pre>
+	 * Return the token sequence as String.
+	 * Override toString() method.
+	 * </pre>
+	 * @return <b>String</b> - Token sequence
 	 */
 	@Override
 	public String toString()
@@ -169,8 +171,8 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 	}
 	
 	/**
-	 * Override clone()
-	 * @return Object a deep copy of this object
+	 * Override clone() method
+	 * @return <b>Object</b> - A deep copy of this object
 	 */
 	@Override
 	public Object clone()
