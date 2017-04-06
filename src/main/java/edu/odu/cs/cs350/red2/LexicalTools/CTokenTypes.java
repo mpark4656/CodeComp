@@ -2,9 +2,13 @@ package edu.odu.cs.cs350.red2.LexicalTools;
 
 
 /**
- * C++ Token Types
- * @author mpark
- *
+ * <pre>
+ * Enumeration of C++ Token Types
+ * Each type will be represented with a single character.
+ * This enum includes token types specific to C++ only.
+ * This enum implements TokenTypes interface which provides
+ * a method for generating the character as String
+ * </pre>
  */
 public enum CTokenTypes implements TokenTypes
 {
@@ -163,8 +167,11 @@ public enum CTokenTypes implements TokenTypes
 	private final String name;
 	
 	/**
+	 * <pre>
 	 * Constructor
-	 * @param name String
+	 * The name is the character that will represent this token.
+	 * </pre>
+	 * @param name <b>String</b>
 	 */
 	private CTokenTypes( String name )
 	{
@@ -172,7 +179,8 @@ public enum CTokenTypes implements TokenTypes
 	}
 	
 	/**
-	 * Return String representation of this token type
+	 * Return the name as String
+	 * @return <b>String</b> - name
 	 */
 	@Override
 	public String toString()

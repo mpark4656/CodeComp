@@ -1,9 +1,13 @@
 package edu.odu.cs.cs350.red2.LexicalTools;
 
 /**
- * Java Token Types
- * @author mpark
- *
+ * <pre>
+ * Enumeration of Java Token Types
+ * Each type will be represented with a single character.
+ * This enum includes token types specific to Java only.
+ * This enum implements TokenTypes interface which provides
+ * a method for generating the character as String
+ * </pre>
  */
 public enum JTokenTypes implements TokenTypes
 {
@@ -132,8 +136,11 @@ public enum JTokenTypes implements TokenTypes
 	private final String name;
 	
 	/**
+	 * <pre>
 	 * Constructor
-	 * @param name String
+	 * The name is the character that will represent this token.
+	 * </pre>
+	 * @param name <b>String</b>
 	 */
 	private JTokenTypes( String name )
 	{
@@ -141,8 +148,8 @@ public enum JTokenTypes implements TokenTypes
 	}
 	
 	/**
-	 * Return the String representation of this token type
-	 * @return String name
+	 * Return the name as String
+	 * @return <b>String</b> - name
 	 */
 	@Override
 	public String toString()
