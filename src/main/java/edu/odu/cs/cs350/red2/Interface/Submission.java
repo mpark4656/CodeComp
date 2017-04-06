@@ -120,11 +120,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Private method to return the file extension for the given
-	 * file path.
-	 * For example, test.java would return "java"
-	 * @param filePath File
-	 * @return String File extension
+	 * <pre>
+	 * Private method to return the file extension for the given file path.
+	 * For example, for "test.java", this method would return "java".
+	 * @param filePath <b>File</b>
+	 * @return <b>String</b> - File extension
 	 */
 	private String getExtension( File filePath )
 	{
@@ -134,8 +134,13 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
+	 * <pre>
 	 * Parse this submission and produce the token sequence.
-	 * @return boolean True if this submission  was successfully parsed.
+	 * 
+	 * Precondition: tokenized == false
+	 * Postcondition: tokenized == true
+	 * </pre>
+	 * @return <b>boolean</b> - Return true if this submission has been successfully parsed
 	 */
 	public boolean tokenize()
 	{
@@ -210,9 +215,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Return true if this submission has been parsed and token sequence 
-	 * has been generated.
-	 * @return boolean True if this submission has been parsed 
+	 * Return true if this submission has been parsed and token sequence has been generated.
+	 * @return <b>boolean</b> - Return true if this submission has been parsed 
 	 */
 	public boolean isTokenized()
 	{
@@ -221,7 +225,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Return the length of all token sequences in this submission
-	 * @return int Length of All Token Sequences
+	 * @return <b>int</b> - Length of all token Sequences
 	 */
 	public int getTokenCount()
 	{
@@ -235,9 +239,11 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Return the token sequences of this submission as StringBuilder, 
-	 * this method combines token sequences from all code files.
-	 * @return ArrayList of StringBuilder Token Sequences as StringBuilder
+	 * <pre>
+	 * Return the token sequences of this submission as StringBuilder. 
+	 * This method combines token sequences from all code files.
+	 * </pre>
+	 * @return <b>StringBuilder</b> - Combined token sequence
 	 */
 	public StringBuilder getTokenSequence()
 	{
@@ -252,7 +258,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Return the number of LOC in all code files in this submission
-	 * @return int The number of code lines in all code files
+	 * @return <b>int</b> - The number of code lines
 	 */
 	public int getNumCodeLines()
 	{
@@ -300,7 +306,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Return the number of code files in this submission.
-	 * @return int Number of Code Files in this submission
+	 * @return <b>int</b> - Number of code files in this submission
 	 */
 	public int getNumCodeFiles()
 	{
@@ -308,9 +314,9 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Compare String directory name 
-	 * @param obj Submission
-	 * @return int comparison value
+	 * Override compareTo() to compare the submission directory name 
+	 * @param obj <b>Submission</b>
+	 * @return <b>int</b> - Value
 	 */
 	@Override
 	public int compareTo( Submission obj )
@@ -319,8 +325,8 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Return the submission folder name
-	 * @return String Name of the Submission Directory
+	 * Return the submission directory name
+	 * @return <b>String</b> - Submission directory name
 	 */
 	@Override
 	public String toString()
@@ -329,10 +335,12 @@ public class Submission implements Comparable<Submission> , Cloneable
 	}
 	
 	/**
-	 * Overrides equals() method, 
+	 * <pre>
+	 * Override equals() method, 
 	 * Two submissions are equal if they both point to the same submission directory
-	 * @param obj Object
-	 * @return boolean true if the two objects are equal
+	 * </pre>
+	 * @param obj <b>Object</b>
+	 * @return <b>boolean</b> - Return true if the two objects are equal
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -360,7 +368,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Override clone() method
-	 * @return Submission a clone of this object
+	 * @return <b>Object</b> - A deep copy of this object
 	 */
 	@Override
 	public Object clone()
@@ -370,7 +378,7 @@ public class Submission implements Comparable<Submission> , Cloneable
 	
 	/**
 	 * Override hashCode() method
-	 * @return int hash code of this object
+	 * @return <b>int</b> - The hash code of this object
 	 */
 	@Override
 	public int hashCode()
