@@ -1,9 +1,12 @@
 package edu.odu.cs.cs350.red2.Interface;
 
 /**
- * This class represent each pair of students in the instructor's class
- * Once all codes are parsed, token sequences from 2 students are compared.
- * @author mpark
+ * <pre>
+ * <b>StudentPair Class</b>
+ * This sub-interface represents every possible pair of students in the instructor's class
+ * A pair must include 2 different students. A duplicate pair cannot exist. A raw core
+ * and a z-score is calulated for each pair of students.
+ * </pre>
  */
 public class StudentPair implements Comparable<StudentPair> , Cloneable
 {
@@ -17,9 +20,9 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	private boolean zScoreCalculated;
 	
 	/**
-	 * Constructor that accepts 2 Student objects
-	 * @param student1 Student
-	 * @param student2 Student
+	 * This constructor that accepts 2 Student objects
+	 * @param student1 <b>Student</b>
+	 * @param student2 <b>Student</b>
 	 */
 	public StudentPair( Student student1 , Student student2 )
 	{
@@ -43,7 +46,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Copy Constructor
-	 * @param obj StudentPair object to copy
+	 * @param obj <b>StudentPair</b> object to copy
 	 */
 	public StudentPair( StudentPair obj )
 	{
@@ -56,8 +59,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Public get method that returns the Raw Score
-	 * @return double Raw Score
+	 * Public method that returns the raw score for this pair
+	 * @return <b>double</b> - Raw score
 	 */
 	public double getRawScore()
 	{
@@ -65,8 +68,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Public get method that returns the Z-Score
-	 * @return double zScore
+	 * Public method that returns the z-score
+	 * @return <b>double</b> - Z-score
 	 */
 	public double getZScore()
 	{
@@ -74,8 +77,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Return the name of the first student
-	 * @return String name of the first student
+	 * Public method that returns the identifier of the first student
+	 * @return <b>String</b> - Identifier of the first student
 	 */
 	public String getFirstStudentName()
 	{
@@ -83,8 +86,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Return the name of the second student
-	 * @return String name of the second student
+	 * Public method that returns the identifier of the second student
+	 * @return <b>String</b> - Identifier of the second student
 	 */
 	public String getSecondStudentName()
 	{
@@ -92,8 +95,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Public get method that returns true if calculateRawScore() has been invoked
-	 * @return boolean true if the raw score has been calculated for this pair
+	 * Public method that returns true if the raw score has been calculated
+	 * @return <b>boolean</b> - Return true if the raw score has been calculated
 	 */
 	public boolean isRawScoreCalculated()
 	{
@@ -101,8 +104,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Public get method that returns true if calculateZScore() has been invoked
-	 * @return boolean true if the Z-Score has been calculated for this pair
+	 * Public method that returns true if the z-score has been calculated
+	 * @return <b>boolean</b> - Return true if the z-score has been calculated
 	 */
 	public boolean isZScoreCalculated()
 	{
@@ -110,11 +113,20 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Calculate the raw score for these 2 students
-	 * Formula: (4 * T) / ( L1 + L2)^2
-	 *  , where L1 is the sequence length of student 1
-	 *  and L2 is the sequence length of student 2
-	 * @param T double
+	 * <pre>
+	 * Calculate the raw score for this pair.
+	 * 
+	 * Precondition: rawScoreCalculated == false
+	 * Postcondition: rawScoreCalculated == true
+	 * 
+	 * Formula:
+	 *  
+	 * (4 * T) / ( L1 + L2)^2
+	 *  
+	 *  where L1 is the sequence length of Student 1
+	 *  and L2 is the sequence length of Student 2
+	 * </pre>
+	 * @param T <b>double</b>
 	 */
 	public void calculateRawScore( double T )
 	{
@@ -133,11 +145,21 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Calculate the z-score for these 2 students
-	 * Formula: (x - u) / s
-	 *  , where x is the raw score, u is the average raw score and s is the standard deviation.
-	 * @param average double
-	 * @param standardDeviation double
+	 * <pre>
+	 * Calculate the z-score for this pair. If the raw score hasn't been calculated yet,
+	 * this method will do nothing.
+	 * 
+	 * Precondition: rawScoreCalculated == true and zScoreCalculated == false
+	 * Postcondition: zScoreCalculated == true
+	 * 
+	 * Formula: 
+	 * 
+	 * (x - u) / s
+	 * 
+	 * where x is the raw score, u is the average raw score and s is the standard deviation.
+	 * </pre>
+	 * @param average <b>double</b>
+	 * @param standardDeviation <b>double</b>
 	 */
 	public void calculateZScore( double average , double standardDeviation )
 	{
@@ -146,14 +168,19 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 			return;
 		}
 		
+		// The raw score hasn't been calculated yet
+		if( !rawScoreCalculated ) {
+			return;	// Or throw
+		}
+		
 		zScore = ( rawScore - average ) / standardDeviation;
 		
 		zScoreCalculated = true;
 	}
 	
 	/**
-	 * Override toString() method
-	 * @return String StudentPair
+	 * Override toString() method to represent this pair as String
+	 * @return <b>String</b> - String representation of this pair
 	 */
 	@Override
 	public String toString()
@@ -163,8 +190,8 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override equals() method
-	 * @param obj Object
-	 * @return boolean True if the objects are equal
+	 * @param obj <b>Object</b>
+	 * @return <b>boolean</b> - Return true if the two objects are equal
 	 */
 	@Override
 	public boolean equals( Object obj )
@@ -187,9 +214,14 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	}
 	
 	/**
-	 * Override compareTo from Comparable to allow sorting of Student Pair objects
-	 * @param obj StudentPair
-	 * @return int value
+	 * <pre>
+	 * Override compareTo() from Comparable to allow sorting of StudentPair.
+	 * 
+	 * It will always compare the first students. If the first students are equal,
+	 * second students are compared.
+	 * </pre>
+	 * @param obj <b>StudentPair</b>
+	 * @return <b>int</b> - Value
 	 */
 	@Override
 	public int compareTo( StudentPair obj )
@@ -203,7 +235,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override hashCode() method
-	 * @return int hash code of this object
+	 * @return <b>int</b> The hash code of this object
 	 */
 	@Override
 	public int hashCode()
@@ -230,7 +262,7 @@ public class StudentPair implements Comparable<StudentPair> , Cloneable
 	
 	/**
 	 * Override clone() method
-	 * @return Object copy of this StudentPair
+	 * @return <b>Object</b> A deep copy of this object
 	 */
 	@Override
 	public Object clone()
