@@ -41,7 +41,7 @@ public class Token implements Cloneable
 		type = theType;
 		lineNumber = line;
 		columnNumber = column;
-		lexeme = null;
+		lexeme = "";
 	}
 	
 	/**
