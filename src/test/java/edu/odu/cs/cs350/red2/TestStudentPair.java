@@ -51,6 +51,16 @@ public class TestStudentPair {
 		assertEquals("( Asa , Jen )", AsaJen.toString());
 		assertEquals("( Asa , Mike )", AsaMike.toString());
 		
+		
+		//equals
+		assertTrue(AsaJen.equals(AsaJen));
+		assertFalse(AsaJen.equals(AsaMike));
+		assertFalse(AsaJen.equals(AsaNathan));
+		
+		assertTrue(AsaNathan.equals(AsaNathan));
+		assertFalse(AsaNathan.equals(AsaMike));
+		assertFalse(AsaNathan.equals(AsaJen));
+		
 	}
 
 	
