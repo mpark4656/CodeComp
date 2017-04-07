@@ -58,31 +58,31 @@ public class TestStudentPair {
 	@Test
 	public void testStudentPairStudentPair() 
 	{
-		StudentPair ClonedAsaJen = new StudentPair(AsaJen);
+		StudentPair CopyAsaJen = new StudentPair(AsaJen);
 		
-		assertNotSame(ClonedAsaJen , AsaJen);
+		assertNotSame(CopyAsaJen , AsaJen);
 		
-		assertEquals(ClonedAsaJen.toString() , AsaJen.toString());
-		assertEquals(ClonedAsaJen.getFirstStudentName(), AsaJen.getFirstStudentName());
+		assertEquals(CopyAsaJen.toString() , AsaJen.toString());
+		assertEquals(CopyAsaJen.getFirstStudentName(), AsaJen.getFirstStudentName());
 		
 
 		assertEquals("Asa", AsaJen.getFirstStudentName());
 		assertEquals("Jen", AsaJen.getSecondStudentName());
-		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
-		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		assertEquals("Asa", CopyAsaJen.getFirstStudentName());
+		assertEquals("Jen", CopyAsaJen.getSecondStudentName());
 		
 		
 		assertEquals("Asa", AsaJen.getFirstStudentName());
 		assertEquals("Jen", AsaJen.getSecondStudentName());
-		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
-		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		assertEquals("Asa", CopyAsaJen.getFirstStudentName());
+		assertEquals("Jen", CopyAsaJen.getSecondStudentName());
 		
 		
-		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getRawScore()));
-		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getZScore()));
+		assertEquals( "0.0" , String.format("%.1f",CopyAsaJen.getRawScore()));
+		assertEquals( "0.0" , String.format("%.1f",CopyAsaJen.getZScore()));
 		
-		assertFalse(ClonedAsaJen.isRawScoreCalculated());
-		assertFalse(ClonedAsaJen.isZScoreCalculated());
+		assertFalse(CopyAsaJen.isRawScoreCalculated());
+		assertFalse(CopyAsaJen.isZScoreCalculated());
 		
 		//need to add hashcode
 		//need to add equals
@@ -125,28 +125,52 @@ public class TestStudentPair {
 	@Test
 	public void testIsRawScoreCalculated() 
 	{
-		// fail("Not yet implemented");
+		StudentPair tempPair = new StudentPair(AsaJen);
+		assertFalse(tempPair.isRawScoreCalculated());
 	}
 
 	@Test
-	public void testIsZScoreCalculated() {
-		// fail("Not yet implemented");
+	public void testIsZScoreCalculated() 
+	{
+		StudentPair tempPair = new StudentPair(AsaJen);
+		assertFalse(tempPair.isZScoreCalculated());
+		
+		
 	}
 
 	@Test
-	public void testCalculateRawScore() {
-		// fail("Not yet implemented");
+	public void testCalculateRawScore() 
+	{
+		double combinedLength = 21 + 269;
+		double numerator = 4* 2;
+		double denominator = Math.pow( combinedLength, 2.0);
+		double rawScore = numerator / denominator;
+		
+		instructor.analyze();
+		
+		assertEquals(String.format("%.1f", rawScore) , String.format("%.1f", AsaJen.getRawScore()));
+	
 	}
 
 	@Test
-	public void testCalculateZScore() {
-		// fail("Not yet implemented");
+	public void testCalculateZScore() 
+	{
+		double average = 2.0;
+		double StandardDeviation = 2.0;
+		double rawScore = 2.0;
+		double zScore = (rawScore - average)/StandardDeviation;
+		
+		//instructor.analyze();
+		
+		assertEquals(String.format("%.1f", zScore) , String.format("%.1f", AsaJen.getZScore()));
+		//zScore = ( rawScore - average ) / standardDeviation;
+		
 	}
 
 	@Test
 	public void testToString() 
 	{
-		//preliminary 
+		
 		//meet this format
 		//"( " + student1.toString() + " , " + student2.toString() + " )"
 		assertEquals( "( Asa , Jen )" , AsaJen.toString());
@@ -164,24 +188,73 @@ public class TestStudentPair {
 	@Test
 	public void testEqualsObject() 
 	{
-		// fail("Not yet implemented");
+		
+		assertTrue(AsaJen.equals(AsaJen));
+		assertFalse(AsaJen.equals(AsaMike));
+		assertFalse(AsaJen.equals(AsaNathan));
+		
+		assertTrue(AsaNathan.equals(AsaNathan));
+		assertFalse(AsaNathan.equals(AsaMike));
+		assertFalse(AsaNathan.equals(AsaJen));
+		
+		StudentPair copyAsaJen = new StudentPair(AsaJen);
+		
+		assertTrue(AsaJen.equals(AsaJen) && copyAsaJen.equals(AsaJen));
+		assertFalse(AsaJen.equals(AsaMike) || AsaMike.equals(AsaJen));
 	}
 
 	@Test
-	public void testCompareTo() {
-		// fail("Not yet implemented");
+	public void testCompareTo() 
+	{
+		
+		assertTrue(AsaJen.compareTo(AsaJen) == 0);
+		assertTrue(AsaJen.compareTo(AsaMike) < 0);
+		assertTrue(AsaMike.compareTo(AsaJen) > 0);
+		
+		assertFalse(AsaJen.compareTo(AsaMike) == 0);
+		assertFalse(AsaMike.compareTo(AsaJen) < 0);
+		assertFalse(AsaJen.compareTo(AsaJen) > 0);
 	}
 	
 
 	@Test
 	public void testHashCode() 
 	{
-		// fail("Not yet implemented");
+		assertFalse( AsaJen.equals(AsaMike) || AsaMike.equals(AsaJen) );
+	    assertFalse( AsaJen.hashCode() == AsaMike.hashCode() );
+	    
+	    StudentPair clonedJen = new StudentPair( AsaJen );
+	    assertTrue( clonedJen.equals(AsaJen) && AsaJen.equals(clonedJen) );
+	    assertTrue( clonedJen.hashCode() == AsaJen.hashCode() );
 	}
 
 	@Test
 	public void testClone() {
-		// fail("Not yet implemented");
+		StudentPair ClonedAsaJen = new StudentPair(AsaJen);
+		
+		assertNotSame(ClonedAsaJen , AsaJen);
+		
+		assertEquals(ClonedAsaJen.toString() , AsaJen.toString());
+		assertEquals(ClonedAsaJen.getFirstStudentName(), AsaJen.getFirstStudentName());
+		
+
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
+		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		
+		
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
+		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		
+		
+		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getRawScore()));
+		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getZScore()));
+		
+		assertFalse(ClonedAsaJen.isRawScoreCalculated());
+		assertFalse(ClonedAsaJen.isZScoreCalculated());
 	}
 
 }
