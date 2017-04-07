@@ -155,16 +155,9 @@ public class TestStudentPair {
 	@Test
 	public void testCalculateZScore() 
 	{
-		double average = 2.0;
-		double StandardDeviation = 2.0;
-		double rawScore = 2.0;
-		double zScore = (rawScore - average)/StandardDeviation;
+		instructor.analyze();
 		
-		//instructor.analyze();
-		
-		assertEquals(String.format("%.1f", zScore) , String.format("%.1f", AsaJen.getZScore()));
-		//zScore = ( rawScore - average ) / standardDeviation;
-		
+		assertTrue( AsaJen.getZScore() == 0 );
 	}
 
 	@Test
@@ -180,8 +173,7 @@ public class TestStudentPair {
 				
 				
 		assertEquals( "( Asa , Mike )" , AsaMike.toString() );
-				
-				
+					
 				
 	}
 
