@@ -18,65 +18,113 @@ public class TestStudentPair {
 
 	private Instructor instructor;
 	private File submissionDirectory;
-	private Student Asa;
-	private Student Jen;
-	private Student Mike;
-	private Student Nathan;
+	private StudentPair AsaJen;
+	private StudentPair AsaMike;
+	private StudentPair AsaNathan;
 	
 	
-	
-	public void testStudentPairStudentStudent() 
+	public TestStudentPair()
 	{
 		instructor = new Instructor("output");
 		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions(submissionDirectory);
 		
-		Asa = instructor.getStudent( "Asa" );
-		Jen = instructor.getStudent( "Jen" );
-		Mike = instructor.getStudent( "Mike" );
-		Nathan = instructor.getStudent( "Nathan" );
+		AsaJen = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Jen"));
+		AsaMike = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Mike"));
+		AsaNathan = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Nathan"));
 		
+	}
+	@Test
+	public void testStudentPairStudentStudent() 
+	{
 		
-
-		StudentPair SP = new StudentPair(Asa, Nathan);
+		assertEquals( "0.0" , String.format("%.1f",AsaJen.getRawScore()));
+		assertEquals( "0.0" , String.format("%.1f",AsaJen.getZScore()));
 		
-		assertEquals("Asa",Asa.toString());
-		assertEquals("Jen",Jen.toString());
-		assertEquals("Mike",Mike.toString());
-		assertEquals("Nathan",Nathan.toString());
-		assertFalse(SP.isRawScoreCalculated());
-		assertFalse(SP.isZScoreCalculated());
+		assertFalse(AsaJen.isRawScoreCalculated());
+		assertFalse(AsaJen.isZScoreCalculated());
+		
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		
+		//"( " + student1.toString() + " , " + student2.toString() + " )"
+		assertEquals("( Asa , Jen )", AsaJen.toString());
+		assertEquals("( Asa , Mike )", AsaMike.toString());
+		
 	}
 
+	
+	
 	@Test
-	public void testStudentPairStudentPair() {
-		// fail("Not yet implemented");
+	public void testStudentPairStudentPair() 
+	{
+		StudentPair ClonedAsaJen = new StudentPair(AsaJen);
+		
+		assertNotSame(ClonedAsaJen , AsaJen);
+		
+		assertEquals(ClonedAsaJen.toString() , AsaJen.toString());
+		assertEquals(ClonedAsaJen.getFirstStudentName(), AsaJen.getFirstStudentName());
+		
+
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
+		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		
+		
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		assertEquals("Asa", ClonedAsaJen.getFirstStudentName());
+		assertEquals("Jen", ClonedAsaJen.getSecondStudentName());
+		
+		
+		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getRawScore()));
+		assertEquals( "0.0" , String.format("%.1f",ClonedAsaJen.getZScore()));
+		
+		assertFalse(ClonedAsaJen.isRawScoreCalculated());
+		assertFalse(ClonedAsaJen.isZScoreCalculated());
+		
+		//need to add hashcode
+		//need to add equals
+		//compareto?
 	}
 
 	@Test
 	public void testGetRawScore() 
 	{
-		// fail("Not yet implemented");
+		assertEquals("0.0" , String.format("%.1f",AsaJen.getRawScore()));
+		assertEquals("0.0" , String.format("%.1f",AsaMike.getRawScore()));
+		assertEquals("0.0" , String.format("%.1f",AsaNathan.getRawScore()));
 	}
 
 	@Test
-	public void testGetZScore() {
-		// fail("Not yet implemented");
+	public void testGetZScore() 
+	{
+		assertEquals( "0.0" , String.format("%.1f",AsaJen.getZScore()));
+		assertEquals( "0.0" , String.format("%.1f",AsaMike.getZScore()));
+		assertEquals( "0.0" , String.format("%.1f",AsaNathan.getZScore()));
 	}
 
 	@Test
 	public void testGetFirstStudentName() 
 	{
-		// fail("Not yet implemented");
+		assertEquals("Asa", AsaJen.getFirstStudentName());
+		assertEquals("Asa", AsaNathan.getFirstStudentName());
+		assertEquals("Asa", AsaMike.getFirstStudentName());
+		
 	}
 
 	@Test
-	public void testGetSecondStudentName() {
-		// fail("Not yet implemented");
+	public void testGetSecondStudentName() 
+	{
+		assertEquals("Jen", AsaJen.getSecondStudentName());
+		assertEquals("Nathan", AsaNathan.getSecondStudentName());
+		assertEquals("Mike", AsaMike.getSecondStudentName());
 	}
 
 	@Test
-	public void testIsRawScoreCalculated() {
+	public void testIsRawScoreCalculated() 
+	{
 		// fail("Not yet implemented");
 	}
 
@@ -101,17 +149,15 @@ public class TestStudentPair {
 		//preliminary 
 		//meet this format
 		//"( " + student1.toString() + " , " + student2.toString() + " )"
-		// assertEquals( "( Asa , Jen )" , Asa.toString() );
+		assertEquals( "( Asa , Jen )" , AsaJen.toString());
 				
 			
-		// assertEquals( "( Asa , Nathan )" , Jen.toString() );
+		assertEquals( "( Asa , Nathan )" , AsaNathan.toString() );
 				
 				
-		// assertEquals( "( Asa , Mike )" , Mike.toString() );
+		assertEquals( "( Asa , Mike )" , AsaMike.toString() );
 				
 				
-		// assertEquals( "( Nathan , Jen )" , Nathan.toString() );
-		
 				
 	}
 
