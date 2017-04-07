@@ -167,7 +167,7 @@ public class TestStudentPair {
 	{
 		instructor.analyze();
 		
-		assertTrue( AsaJen.getZScore() == 0 );
+		assertEquals( "0.0" , String.format("%.1f", AsaJen.getZScore()));
 	}
 
 	@Test
