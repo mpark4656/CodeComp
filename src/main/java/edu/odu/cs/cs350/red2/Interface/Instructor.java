@@ -18,7 +18,7 @@ import java.io.File;
  * Student, StudentPair, Submission
  * </pre>
  */
-public class Instructor
+public class Instructor implements Cloneable
 {
 	
 	// List of all students in this instructor's class
@@ -68,6 +68,26 @@ public class Instructor
 		
 		template = "";
 		sheetName = "";
+	}
+	
+	
+	/**
+	 * Copy Constructor
+	 * @param obj <b>Instructor</b>
+	 */
+	@SuppressWarnings("unchecked")
+	public Instructor( Instructor obj )
+	{
+		this.students = (ArrayList<Student>) obj.students.clone();
+		this.stuPairs = (ArrayList<StudentPair>) obj.stuPairs.clone();
+		this.templateSpecified = obj.templateSpecified;
+		this.sheetNameSpecified = obj.sheetNameSpecified;
+		this.receivedSubmissions = obj.receivedSubmissions;
+		this.parsedStudentSubmissions = obj.parsedStudentSubmissions;
+		this.analyzedTokenSequences = obj.analyzedTokenSequences;
+		this.outputDirectory = new File( obj.outputDirectory.getPath() );
+		this.template = new String( obj.template );
+		this.sheetName = new String( obj.sheetName );
 	}
 	
 	/**
@@ -184,6 +204,39 @@ public class Instructor
 		}
 		
 		// Student Identifier Not Found, return null.
+		return null;
+	}
+	
+	/**
+	 * <pre>
+	 * Public method that returns Student Pair object.
+	 * If the specified pair is not found, it will return null.
+	 * The returned student pair object sorts the student objects.
+	 * For example, if Nathan and Mike are searched, the returned object
+	 * will have Mike as the first student and Nathan as the second student
+	 * because 'M' precedes 'N'. However, it's not required that user sorts
+	 * the parameters.
+	 * </pre>
+	 * @param stud1 <b>String</b> Name of First Student
+	 * @param stud2 <b>String</b> Name of Second Student
+	 * @return <b>StudentPair</b> - Specified pair object
+	 */
+	public StudentPair getStudentPair( String stud1 , String stud2 )
+	{
+		for( StudentPair pair : stuPairs ) {
+			if( stud1.equals(pair.getFirstStudentName()) &&
+				stud2.equals(pair.getSecondStudentName()) ) {
+				
+				return pair;
+			}
+			
+			if( stud1.equals(pair.getSecondStudentName()) &&
+				stud2.equals(pair.getFirstStudentName()) ) {
+				
+				return pair;
+			}
+		}
+		
 		return null;
 	}
 	
@@ -555,6 +608,49 @@ public class Instructor
 		return outputDirectory.getName();
 	}
 	
+	/**
+	 * Override equals() method
+	 * @param obj <b>Object</b>
+	 * @return <b>boolean</b> - True if the two objects are equal
+	 */
+	@Override
+	public boolean equals( Object obj )
+	{
+		if( obj == null ) {
+			return false;
+		}
+		
+		if( !(obj instanceof Instructor) ) {
+			return false;
+		}
+		
+		if( this == obj ) {
+			return true;
+		}
+		
+		Instructor copyObj = (Instructor) obj;
+		
+		return this.students.equals( copyObj.students ) &&
+			   this.stuPairs.equals( copyObj.stuPairs ) &&
+			   this.templateSpecified == copyObj.templateSpecified &&
+			   this.sheetNameSpecified == copyObj.sheetNameSpecified &&
+			   this.receivedSubmissions == copyObj.receivedSubmissions &&
+			   this.parsedStudentSubmissions == copyObj.parsedStudentSubmissions &&
+			   this.analyzedTokenSequences == copyObj.analyzedTokenSequences &&
+			   this.outputDirectory.equals(copyObj.outputDirectory) &&
+			   this.sheetName.equals( copyObj.sheetName ) &&
+			   this.template.equals( copyObj.template );
+	}
+	
+	/**
+	 * Override clone() method
+	 * @return <b>Object</b> - A deep copy of this object
+	 */
+	@Override
+	public Object clone()
+	{
+		return new Instructor( this );
+	}
 	
 } // End of Instructor Class
 

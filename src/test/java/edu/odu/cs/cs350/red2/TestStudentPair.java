@@ -29,10 +29,9 @@ public class TestStudentPair {
 		submissionDirectory = new File( "./src/test/data/testSubmissionDirectory" );
 		instructor.acceptStudentSubmissions(submissionDirectory);
 		
-		AsaJen = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Jen"));
-		AsaMike = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Mike"));
-		AsaNathan = new StudentPair (instructor.getStudent("Asa"),instructor.getStudent("Nathan"));
-		
+		AsaJen = instructor.getStudentPair( "Asa" , "Jen" );
+		AsaMike = instructor.getStudentPair( "Asa" , "Mike" );
+		AsaNathan = instructor.getStudentPair( "Asa" , "Nathan" );
 	}
 	@Test
 	public void testStudentPairStudentStudent() 
@@ -144,30 +143,29 @@ public class TestStudentPair {
 	{
 		StudentPair tempPair = new StudentPair(AsaJen);
 		assertFalse(tempPair.isZScoreCalculated());
-		
-		
 	}
 
 	@Test
 	public void testCalculateRawScore() 
 	{
 		double combinedLength = 21 + 269;
-		double numerator = 4* 2;
+		double numerator = 4 * 2;
 		double denominator = Math.pow( combinedLength, 2.0);
 		double rawScore = numerator / denominator;
 		
+		instructor.parseSubmissions();
 		instructor.analyze();
 		
 		assertEquals(String.format("%.1f", rawScore) , String.format("%.1f", AsaJen.getRawScore()));
-	
 	}
 
 	@Test
 	public void testCalculateZScore() 
 	{
+		instructor.parseSubmissions();
 		instructor.analyze();
 		
-		assertEquals( "0.0" , String.format("%.1f", AsaJen.getZScore()));
+		assertEquals( "-0.4" , String.format("%.1f", AsaJen.getZScore()));
 	}
 
 	@Test

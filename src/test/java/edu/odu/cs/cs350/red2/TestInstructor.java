@@ -44,6 +44,15 @@ public class TestInstructor {
 	} // End of testInstructor()
 
 	@Test
+	public void testInstructorInstructor()
+	{
+		Instructor copyInstructor = new Instructor( instructor );
+		
+		assertEquals( instructor , copyInstructor );
+		assertNotSame( instructor , copyInstructor );
+	}
+	
+	@Test
 	public void testIsTemplateSpecified() {
 		
 		/***************************************************************/
@@ -248,13 +257,18 @@ public class TestInstructor {
 		
 	} // End of testIsSubmissionParsed()
 
-	
-
 	@Test
 	public void testIsTokenSequenceAnalyzed() {
-		//fail("Not yet implemented");
-
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		instructor.parseSubmissions();
 		
+		assertFalse( instructor.isTokenSequenceAnalyzed() );
+		
+		instructor.analyze();
+		
+		assertTrue( instructor.isTokenSequenceAnalyzed() );
+
 	} // End of testIsTokenSequenceAnalyzed()
 
 	
@@ -286,6 +300,23 @@ public class TestInstructor {
 		
 	} // End of testGetStudent()
 
+	@Test
+	public void testGetStudentPair()
+	{
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		
+		assertTrue( instructor.getStudentPair("Asa", "Mike") != null &&
+				instructor.getStudentPair("Mike", "Asa") != null &&
+				instructor.getStudentPair("Asa", "Mike").equals(instructor.getStudentPair("Mike", "Asa")));
+		
+		assertTrue( instructor.getStudentPair("Asa", "Jen") != null &&
+				instructor.getStudentPair("Jen", "Asa") != null &&
+				instructor.getStudentPair("Asa", "Jen").equals(instructor.getStudentPair("Jen", "Asa")));
+		
+		assertTrue( instructor.getStudentPair("Asa", "Abdul") == null );
+	}
+	
 	@Test
 	public void testGetTotalStudentCount() {
 
@@ -397,7 +428,7 @@ public class TestInstructor {
 	} // End of testAcceptStudentSubmission()
 	
 	@Test
-	public void testProcess() {
+	public void testParseSubmissions() {
 		instructor = new Instructor( "output" );
 		instructor.acceptStudentSubmissions( submissionDirectory );
 		instructor.parseSubmissions();
@@ -442,7 +473,30 @@ public class TestInstructor {
 	public void testWriteToFile() {
 		//fail("Not yet implemented");
 	}
-
+	
+	@Test
+	public void testClone()
+	{
+		Instructor copyInstructor = ( Instructor ) instructor.clone();
+		
+		assertEquals( instructor , copyInstructor );
+		assertNotSame( instructor , copyInstructor );
+	}
+	
+	@Test
+	public void testEquals()
+	{
+		instructor = new Instructor( "output" );
+		instructor.acceptStudentSubmissions( submissionDirectory );
+		Instructor copyInstructor = ( Instructor ) instructor.clone();
+		
+		assertTrue( instructor.equals(copyInstructor) ); 
+		
+		instructor.parseSubmissions();
+		
+		assertFalse( instructor.equals(copyInstructor) ); 
+	}
+	
 	@Test
 	public void testToString() {
 		instructor = new Instructor( "output" );
