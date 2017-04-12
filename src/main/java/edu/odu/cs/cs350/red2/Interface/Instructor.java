@@ -4,9 +4,16 @@ import edu.odu.cs.cs350.codeCompCommon.SharedPhrases;
 import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
 import java.util.ArrayList;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
 /**
  * <pre>
@@ -590,7 +597,8 @@ public class Instructor implements Cloneable
 	 */
 	public void displayResult()
 	{
-		// Not yet implemented
+		// Not Implemented
+		writeToFile();
 	}
 	
 	/**
@@ -598,7 +606,141 @@ public class Instructor implements Cloneable
 	 */
 	private void writeToFile()
 	{
-		// Not yet implemented
+		//**********************************************************************
+		//             This is a demonstration of Apache POI
+		//**********************************************************************
+		 
+		// Get the workbook instance for XLS file 
+		HSSFWorkbook workbook = new HSSFWorkbook();
+
+		// Create a sheet named RawScores in the workbook
+		HSSFSheet sheet = workbook.createSheet( "RawScores" );
+		
+		// Create the first row
+		Row row = sheet.createRow(0);
+		
+		// Create Red Background Style with Border
+		HSSFCellStyle redBackground = workbook.createCellStyle();
+		redBackground.setFillForegroundColor(HSSFColor.RED.index);
+		redBackground.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+		redBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		
+		// Create Yellow Background Style with Border
+		HSSFCellStyle yellowBackground = workbook.createCellStyle();
+		yellowBackground.setFillForegroundColor(HSSFColor.YELLOW.index);
+		yellowBackground.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+		yellowBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		
+		// Create White Background Style with Border
+		HSSFCellStyle whiteBackground = workbook.createCellStyle();
+		whiteBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		
+		// Create the first cell in the first row and set the value to "This"
+		Cell cell = row.createCell(0);
+		cell.setCellValue("This");
+		cell.setCellStyle( redBackground );
+		
+		// Create the second cell in the first row and set the value to "Is"
+		cell = row.createCell(1);
+		cell.setCellValue("Is");
+		cell.setCellStyle( redBackground );
+		
+		// Create the third cell in the first row and set the value to "A"
+		cell = row.createCell(2);
+		cell.setCellValue("A");
+		cell.setCellStyle( redBackground );
+		
+		// Create the fourth cell in the first row and set the value to "First"
+		cell = row.createCell(3);
+		cell.setCellValue("First");
+		cell.setCellStyle( redBackground );
+		
+		// Create the fifth cell in the first row and set the value to "Test"
+		cell = row.createCell(4);
+		cell.setCellValue("Test");
+		cell.setCellStyle( redBackground );
+		
+		// Create the second row
+		row = sheet.createRow(1);
+		
+		// Create the first cell in the second row and set the value to "This"
+		cell = row.createCell(0);
+		cell.setCellValue("This");
+		cell.setCellStyle( yellowBackground );
+		
+		// Create the second cell in the second row and set the value to "Is"
+		cell = row.createCell(1);
+		cell.setCellValue("Is");
+		cell.setCellStyle( yellowBackground );
+		
+		// Create the third cell in the second row and set the value to "A"
+		cell = row.createCell(2);
+		cell.setCellValue("A");
+		cell.setCellStyle( yellowBackground );
+		
+		// Create the fourth cell in the second row and set the value to "Second"
+		cell = row.createCell(3);
+		cell.setCellValue("Second");
+		cell.setCellStyle( yellowBackground );
+		
+		// Create the fifth cell in the second row and set the value to "Test"
+		cell = row.createCell(4);
+		cell.setCellValue("Test");
+		cell.setCellStyle( yellowBackground );
+		
+		// Create the third row
+		row = sheet.createRow(2);
+		
+		// Create the first cell in the third row and set the value to "This"
+		cell = row.createCell(0);
+		cell.setCellValue("This");
+		cell.setCellStyle( whiteBackground );
+		
+		// Create the second cell in the third row and set the value to "Is"
+		cell = row.createCell(1);
+		cell.setCellValue("Is");
+		cell.setCellStyle( whiteBackground );
+		
+		// Create the third cell in the third row and set the value to "A"
+		cell = row.createCell(2);
+		cell.setCellValue("A");
+		cell.setCellStyle( whiteBackground );
+		
+		// Create the fourth cell in the third row and set the value to "Third"
+		cell = row.createCell(3);
+		cell.setCellValue("Third");
+		cell.setCellStyle( whiteBackground );
+		
+		// Create the fifth cell in the third row and set the value to "Test"
+		cell = row.createCell(4);
+		cell.setCellValue("Test");
+		cell.setCellStyle( whiteBackground );
+				
+		// Write the results to the Excel file
+		try {
+			FileOutputStream out = new FileOutputStream(new File("src/test/data/testOutputDirectory/Reports.xls"));
+			workbook.write(out);
+			out.close();
+			System.out.println("\nResults written to Microsoft Excel Successfully");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//**********************************************************************
+		//             End of Apache POI Demonstration
+		//**********************************************************************
 	}
 	
 	/**
