@@ -10,12 +10,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 
 /**
  * <pre>
@@ -651,10 +651,10 @@ public class Instructor implements Cloneable
 		template.setSheetName(0, this.sheetName );
 		
 		// Get the first row in the first sheet
-		Row tempRow = tempSheet.getRow(0);
+		XSSFRow tempRow = tempSheet.getRow(0);
 		
 		// Get the first cell in the first row of the first sheet
-		Cell tempCell = tempRow.getCell(0);
+		XSSFCell tempCell = tempRow.getCell(0);
 		
 		// Change the value of the cell
 		tempCell.setCellValue( "TEST" );
@@ -690,7 +690,7 @@ public class Instructor implements Cloneable
 		XSSFSheet sheet = workbook.createSheet( "RawScores" );
 		
 		// Create the first row
-		Row row = sheet.createRow(0);
+		XSSFRow row = sheet.createRow(0);
 				
 		// Create Red Background Style with Border
 		XSSFCellStyle redBackground = workbook.createCellStyle();
@@ -718,7 +718,7 @@ public class Instructor implements Cloneable
 		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		
 		// Create the first cell in the first row and set the value to "This"
-		Cell cell = row.createCell(0);
+		XSSFCell cell = row.createCell(0);
 		cell.setCellValue("This");
 		cell.setCellStyle( redBackground );
 		
