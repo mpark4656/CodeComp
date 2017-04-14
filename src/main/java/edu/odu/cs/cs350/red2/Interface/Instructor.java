@@ -3,15 +3,17 @@ package edu.odu.cs.cs350.red2.Interface;
 import edu.odu.cs.cs350.codeCompCommon.SharedPhrases;
 import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
 import java.util.ArrayList;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -597,7 +599,19 @@ public class Instructor implements Cloneable
 	 */
 	public void displayResult()
 	{
-		// Not Implemented
+		if( templateSpecified && sheetNameSpecified ) {
+			
+		}
+		else if( templateSpecified ) {
+			
+		}
+		else if( sheetNameSpecified ) {
+			
+		}
+		else {
+			
+		}
+		
 		writeToFile();
 	}
 	
@@ -607,42 +621,87 @@ public class Instructor implements Cloneable
 	private void writeToFile()
 	{
 		//**********************************************************************
-		//             This is a demonstration of Apache POI
+		//   This is a demonstration of Apache POI - From Existing Template
+		//**********************************************************************
+		FileInputStream file = null;
+		
+		try {
+			file = new FileInputStream( new File(this.template) );
+		} catch (FileNotFoundException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		XSSFWorkbook template = null;
+		
+		try {
+			template = new XSSFWorkbook( file );
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		XSSFSheet tempSheet = template.getSheetAt(0);
+		Row tempRow = tempSheet.getRow(0);
+		Cell tempCell = tempRow.getCell(0);
+		tempCell.setCellValue( "TEST" );
+		
+		XSSFCellStyle tempCellStyle = (XSSFCellStyle) tempCell.getCellStyle();
+		tempCellStyle.setFillForegroundColor( new XSSFColor(Color.RED) );
+		tempCellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+		//tempCell.setCellStyle(tempCellStyle);
+		
+		// Write the results to the Excel file
+		try {
+			FileOutputStream outTemp = new FileOutputStream(new File("src/test/data/testOutputDirectory/tempReports.xltx"));
+			template.write(outTemp);
+			outTemp.close();
+			System.out.println("\nResults written to Microsoft Excel Successfully");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		//**********************************************************************
+		//   This is a demonstration of Apache POI - Creating New Workbook
 		//**********************************************************************
 		 
 		// Get the workbook instance for XLS file 
-		HSSFWorkbook workbook = new HSSFWorkbook();
+		XSSFWorkbook workbook = new XSSFWorkbook();
 
 		// Create a sheet named RawScores in the workbook
-		HSSFSheet sheet = workbook.createSheet( "RawScores" );
+		XSSFSheet sheet = workbook.createSheet( "RawScores" );
 		
 		// Create the first row
 		Row row = sheet.createRow(0);
-		
+				
 		// Create Red Background Style with Border
-		HSSFCellStyle redBackground = workbook.createCellStyle();
-		redBackground.setFillForegroundColor(HSSFColor.RED.index);
-		redBackground.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		redBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		XSSFCellStyle redBackground = workbook.createCellStyle();
+		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
+		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+		redBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		
 		// Create Yellow Background Style with Border
-		HSSFCellStyle yellowBackground = workbook.createCellStyle();
-		yellowBackground.setFillForegroundColor(HSSFColor.YELLOW.index);
-		yellowBackground.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		yellowBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		XSSFCellStyle yellowBackground = workbook.createCellStyle();
+		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
+		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
+		yellowBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		
 		// Create White Background Style with Border
-		HSSFCellStyle whiteBackground = workbook.createCellStyle();
-		whiteBackground.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderTop(HSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderRight(HSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+		XSSFCellStyle whiteBackground = workbook.createCellStyle();
+		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		
 		// Create the first cell in the first row and set the value to "This"
 		Cell cell = row.createCell(0);
@@ -727,7 +786,7 @@ public class Instructor implements Cloneable
 				
 		// Write the results to the Excel file
 		try {
-			FileOutputStream out = new FileOutputStream(new File("src/test/data/testOutputDirectory/Reports.xls"));
+			FileOutputStream out = new FileOutputStream(new File("src/test/data/testOutputDirectory/Reports.xlsx"));
 			workbook.write(out);
 			out.close();
 			System.out.println("\nResults written to Microsoft Excel Successfully");
