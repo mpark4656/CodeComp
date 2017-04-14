@@ -642,6 +642,7 @@ public class Instructor implements Cloneable
 		}
 		
 		XSSFSheet tempSheet = template.getSheetAt(0);
+		template.setSheetName(0, this.sheetName );
 		Row tempRow = tempSheet.getRow(0);
 		Cell tempCell = tempRow.getCell(0);
 		tempCell.setCellValue( "TEST" );
@@ -653,7 +654,7 @@ public class Instructor implements Cloneable
 		
 		// Write the results to the Excel file
 		try {
-			FileOutputStream outTemp = new FileOutputStream(new File("src/test/data/testOutputDirectory/tempReports.xltx"));
+			FileOutputStream outTemp = new FileOutputStream(new File(this.outputDirectory.getPath(), "tempReports.xltx"));
 			template.write(outTemp);
 			outTemp.close();
 			System.out.println("\nResults written to Microsoft Excel Successfully");
@@ -668,7 +669,7 @@ public class Instructor implements Cloneable
 		//**********************************************************************
 		//   This is a demonstration of Apache POI - Creating New Workbook
 		//**********************************************************************
-		 
+		
 		// Get the workbook instance for XLS file 
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -786,7 +787,7 @@ public class Instructor implements Cloneable
 				
 		// Write the results to the Excel file
 		try {
-			FileOutputStream out = new FileOutputStream(new File("src/test/data/testOutputDirectory/Reports.xlsx"));
+			FileOutputStream out = new FileOutputStream(new File(this.outputDirectory.getPath(), "Reports.xlsx"));
 			workbook.write(out);
 			out.close();
 			System.out.println("\nResults written to Microsoft Excel Successfully");
