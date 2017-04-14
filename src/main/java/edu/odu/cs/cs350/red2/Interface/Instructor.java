@@ -625,6 +625,7 @@ public class Instructor implements Cloneable
 		//**********************************************************************
 		FileInputStream file = null;
 		
+		// Read from the existing template file
 		try {
 			file = new FileInputStream( new File(this.template) );
 		} catch (FileNotFoundException e1) {
@@ -632,8 +633,10 @@ public class Instructor implements Cloneable
 			e1.printStackTrace();
 		}
 		
+		// Create a new workbook
 		XSSFWorkbook template = null;
 		
+		// Attempt to read from the file and save it in the workbook
 		try {
 			template = new XSSFWorkbook( file );
 		} catch (IOException e1) {
@@ -641,16 +644,27 @@ public class Instructor implements Cloneable
 			e1.printStackTrace();
 		}
 		
+		// Get the first sheet in this workbook
 		XSSFSheet tempSheet = template.getSheetAt(0);
+		
+		// Change the name of the first sheet
 		template.setSheetName(0, this.sheetName );
+		
+		// Get the first row in the first sheet
 		Row tempRow = tempSheet.getRow(0);
+		
+		// Get the first cell in the first row of the first sheet
 		Cell tempCell = tempRow.getCell(0);
+		
+		// Change the value of the cell
 		tempCell.setCellValue( "TEST" );
 		
+		// Get the existing style of the current cell
 		XSSFCellStyle tempCellStyle = (XSSFCellStyle) tempCell.getCellStyle();
+		
+		// Add background color to the style
 		tempCellStyle.setFillForegroundColor( new XSSFColor(Color.RED) );
 		tempCellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		//tempCell.setCellStyle(tempCellStyle);
 		
 		// Write the results to the Excel file
 		try {
@@ -664,7 +678,6 @@ public class Instructor implements Cloneable
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 		//**********************************************************************
 		//   This is a demonstration of Apache POI - Creating New Workbook
