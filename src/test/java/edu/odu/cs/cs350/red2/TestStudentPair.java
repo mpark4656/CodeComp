@@ -148,22 +148,29 @@ public class TestStudentPair {
 	@Test
 	public void testCalculateRawScore() 
 	{
+		Instructor instructor = new Instructor("output");
+		instructor.acceptStudentSubmissions(submissionDirectory);
+		instructor.parseSubmissions();
+		instructor.analyze();
+		StudentPair AsaJen = instructor.getStudentPair( "Asa" , "Jen" );
+		
 		double combinedLength = 21 + 269;
 		double numerator = 4 * 2;
 		double denominator = Math.pow( combinedLength, 2.0);
 		double rawScore = numerator / denominator;
-		
-		instructor.parseSubmissions();
-		instructor.analyze();
 		
 		assertEquals(String.format("%.1f", rawScore) , String.format("%.1f", AsaJen.getRawScore()));
 	}
 
 	@Test
 	public void testCalculateZScore() 
-	{
+	{	
+		Instructor instructor = new Instructor("output");
+		instructor.acceptStudentSubmissions(submissionDirectory);
+
 		instructor.parseSubmissions();
 		instructor.analyze();
+		StudentPair AsaJen = instructor.getStudentPair( "Asa" , "Jen" );
 		
 		assertEquals( "-0.4" , String.format("%.1f", AsaJen.getZScore()));
 	}
