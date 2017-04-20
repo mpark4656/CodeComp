@@ -2,6 +2,7 @@ package edu.odu.cs.cs350.red2.SpreadSheet;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import edu.odu.cs.cs350.red2.Interface.StudentPair;
+import edu.odu.cs.cs350.red2.SpreadSheet.Table.TableTypes;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,8 +30,8 @@ public class Workbook implements Cloneable
 		sheetName = "";
 		template = null;
 		wb = new XSSFWorkbook();
-		rawScores = new Table( wb.createSheet( "RawScores" ) );
-		report = new Table( wb.createSheet( "Report" ) );
+		rawScores = new Table( wb.createSheet("RawScores") , TableTypes.RAWSCORES );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
 	
 	public Workbook( String sheetName )
@@ -39,8 +40,8 @@ public class Workbook implements Cloneable
 		this.template = null;
 		this.sheetName = sheetName;
 		wb = new XSSFWorkbook();
-		rawScores = new Table( wb.createSheet( sheetName ) );
-		report = new Table( wb.createSheet( "Report" ) );
+		rawScores = new Table( wb.createSheet(sheetName) , TableTypes.RAWSCORES );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
 	
 	public Workbook( File template ) {
@@ -55,8 +56,8 @@ public class Workbook implements Cloneable
 			e.printStackTrace();
 		}
 		
-		rawScores = new Table( wb.getSheet("rawScores") );
-		report = new Table( wb.createSheet("Report") );
+		rawScores = new Table( wb.getSheet("rawScores") , TableTypes.RAWSCORES );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
 	
 	public Workbook( File template, String sheetName )
@@ -73,8 +74,8 @@ public class Workbook implements Cloneable
 			e.printStackTrace();
 		}
 		
-		rawScores = new Table( wb.getSheet(sheetName) );
-		report = new Table( wb.createSheet("Report") );
+		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
 	
 	/**
@@ -122,6 +123,19 @@ public class Workbook implements Cloneable
 	{
 		// Not Implemented
 		return null;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		// Not Implemented
+		return 0;
+	}
+	
+	@Override
+	public boolean equals( Object obj )
+	{
+		return false;
 	}
 }
 
