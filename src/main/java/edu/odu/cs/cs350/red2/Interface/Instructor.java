@@ -623,12 +623,15 @@ public class Instructor implements Cloneable
 			wb = new Workbook();
 		}
 		
-		writeToFile();
+		wb.addRowsToRawScores( stuPairs );
+		wb.addRowsToReports( stuPairs );
+		wb.writeWorkbookToFile( outputDirectory );
 	}
 	
 	
 	/**
-	 * Private method that writes a table to Excel spreadsheet
+	 * Private method that demonstrates Apache POI
+	 * Delete this later.
 	 */
 	private void writeToFile()
 	{
