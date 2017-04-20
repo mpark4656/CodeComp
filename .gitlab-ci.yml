@@ -35,5 +35,6 @@ deploy-job:
     - ssh-add <(echo "$RSYNC_T")
     - rsync -auvz -e "ssh" build/reports/tests/test/ mpark@atria.cs.odu.edu:/home/mpark/public_html/cs350/reports
     - rsync -auvz -e "ssh" build/docs/javadoc/ mpark@atria.cs.odu.edu:/home/mpark/public_html/cs350/javadoc
+    - rsync -auvz -e "ssh" build/reports/ mpark@atria.cs.odu.edu:/home/mpark/public_html/cs350/analysis
     
 

@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import edu.odu.cs.cs350.red2.SpreadSheet.*;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -595,25 +596,36 @@ public class Instructor implements Cloneable
 	}
 	
 	/**
-	 * Generate and write result tables to Excel spreadsheet
+	 * <pre>
+	 * Generate and write result tables to Excel spreadsheet.
+	 * References Workbook.java in package SpreadSheet.
+	 * </pre>
 	 */
 	public void displayResult()
 	{
+		Workbook wb = null;
+		
+		// checks if there are two variables provided (-raw and -template
 		if( templateSpecified && sheetNameSpecified ) {
-			
+			wb = new Workbook( new File(template) , sheetName );
 		}
+		// checks for template of type file
 		else if( templateSpecified ) {
-			
+			wb = new Workbook( new File(template) );
 		}
+		// checks for sheetName variable of type String
 		else if( sheetNameSpecified ) {
-			
+			wb = new Workbook( sheetName );
 		}
+		
+		// default values are set for workbook 
 		else {
-			
+			wb = new Workbook();
 		}
 		
 		writeToFile();
 	}
+	
 	
 	/**
 	 * Private method that writes a table to Excel spreadsheet
