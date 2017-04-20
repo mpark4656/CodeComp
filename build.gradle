@@ -1,9 +1,15 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'org.hidetake.ssh'
+apply plugin: 'org.xbib.gradle.plugin.jflex'
 
 buildscript {
 	repositories {
 		jcenter()
+		ivy{
+			url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
+		}
 		mavenCentral()
 		maven {
 			url "http://xbib.org/repository"
@@ -11,15 +17,17 @@ buildscript {
 	}
 	dependencies {
 		classpath 'org.xbib.gradle.plugin:gradle-plugin-jflex:1.1.0'
+		classpath 'org.hidetake:gradle-ssh-plugin:2.7.0+'
+        	classpath 'edu.odu.cs.zeil:report_accumulator:1.1+'
 	}
 }
 
-apply plugin: 'org.xbib.gradle.plugin.jflex'
-
+import edu.odu.cs.zeil.report_accumulator.ReportStats
+import edu.odu.cs.zeil.report_accumulator.ReportsDeploy
 
 repositories {
 	jcenter()
-	
+
 	ivy {
 		url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
 	}
@@ -30,7 +38,8 @@ dependencies {
 	compile 'org.xbib.gradle.plugin:gradle-plugin-jflex:1.1.0'
 	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
 	compile 'edu.odu.cs.cs350:codeCompCommon:1.3+'
-	testCompile "junit:junit:4.11" 
+	testCompile "junit:junit:4.11"
+
 }
 
 jar {
@@ -42,7 +51,7 @@ jar {
 	from { configurations.compile.collect {
 		it.isDirectory() ? it : zipTree(it) }
 	}
-	
+
 	baseName = "CodeComp"
 }
 
@@ -50,3 +59,20 @@ javadoc {
 	source = sourceSets.main.allJava
 	classpath = configurations.compile
 }
+
+checkstyle {
+	ignoreFailures = true
+	showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+	html.destination project.file("build/reports/checkstyle/main.html")
+	}
+}
+
+task collectStats (type: ReportStats, dependsOn: ['build']) {
+    reportsURL = 'http://webspace.cs.odu.edu/~mpark/cs350/reports/'
+}
+
+
