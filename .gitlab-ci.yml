@@ -17,7 +17,7 @@ build-job:
     - cd /home/gitlab-runner/builds/5dc73e18/0/mpark/Red2
     - ./gradlew build  #change directory to root then build file
     - ./gradlew javadoc
-`   - ./gradlew collectStats
+    - ./gradlew collectStats
   only:
     - master
   artifacts:
