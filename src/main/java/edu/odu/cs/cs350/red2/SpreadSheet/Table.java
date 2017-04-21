@@ -34,9 +34,6 @@ public class Table implements Cloneable
 		rowCount = 1;
 	}
 	
-	/**
-	 * Copy Constructor
-	 */
 	public Table( Table toCopy )
 	{
 		// Not Implemented

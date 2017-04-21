@@ -195,11 +195,7 @@ public class Workbook implements Cloneable
 		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES );
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
-	
-	/**
-	 * Copy Constructor
-	 * @param <b>toCopy</b>
-	 */
+
 	public 	Workbook( Workbook toCopy )
 	{
 		// Not Implemented
