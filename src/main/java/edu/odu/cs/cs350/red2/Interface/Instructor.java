@@ -605,7 +605,7 @@ public class Instructor implements Cloneable
 	{
 		Workbook wb = null;
 		
-		// checks if there are two variables provided (-raw and -template
+		// checks if there are two variables provided -raw and -template
 		if( templateSpecified && sheetNameSpecified ) {
 			wb = new Workbook( new File(template) , sheetName );
 		}
@@ -623,15 +623,18 @@ public class Instructor implements Cloneable
 			wb = new Workbook();
 		}
 		
-		wb.addRowsToRawScores( stuPairs );
-		wb.addRowsToReports( stuPairs );
+		for( StudentPair studPair : stuPairs ) {
+			wb.addRowToRawScores( studPair );
+			wb.addRowToReports( studPair );
+		}
+		
 		wb.writeWorkbookToFile( outputDirectory );
 	}
 	
 	
 	/**
 	 * Private method that demonstrates Apache POI
-	 * Delete this later.
+	 * ** Delete this later **
 	 */
 	private void writeToFile()
 	{
@@ -703,9 +706,6 @@ public class Instructor implements Cloneable
 
 		// Create a sheet named RawScores in the workbook
 		XSSFSheet sheet = workbook.createSheet( "RawScores" );
-		
-		// Create the first row
-		XSSFRow row = sheet.createRow(0);
 				
 		// Create Red Background Style with Border
 		XSSFCellStyle redBackground = workbook.createCellStyle();
@@ -732,30 +732,29 @@ public class Instructor implements Cloneable
 		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		
+		// Create the first row
+		XSSFRow row = sheet.createRow(0);
+				
 		// Create the first cell in the first row and set the value to "This"
 		XSSFCell cell = row.createCell(0);
 		cell.setCellValue("This");
-		cell.setCellStyle( redBackground );
 		
 		// Create the second cell in the first row and set the value to "Is"
 		cell = row.createCell(1);
 		cell.setCellValue("Is");
-		cell.setCellStyle( redBackground );
-		
+	
 		// Create the third cell in the first row and set the value to "A"
 		cell = row.createCell(2);
 		cell.setCellValue("A");
-		cell.setCellStyle( redBackground );
+		
 		
 		// Create the fourth cell in the first row and set the value to "First"
 		cell = row.createCell(3);
 		cell.setCellValue("First");
-		cell.setCellStyle( redBackground );
 		
 		// Create the fifth cell in the first row and set the value to "Test"
 		cell = row.createCell(4);
 		cell.setCellValue("Test");
-		cell.setCellStyle( redBackground );
 		
 		// Create the second row
 		row = sheet.createRow(1);
@@ -763,27 +762,23 @@ public class Instructor implements Cloneable
 		// Create the first cell in the second row and set the value to "This"
 		cell = row.createCell(0);
 		cell.setCellValue("This");
-		cell.setCellStyle( yellowBackground );
-		
+
 		// Create the second cell in the second row and set the value to "Is"
 		cell = row.createCell(1);
 		cell.setCellValue("Is");
-		cell.setCellStyle( yellowBackground );
-		
+
 		// Create the third cell in the second row and set the value to "A"
 		cell = row.createCell(2);
 		cell.setCellValue("A");
-		cell.setCellStyle( yellowBackground );
+
 		
 		// Create the fourth cell in the second row and set the value to "Second"
 		cell = row.createCell(3);
 		cell.setCellValue("Second");
-		cell.setCellStyle( yellowBackground );
 		
 		// Create the fifth cell in the second row and set the value to "Test"
 		cell = row.createCell(4);
 		cell.setCellValue("Test");
-		cell.setCellStyle( yellowBackground );
 		
 		// Create the third row
 		row = sheet.createRow(2);
