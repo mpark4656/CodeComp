@@ -18,7 +18,6 @@ build-job:
     - ./gradlew build  #change directory to root then build file
     - ./gradlew javadoc
 `   - ./gradlew collectStats
-    
   only:
     - master
   artifacts:
