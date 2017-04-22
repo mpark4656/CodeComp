@@ -602,6 +602,7 @@ public class Instructor implements Cloneable
 	 * <pre>
 	 * Generate and write result tables to Excel spreadsheet.
 	 * References Workbook.java in package SpreadSheet.
+	 * Uses previously created output stream
 	 * </pre>
 	 */
 	public void displayResult()

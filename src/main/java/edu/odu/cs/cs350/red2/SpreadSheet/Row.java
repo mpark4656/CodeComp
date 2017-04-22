@@ -10,15 +10,13 @@ import edu.odu.cs.cs350.red2.SpreadSheet.Table.TableTypes;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
-// Create the second row
-//row = sheet.createRow(1);
-
-/*
-// Create the first cell in the second row and set the value to "This"
-cell = row.createCell(0);
-cell.setCellValue("This");
-cell.setCellStyle( yellowBackground );
-*/
+/**
+ * <pre>
+ * Row Class
+ * This class represents a row in an excel sheet.
+ * Each row contains cells, which have can have their own style
+ * </pre>
+ */
 public class Row
 {
 	private XSSFRow row;

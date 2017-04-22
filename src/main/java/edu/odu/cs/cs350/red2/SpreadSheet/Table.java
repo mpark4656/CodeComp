@@ -6,6 +6,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import edu.odu.cs.cs350.red2.Interface.StudentPair;
 
+/**
+ * <pre>
+ * Table Class
+ * This class represents a sheet in the excel workbook
+ * </pre>
+ */
 public class Table implements Cloneable
 {
 	private XSSFSheet sheet;

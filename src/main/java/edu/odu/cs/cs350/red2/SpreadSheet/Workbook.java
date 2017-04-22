@@ -13,6 +13,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * <pre>
+ * Workbook Class
+ * This class represents an excel workbook
+ * </pre>
+ */
 public class Workbook implements Cloneable
 {
 	private XSSFWorkbook wb;
@@ -71,7 +77,7 @@ public class Workbook implements Cloneable
 		}
 
 		initializeCellStyles();
-
+		// Will throw an exception if rawScores sheet is not present
 		rawScores = new Table( wb.getSheet("rawScores") , TableTypes.RAWSCORES );
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
