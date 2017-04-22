@@ -69,7 +69,14 @@ public class CodeComp
 		if( param.argsContainSheetName() ) {
 				instructor.setSheetName( param.getSheetNameArg() );
 		}
-		
+
+		// Check if the result file is available to be written to
+		if( !instructor.lockOutputFile() ) {
+			System.out.println( "The output file is already in use" );
+			System.exit(0);
+
+		}
+
 		// Create a File instance with the Assignment Directory path that user provided
 		// ArgumentParser already checked that the assignmentDirectory is an existing directory.
 		File assignmentDirectory = new File( args[args.length - 2] );

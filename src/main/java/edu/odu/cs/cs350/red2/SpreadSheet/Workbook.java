@@ -38,33 +38,8 @@ public class Workbook implements Cloneable
 		sheetName = "";
 		template = null;
 		wb = new XSSFWorkbook();
-		
-		redBackground = wb.createCellStyle();
-		yellowBackground = wb.createCellStyle();
-		whiteBackground = wb.createCellStyle();
-		header = wb.createCellStyle();
-		
-		// Set Styles for Red Cells
-		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
-		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		redBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set Styles for Yellow Cells
-		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
-		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		yellowBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set styles for white cells
-		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+
+		initializeCellStyles();
 		
 		rawScores = new Table( wb.createSheet("RawScores") , TableTypes.RAWSCORES );
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
@@ -76,33 +51,8 @@ public class Workbook implements Cloneable
 		this.template = null;
 		this.sheetName = sheetName;
 		wb = new XSSFWorkbook();
-		
-		redBackground = wb.createCellStyle();
-		yellowBackground = wb.createCellStyle();
-		whiteBackground = wb.createCellStyle();
-		header = wb.createCellStyle();
-		
-		// Set Styles for Red Cells
-		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
-		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		redBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set Styles for Yellow Cells
-		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
-		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		yellowBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set styles for white cells
-		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+
+		initializeCellStyles();
 		
 		rawScores = new Table( wb.createSheet(sheetName) , TableTypes.RAWSCORES );
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
@@ -119,34 +69,9 @@ public class Workbook implements Cloneable
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		redBackground = wb.createCellStyle();
-		yellowBackground = wb.createCellStyle();
-		whiteBackground = wb.createCellStyle();
-		header = wb.createCellStyle();
-		
-		// Set Styles for Red Cells
-		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
-		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		redBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set Styles for Yellow Cells
-		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
-		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		yellowBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Set styles for white cells
-		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
+
+		initializeCellStyles();
+
 		rawScores = new Table( wb.getSheet("rawScores") , TableTypes.RAWSCORES );
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
 	}
@@ -164,12 +89,20 @@ public class Workbook implements Cloneable
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		initializeCellStyles();
 		
+		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
+	}
+
+	private void initializeCellStyles() {
+
 		redBackground = wb.createCellStyle();
 		yellowBackground = wb.createCellStyle();
 		whiteBackground = wb.createCellStyle();
 		header = wb.createCellStyle();
-		
+
 		// Set Styles for Red Cells
 		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
 		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
@@ -177,7 +110,7 @@ public class Workbook implements Cloneable
 		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
 		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
 		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
+
 		// Set Styles for Yellow Cells
 		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
 		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
@@ -185,17 +118,14 @@ public class Workbook implements Cloneable
 		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
 		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
 		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
+
 		// Set styles for white cells
 		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES );
-		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
-	}
 
+	}
 	public 	Workbook( Workbook toCopy )
 	{
 		// Not Implemented
@@ -210,26 +140,19 @@ public class Workbook implements Cloneable
 	{
 		return sheetName;
 	}
-	
-	public void addRowToRawScores( StudentPair studPair )
-	{
-		// Not Implemented
-		
-		
-		// This is an example
-		rawScores.addRow(studPair , whiteBackground );
 
+	public void addStudentPair(StudentPair studPair) {
+		addRowToRawScores(studPair);
+		addRowToReports(studPair);
 	}
-	
-	public void addRowToReports( StudentPair studPair )
+
+	private void addRowToRawScores(StudentPair studPair  )
 	{
-//		// Not Implemented
-//		if(!studPair.isRawScoreCalculated())
-//			studPair.calculateRawScore();
-//
-//		if(!studPair.isZScoreCalculated())
-//			studPair.calculateZScore();
-//
+		rawScores.addRow(studPair , whiteBackground );
+	}
+
+	private void addRowToReports( StudentPair studPair )
+	{
 		if(studPair.getZScore() < 2.35)
 			report.addRow(studPair , whiteBackground );
 		else if (studPair.getZScore() < 3.1)
@@ -238,14 +161,14 @@ public class Workbook implements Cloneable
 		report.addRow(studPair , redBackground );
 	}
 	
-	public void writeWorkbookToFile( File outputDirectory )
+	public void writeWorkbookToFile( FileOutputStream outputStream )
 	{
-		FileOutputStream out = null;
+//		FileOutputStream out = null;
 		
 		try {
-			out = new FileOutputStream(new File( outputDirectory.getPath(), "results.xlsx"));
-			wb.write(out);
-			out.close();
+//			out = new FileOutputStream(new File( outputDirectory.getPath(), "results.xlsx"));
+			wb.write(outputStream);
+			outputStream.close();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -254,6 +177,10 @@ public class Workbook implements Cloneable
 		}
 		
 		System.out.println("\nResults written to Microsoft Excel Successfully");
+	}
+
+	public void isFileAvailable(){
+
 	}
 	
 	@Override

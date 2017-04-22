@@ -2,6 +2,8 @@ package edu.odu.cs.cs350.red2.Interface;
 
 import edu.odu.cs.cs350.codeCompCommon.SharedPhrases;
 import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
+
+import java.nio.channels.FileLock;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.io.File;
@@ -56,7 +58,8 @@ public class Instructor implements Cloneable
 	
 	// Stores output directory path
 	private File outputDirectory;
-	
+	// Stores locked output file
+	private FileOutputStream outputStream;
 	/**
 	 * <pre>
 	 * Constructor
@@ -624,11 +627,10 @@ public class Instructor implements Cloneable
 		}
 		
 		for( StudentPair studPair : stuPairs ) {
-			wb.addRowToRawScores( studPair );
-			wb.addRowToReports( studPair );
+			wb.addStudentPair( studPair );
 		}
 		
-		wb.writeWorkbookToFile( outputDirectory );
+		wb.writeWorkbookToFile( outputStream );
 	}
 	
 	
@@ -825,7 +827,26 @@ public class Instructor implements Cloneable
 		//             End of Apache POI Demonstration
 		//**********************************************************************
 	}
-	
+
+
+	/**
+	 * public method which checks if the file which will be written to is in use
+	 * If not it will lock it, and pass the lock to the file writer
+	 * If yes, it will return false
+	 * @return <b>boolean</b> -  Return true if this file was able to be locked
+	 */
+	public boolean lockOutputFile() {
+		boolean isLocked = false;
+		try {
+			outputStream = new FileOutputStream(new File(outputDirectory.getPath(), "results.xlsx"));
+//			FileLock lock = outputStream.getChannel().lock(0, Long.MAX_VALUE, true);
+			isLocked = true;
+		} catch (IOException e) {
+//			e.printStackTrace();
+		}
+
+		return isLocked;
+	}
 	/**
 	 * Override toString() method to return the output directory name as String
 	 * @return <b>String</b> - Output directory name
