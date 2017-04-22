@@ -24,12 +24,10 @@ public class Table implements Cloneable
 		this.rows = new ArrayList<Row>();
 		
 		// Add a header
-		if( type == TableTypes.RAWSCORES ) {
-			
-			
-			Row header = new Row( TableTypes.RAWSCORES , this.sheet.createRow(0) );
+
+			Row header = new Row( this.type , this.sheet.createRow(0) );
 			rows.add(header);
-		}
+
 		
 		rowCount = 1;
 	}
@@ -41,11 +39,11 @@ public class Table implements Cloneable
 	
 	public void addRow( StudentPair studPair , XSSFCellStyle style )
 	{
-		// THIS IS AN EXAMPLE
-		if( type == TableTypes.RAWSCORES ) {
-			Row newRow = new Row( TableTypes.RAWSCORES , sheet.createRow(rowCount) , studPair , style );
-			rows.add(newRow);
-		}
+		// type is the current table type
+
+		Row newRow = new Row( type, sheet.createRow(rowCount) , studPair , style );
+		rows.add(newRow);
+
 		
 		rowCount++;
 	}

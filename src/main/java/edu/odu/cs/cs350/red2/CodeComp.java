@@ -38,6 +38,7 @@ public class CodeComp
 	 */
 	public static void main( String[] args )
 	{
+
 		// Instantiate ArgumentParser and pass arguments
 		ArgumentParser param = new ArgumentParser( args );
 		

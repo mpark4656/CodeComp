@@ -221,9 +221,21 @@ public class Workbook implements Cloneable
 
 	}
 	
-	public void addRowToReports( StudentPair studPairs )
+	public void addRowToReports( StudentPair studPair )
 	{
-		// Not Implemented
+//		// Not Implemented
+//		if(!studPair.isRawScoreCalculated())
+//			studPair.calculateRawScore();
+//
+//		if(!studPair.isZScoreCalculated())
+//			studPair.calculateZScore();
+//
+		if(studPair.getZScore() < 2.35)
+			report.addRow(studPair , whiteBackground );
+		else if (studPair.getZScore() < 3.1)
+			report.addRow(studPair , yellowBackground );
+		else
+		report.addRow(studPair , redBackground );
 	}
 	
 	public void writeWorkbookToFile( File outputDirectory )

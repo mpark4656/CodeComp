@@ -39,7 +39,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 		
 		// The language is JAVA
 		if( this.langType == LanguageTypes.JAVA ) {
-			JavaScanner scanner = new JavaScanner( input );
+			edu.odu.cs.cs350.red2.LexicalTools.JavaScanner scanner = new edu.odu.cs.cs350.red2.LexicalTools.JavaScanner( input );
 			
 			try {
 				Token token = scanner.yylex();
@@ -55,7 +55,7 @@ public class TokenSequence implements Iterable<Token> , Cloneable
 		}
 		// The Language is Cplusplus
 		else {
-			CppScanner scanner = new CppScanner( input );
+			edu.odu.cs.cs350.red2.LexicalTools.CppScanner scanner = new edu.odu.cs.cs350.red2.LexicalTools.CppScanner( input );
 			
 			try {
 				Token token = scanner.yylex();
