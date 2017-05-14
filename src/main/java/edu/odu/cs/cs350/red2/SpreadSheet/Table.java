@@ -68,6 +68,10 @@ public class Table implements Cloneable
 		rowCount++;
 	}
 	
+	/**
+	 * Overrides clone() method.
+	 * @return <b>Object</b> A deep copy of this object
+	 */
 	@Override
 	public Object clone()
 	{
@@ -84,6 +88,10 @@ public class Table implements Cloneable
 		return sheet.getSheetName();
 	}
 	
+	/**
+	 * Overrides hashCode() method
+	 * @return <b>int</b> hash code
+	 */
 	@Override
 	public int hashCode()
 	{
@@ -91,6 +99,11 @@ public class Table implements Cloneable
 		// Not Implemented
 	}
 	
+	/**
+	 * Overrides equals() method.
+	 * @param obj <b>Object</b> Object to compare
+	 * @return <b>boolean</b> True if the objects are equal
+	 */
 	@Override
 	public boolean equals( Object obj )
 	{

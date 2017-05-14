@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
  * Each row contains cells, which have can have their own style
  * </pre>
  */
-public class Row
+public class Row implements Cloneable
 {
 	private XSSFRow row;
 	
@@ -82,6 +82,12 @@ public class Row
 			field4.setCellValue( studPair.getZScore() );
 			field4.setCellStyle(style);
 		}
+	}
+	
+	@Override
+	public Object clone()
+	{
+		return null;
 	}
 	
 }

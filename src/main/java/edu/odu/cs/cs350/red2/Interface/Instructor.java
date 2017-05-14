@@ -2,14 +2,9 @@ package edu.odu.cs.cs350.red2.Interface;
 
 import edu.odu.cs.cs350.codeCompCommon.SharedPhrases;
 import edu.odu.cs.cs350.red2.FileFilter.DirectoryFilter;
-
-import java.nio.channels.FileLock;
 import java.util.ArrayList;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import edu.odu.cs.cs350.red2.SpreadSheet.*;
 
@@ -51,6 +46,7 @@ public class Instructor implements Cloneable
 	
 	// Stores output directory path
 	private File outputDirectory;
+	
 	// Stores locked output file
 	private FileOutputStream outputStream;
 	
@@ -638,10 +634,9 @@ public class Instructor implements Cloneable
 		
 		try {
 			outputStream = new FileOutputStream(new File(outputDirectory.getPath(), "results.xlsx"));
-//			FileLock lock = outputStream.getChannel().lock(0, Long.MAX_VALUE, true);
 			isLocked = true;
 		} catch (IOException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		return isLocked;

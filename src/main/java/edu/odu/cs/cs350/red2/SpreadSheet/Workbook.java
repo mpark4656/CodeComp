@@ -23,25 +23,23 @@ import java.io.IOException;
 public class Workbook implements Cloneable
 {
 	private XSSFWorkbook wb;
-	private WorkbookTypes type;
 	private File template;
 	private String sheetName;
 	
 	private Table rawScores;
 	private Table report;
 	
-	XSSFCellStyle redBackground;
-	XSSFCellStyle yellowBackground;
-	XSSFCellStyle whiteBackground;
-	XSSFCellStyle header;
+	private XSSFCellStyle redBackground;
+	private XSSFCellStyle yellowBackground;
+	private XSSFCellStyle whiteBackground;
+	private XSSFCellStyle header;
 	
-	public enum WorkbookTypes{
-		NEW, TEMPLATE;
-	}
-	
+	/**
+	 * Default Constructor that creates a new workbook with
+	 * default sheet name and default template
+	 */
 	public Workbook()
 	{
-		type = WorkbookTypes.NEW;
 		sheetName = "";
 		template = null;
 		wb = new XSSFWorkbook();
@@ -52,9 +50,13 @@ public class Workbook implements Cloneable
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
+	/**
+	 * Constructor that creates a new workbook with a different
+	 * sheet name
+	 * @param sheetName <b>String</b>
+	 */
 	public Workbook( String sheetName )
 	{
-		type = WorkbookTypes.NEW;
 		this.template = null;
 		this.sheetName = sheetName;
 		wb = new XSSFWorkbook();
@@ -65,9 +67,12 @@ public class Workbook implements Cloneable
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
+	/**
+	 * Constructor that reads from an existing Excel template
+	 * @param template <b>File</b>
+	 */
 	public Workbook( File template )
 	{
-		type = WorkbookTypes.TEMPLATE;
 		this.template = template;
 		
 		try {
@@ -85,9 +90,14 @@ public class Workbook implements Cloneable
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
+	/**
+	 * Constructor that reads from an existing Excel template with
+	 * a different sheet name
+	 * @param template <b>File</b>
+	 * @param sheetName <b>String</b>
+	 */
 	public Workbook( File template, String sheetName )
 	{
-		type = WorkbookTypes.TEMPLATE;
 		this.template = template;
 		this.sheetName = sheetName;
 		
@@ -105,11 +115,19 @@ public class Workbook implements Cloneable
 		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
-	public 	Workbook( Workbook toCopy )
+	/**
+	 * Copy Constructor
+	 * @param toCopy <b>Workbook</b>
+	 */
+	public Workbook( Workbook toCopy )
 	{
 		// Not Implemented
 	}
 	
+	/**
+	 * Private method that sets the cell styles -
+	 * Is invoked in the constructor.
+	 */
 	private void setCellStyles()
 	{
 		redBackground = wb.createCellStyle();
@@ -117,10 +135,10 @@ public class Workbook implements Cloneable
 		whiteBackground = wb.createCellStyle();
 		header = wb.createCellStyle();
 		
+		// Set Styles for Header
 		XSSFFont bold = wb.createFont();
 		bold.setBold( true );
 		
-		// Set Styles for Header
 		header.setBorderBottom(XSSFCellStyle.BORDER_THIN);
 		header.setBorderTop(XSSFCellStyle.BORDER_THIN);
 		header.setBorderRight(XSSFCellStyle.BORDER_THIN);
@@ -150,26 +168,49 @@ public class Workbook implements Cloneable
 		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 	}
 	
+	/**
+	 * Public method to return the template file
+	 * @return <b>File</b> template
+	 */
 	public File getTemplate()
 	{
 		return template;
 	}
 	
+	/**
+	 * Public method to return the sheet name
+	 * @return <b>String</b> sheet name
+	 */
 	public String getSheetName()
 	{
 		return sheetName;
 	}
 
+	/**
+	 * Public method to add student pair data to the RawScores
+	 * table and the Reports table
+	 * @param studPair <b>StudentPair</b>
+	 */
 	public void addStudentPair(StudentPair studPair) {
 		addRowToRawScores(studPair);
 		addRowToReports(studPair);
 	}
 
+	/**
+	 * Private method to add student pair data to the RawScores
+	 * table
+	 * @param studPair <b>StudentPair</b>
+	 */
 	private void addRowToRawScores(StudentPair studPair  )
 	{
 		rawScores.addRow(studPair , whiteBackground );
 	}
 
+	/**
+	 * Private method to add student pair data to the Reports
+	 * table.
+	 * @param studPair <b>StudentPair</b>
+	 */
 	private void addRowToReports( StudentPair studPair )
 	{
 		if(studPair.getZScore() < 2.35)
@@ -180,12 +221,13 @@ public class Workbook implements Cloneable
 			report.addRow(studPair , redBackground );
 	}
 	
+	/**
+	 * Public method to write this workbook to file.
+	 * @param outputStream <b>FileOutputStream</b>
+	 */
 	public void writeWorkbookToFile( FileOutputStream outputStream )
 	{
-//		FileOutputStream out = null;
-		
 		try {
-//			out = new FileOutputStream(new File( outputDirectory.getPath(), "results.xlsx"));
 			wb.write(outputStream);
 			outputStream.close();
 			
@@ -197,24 +239,21 @@ public class Workbook implements Cloneable
 		
 		System.out.println("\nResults written to Microsoft Excel Successfully");
 	}
-
-	public void isFileAvailable(){
-
-	}
 	
+	/**
+	 * Overrides clone() method.
+	 * @return <b>Object</b> A deep copy of this object
+	 */
 	@Override
 	public Object clone()
 	{
 		return new Workbook( this );
 	}
 	
-	@Override
-	public String toString()
-	{
-		// Not Implemented
-		return null;
-	}
-	
+	/**
+	 * Overrides hashCode() method.
+	 * @return <b>int</b>
+	 */
 	@Override
 	public int hashCode()
 	{
@@ -222,6 +261,11 @@ public class Workbook implements Cloneable
 		return 0;
 	}
 	
+	/**
+	 * Overrides equals() method.
+	 * @param obj <b>Object</b> Object to compare
+	 * @return <b>boolean</b> True if the two objects are equal
+	 */
 	@Override
 	public boolean equals( Object obj )
 	{
