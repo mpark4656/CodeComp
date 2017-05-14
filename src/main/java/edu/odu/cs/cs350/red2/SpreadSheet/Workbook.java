@@ -2,6 +2,7 @@ package edu.odu.cs.cs350.red2.SpreadSheet;
 
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import edu.odu.cs.cs350.red2.Interface.StudentPair;
 import edu.odu.cs.cs350.red2.SpreadSheet.Table.TableTypes;
@@ -44,11 +45,11 @@ public class Workbook implements Cloneable
 		sheetName = "";
 		template = null;
 		wb = new XSSFWorkbook();
-
-		initializeCellStyles();
 		
-		rawScores = new Table( wb.createSheet("RawScores") , TableTypes.RAWSCORES );
-		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
+		setCellStyles();
+		
+		rawScores = new Table( wb.createSheet("RawScores") , TableTypes.RAWSCORES , header );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
 	public Workbook( String sheetName )
@@ -58,13 +59,14 @@ public class Workbook implements Cloneable
 		this.sheetName = sheetName;
 		wb = new XSSFWorkbook();
 
-		initializeCellStyles();
+		setCellStyles();
 		
-		rawScores = new Table( wb.createSheet(sheetName) , TableTypes.RAWSCORES );
-		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
+		rawScores = new Table( wb.createSheet(sheetName) , TableTypes.RAWSCORES , header );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
-	public Workbook( File template ) {
+	public Workbook( File template )
+	{
 		type = WorkbookTypes.TEMPLATE;
 		this.template = template;
 		
@@ -76,10 +78,11 @@ public class Workbook implements Cloneable
 			e.printStackTrace();
 		}
 
-		initializeCellStyles();
+		setCellStyles();
+		
 		// Will throw an exception if rawScores sheet is not present
-		rawScores = new Table( wb.getSheet("rawScores") , TableTypes.RAWSCORES );
-		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
+		rawScores = new Table( wb.getSheet("rawScores") , TableTypes.RAWSCORES , header );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
 	
 	public Workbook( File template, String sheetName )
@@ -95,20 +98,35 @@ public class Workbook implements Cloneable
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		initializeCellStyles();
 		
-		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES );
-		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS );
+		setCellStyles();
+		
+		rawScores = new Table( wb.getSheet(sheetName) , TableTypes.RAWSCORES , header );
+		report = new Table( wb.createSheet("Report") , TableTypes.REPORTS , header );
 	}
-
-	private void initializeCellStyles() {
-
+	
+	public 	Workbook( Workbook toCopy )
+	{
+		// Not Implemented
+	}
+	
+	private void setCellStyles()
+	{
 		redBackground = wb.createCellStyle();
 		yellowBackground = wb.createCellStyle();
 		whiteBackground = wb.createCellStyle();
 		header = wb.createCellStyle();
-
+		
+		XSSFFont bold = wb.createFont();
+		bold.setBold( true );
+		
+		// Set Styles for Header
+		header.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+		header.setBorderTop(XSSFCellStyle.BORDER_THIN);
+		header.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		header.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+		header.setFont( bold );
+		
 		// Set Styles for Red Cells
 		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
 		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
@@ -130,11 +148,6 @@ public class Workbook implements Cloneable
 		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
 		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-
-	}
-	public 	Workbook( Workbook toCopy )
-	{
-		// Not Implemented
 	}
 	
 	public File getTemplate()
@@ -164,7 +177,7 @@ public class Workbook implements Cloneable
 		else if (studPair.getZScore() < 3.1)
 			report.addRow(studPair , yellowBackground );
 		else
-		report.addRow(studPair , redBackground );
+			report.addRow(studPair , redBackground );
 	}
 	
 	public void writeWorkbookToFile( FileOutputStream outputStream )

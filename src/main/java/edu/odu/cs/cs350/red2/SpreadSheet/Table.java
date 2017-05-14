@@ -8,8 +8,8 @@ import edu.odu.cs.cs350.red2.Interface.StudentPair;
 
 /**
  * <pre>
- * Table Class
- * This class represents a sheet in the excel workbook
+ * <b>Table Class</b>
+ * This class represents a sheet in the excel workbook.
  * </pre>
  */
 public class Table implements Cloneable
@@ -23,33 +23,47 @@ public class Table implements Cloneable
 		RAWSCORES, REPORTS;
 	}
 	
-	public Table( XSSFSheet sheet , TableTypes type )
+	/**
+	 * A constructor for creating a table on an Excel Spreadsheet
+	 * @param sheet <b>XSSFSheet</b>
+	 * @param type <b>TableTypes</b>
+	 * @param headerStyle <b>XSSFCellStyle</b>
+	 */
+	public Table( XSSFSheet sheet , TableTypes type , XSSFCellStyle headerStyle )
 	{
 		this.sheet = sheet;
 		this.type = type;
 		this.rows = new ArrayList<Row>();
 		
 		// Add a header
-
-			Row header = new Row( this.type , this.sheet.createRow(0) );
-			rows.add(header);
-
+		rows.add( new Row(this.type , this.sheet.createRow(0) , headerStyle) );
 		
+		// Set rowCount to 1. This variable is incremented every time a row is added
 		rowCount = 1;
 	}
 	
+	/**
+	 * Copy Constructor
+	 * @param toCopy <b>Table</b>
+	 */
+	@SuppressWarnings("unchecked")
 	public Table( Table toCopy )
 	{
-		// Not Implemented
+		this.sheet = toCopy.sheet;
+		this.type = toCopy.type;
+		this.rows = (ArrayList<Row>)toCopy.rows.clone();
+		this.rowCount = toCopy.rowCount;
 	}
 	
+	/**
+	 * A public method that adds a row to this table
+	 * @param studPair <b>StudentPair</b>
+	 * @param style <b>XSSFCellStyle</b>
+	 */
 	public void addRow( StudentPair studPair , XSSFCellStyle style )
 	{
 		// type is the current table type
-
-		Row newRow = new Row( type, sheet.createRow(rowCount) , studPair , style );
-		rows.add(newRow);
-
+		rows.add(new Row( type, sheet.createRow(rowCount) , studPair , style ));
 		
 		rowCount++;
 	}
@@ -57,15 +71,17 @@ public class Table implements Cloneable
 	@Override
 	public Object clone()
 	{
-		// Not Implemented
-		return null;
+		return new Table(this);
 	}
 	
+	/**
+	 * Override toString() to return the sheet name
+	 * @return <b>String</b> Sheet name
+	 */
 	@Override
 	public String toString()
 	{
-		// Not Implemented
-		return null;
+		return sheet.getSheetName();
 	}
 	
 	@Override

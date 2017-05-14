@@ -13,13 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import edu.odu.cs.cs350.red2.SpreadSheet.*;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 /**
  * <pre>
  * <b>Instructor Class</b>
@@ -60,6 +53,7 @@ public class Instructor implements Cloneable
 	private File outputDirectory;
 	// Stores locked output file
 	private FileOutputStream outputStream;
+	
 	/**
 	 * <pre>
 	 * Constructor
@@ -85,7 +79,6 @@ public class Instructor implements Cloneable
 		template = "";
 		sheetName = "";
 	}
-	
 	
 	/**
 	 * Copy Constructor
@@ -633,202 +626,6 @@ public class Instructor implements Cloneable
 		
 		wb.writeWorkbookToFile( outputStream );
 	}
-	
-	
-	/**
-	 * Private method that demonstrates Apache POI
-	 * ** Delete this later **
-	 */
-	private void writeToFile()
-	{
-		//**********************************************************************
-		//   This is a demonstration of Apache POI - From Existing Template
-		//**********************************************************************
-		FileInputStream file = null;
-		
-		// Read from the existing template file
-		try {
-			file = new FileInputStream( new File(this.template) );
-		} catch (FileNotFoundException e1) {
-
-			e1.printStackTrace();
-		}
-		
-		// Create a new workbook
-		XSSFWorkbook template = null;
-		
-		// Attempt to read from the file and save it in the workbook
-		try {
-			template = new XSSFWorkbook( file );
-		} catch (IOException e1) {
-
-			e1.printStackTrace();
-		}
-		
-		// Get the first sheet in this workbook
-		XSSFSheet tempSheet = template.getSheetAt(0);
-		
-		// Change the name of the first sheet
-		template.setSheetName(0, this.sheetName );
-		
-		// Get the first row in the first sheet
-		XSSFRow tempRow = tempSheet.getRow(0);
-		
-		// Get the first cell in the first row of the first sheet
-		XSSFCell tempCell = tempRow.getCell(0);
-		
-		// Change the value of the cell
-		tempCell.setCellValue( "TEST" );
-		
-		// Get the existing style of the current cell
-		XSSFCellStyle tempCellStyle = (XSSFCellStyle) tempCell.getCellStyle();
-		
-		// Add background color to the style
-		tempCellStyle.setFillForegroundColor( new XSSFColor(Color.RED) );
-		tempCellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		
-		// Write the results to the Excel file
-		try {
-			FileOutputStream outTemp = new FileOutputStream(new File(this.outputDirectory.getPath(), "tempReports.xltx"));
-			template.write(outTemp);
-			outTemp.close();
-			System.out.println("\nResults written to Microsoft Excel Successfully");
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		//**********************************************************************
-		//   This is a demonstration of Apache POI - Creating New Workbook
-		//**********************************************************************
-		
-		// Get the workbook instance for XLS file 
-		XSSFWorkbook workbook = new XSSFWorkbook();
-
-		// Create a sheet named RawScores in the workbook
-		XSSFSheet sheet = workbook.createSheet( "RawScores" );
-				
-		// Create Red Background Style with Border
-		XSSFCellStyle redBackground = workbook.createCellStyle();
-		redBackground.setFillForegroundColor(new XSSFColor(Color.RED));
-		redBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		redBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		redBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Create Yellow Background Style with Border
-		XSSFCellStyle yellowBackground = workbook.createCellStyle();
-		yellowBackground.setFillForegroundColor(new XSSFColor(Color.YELLOW));
-		yellowBackground.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		yellowBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		yellowBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Create White Background Style with Border
-		XSSFCellStyle whiteBackground = workbook.createCellStyle();
-		whiteBackground.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderTop(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderRight(XSSFCellStyle.BORDER_THIN);
-		whiteBackground.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-		
-		// Create the first row
-		XSSFRow row = sheet.createRow(0);
-				
-		// Create the first cell in the first row and set the value to "This"
-		XSSFCell cell = row.createCell(0);
-		cell.setCellValue("This");
-		
-		// Create the second cell in the first row and set the value to "Is"
-		cell = row.createCell(1);
-		cell.setCellValue("Is");
-	
-		// Create the third cell in the first row and set the value to "A"
-		cell = row.createCell(2);
-		cell.setCellValue("A");
-		
-		
-		// Create the fourth cell in the first row and set the value to "First"
-		cell = row.createCell(3);
-		cell.setCellValue("First");
-		
-		// Create the fifth cell in the first row and set the value to "Test"
-		cell = row.createCell(4);
-		cell.setCellValue("Test");
-		
-		// Create the second row
-		row = sheet.createRow(1);
-		
-		// Create the first cell in the second row and set the value to "This"
-		cell = row.createCell(0);
-		cell.setCellValue("This");
-
-		// Create the second cell in the second row and set the value to "Is"
-		cell = row.createCell(1);
-		cell.setCellValue("Is");
-
-		// Create the third cell in the second row and set the value to "A"
-		cell = row.createCell(2);
-		cell.setCellValue("A");
-
-		
-		// Create the fourth cell in the second row and set the value to "Second"
-		cell = row.createCell(3);
-		cell.setCellValue("Second");
-		
-		// Create the fifth cell in the second row and set the value to "Test"
-		cell = row.createCell(4);
-		cell.setCellValue("Test");
-		
-		// Create the third row
-		row = sheet.createRow(2);
-		
-		// Create the first cell in the third row and set the value to "This"
-		cell = row.createCell(0);
-		cell.setCellValue("This");
-		cell.setCellStyle( whiteBackground );
-		
-		// Create the second cell in the third row and set the value to "Is"
-		cell = row.createCell(1);
-		cell.setCellValue("Is");
-		cell.setCellStyle( whiteBackground );
-		
-		// Create the third cell in the third row and set the value to "A"
-		cell = row.createCell(2);
-		cell.setCellValue("A");
-		cell.setCellStyle( whiteBackground );
-		
-		// Create the fourth cell in the third row and set the value to "Third"
-		cell = row.createCell(3);
-		cell.setCellValue("Third");
-		cell.setCellStyle( whiteBackground );
-		
-		// Create the fifth cell in the third row and set the value to "Test"
-		cell = row.createCell(4);
-		cell.setCellValue("Test");
-		cell.setCellStyle( whiteBackground );
-				
-		// Write the results to the Excel file
-		try {
-			FileOutputStream out = new FileOutputStream(new File(this.outputDirectory.getPath(), "Reports.xlsx"));
-			workbook.write(out);
-			out.close();
-			System.out.println("\nResults written to Microsoft Excel Successfully");
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		//**********************************************************************
-		//             End of Apache POI Demonstration
-		//**********************************************************************
-	}
-
 
 	/**
 	 * public method which checks if the file which will be written to is in use
@@ -838,6 +635,7 @@ public class Instructor implements Cloneable
 	 */
 	public boolean lockOutputFile() {
 		boolean isLocked = false;
+		
 		try {
 			outputStream = new FileOutputStream(new File(outputDirectory.getPath(), "results.xlsx"));
 //			FileLock lock = outputStream.getChannel().lock(0, Long.MAX_VALUE, true);
@@ -848,6 +646,7 @@ public class Instructor implements Cloneable
 
 		return isLocked;
 	}
+	
 	/**
 	 * Override toString() method to return the output directory name as String
 	 * @return <b>String</b> - Output directory name
